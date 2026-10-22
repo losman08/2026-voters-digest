@@ -128,7 +128,7 @@ header.mast{position:sticky; top:env(safe-area-inset-top,0px); z-index:30;
 .fw-name{font-family:var(--font-display); font-size:1.1rem; color:var(--ink); font-weight:600}
 .fw-quote{margin:14px 0 4px; padding:12px 14px; background:var(--gold-soft); border-radius:10px; font-family:var(--font-display); font-style:italic; font-size:.92rem; color:var(--ink); line-height:1.45}
 .fw-quote span{display:block; margin-top:6px; font-family:var(--font-ui); font-style:normal; font-size:.75rem; font-weight:600; color:var(--gold-ink)}
-.fw-donate{margin-top:16px; font-size:.72rem; color:var(--faint); line-height:1.5}
+.fw-donate{margin-top:22px; font-size:.65rem; color:var(--faint); line-height:1.55}
 .panel-note{font-family:var(--font-ui); font-size:.73rem; color:var(--faint); padding:7px 10px 3px; line-height:1.4}
 .card h2,.race h2,.cand h3,.pcard h4,.pending-wrap h3,.lede.serif,.vcard h4{color:var(--ink)}
 
@@ -745,7 +745,7 @@ document.getElementById('reqForm').addEventListener('submit',async e=>{
 
 /* ---------------- Foreword + rotating quotes ---------------- */
 document.getElementById('forewordLink').addEventListener('click',()=>openModal('forewordModal'));
-try{if(!localStorage.getItem('vd_fw_seen')){openModal('forewordModal');localStorage.setItem('vd_fw_seen','1');}}catch(e){}
+openModal('forewordModal');
 (function(){
   const Q=[
     {t:"The vote is the most powerful instrument ever devised by man for breaking down injustice.",a:"Lyndon B. Johnson"},
