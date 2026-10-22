@@ -111,6 +111,8 @@ header.mast{position:sticky; top:env(safe-area-inset-top,0px); z-index:30;
 .req-disc b{color:var(--violet-ink)}
 .req-submit{width:100%; font-family:var(--font-ui); font-weight:700; font-size:.95rem; background:var(--violet); color:#fff; border:none; border-radius:10px; padding:12px; cursor:pointer}
 .req-submit:hover{background:var(--violet-ink)}
+.req-submit:disabled{opacity:.6; cursor:default}
+.req-err{color:var(--rep); font-family:var(--font-ui); font-size:.84rem; margin:0 0 10px}
 .req-done{text-align:center; padding:14px 6px}
 .req-done .chk{width:48px; height:48px; border-radius:50%; background:var(--violet-soft); color:var(--violet-ink); display:inline-flex; align-items:center; justify-content:center}
 .req-done .big{font-family:var(--font-display); font-size:1.1rem; color:var(--ink); margin:10px 0 5px; font-weight:600}
@@ -404,6 +406,7 @@ footer a{color:var(--violet-ink)}
         <div class="req-field"><label for="rqCounty">County</label><input id="rqCounty" type="text"></div>
         <div class="req-field"><label for="rqCity">City</label><input id="rqCity" type="text"></div>
         <div class="req-disc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="flex:none;margin-top:1px"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Your request and contact details stay <b>private</b> — seen only by the person who maintains this guide, used solely to build out your state's ballot information and to let you know when it's complete. Never shared, sold, or shown to anyone else.</span></div>
+        <p class="req-err" id="reqErr" hidden></p>
         <button type="submit" class="req-submit">Send request</button>
       </form>
       <div class="req-done" id="reqDone" hidden>
@@ -722,14 +725,22 @@ document.getElementById('helpBtn').addEventListener('click',()=>openModal('helpM
 document.querySelectorAll('.modal-scrim').forEach(s=>s.addEventListener('click',e=>{if(e.target===s)closeModal(s.id);}));
 document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeModal(b.dataset.close)));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-scrim:not([hidden])').forEach(s=>closeModal(s.id));closePanel();}});
-const REQ_LIVE=false;
-document.getElementById('reqForm').addEventListener('submit',e=>{
+document.getElementById('reqForm').addEventListener('submit',async e=>{
   e.preventDefault();
-  const name=document.getElementById('rqName').value.trim(),phone=document.getElementById('rqPhone').value.trim(),state=document.getElementById('rqState').value.trim();
+  const name=document.getElementById('rqName').value.trim(),phone=document.getElementById('rqPhone').value.trim(),state=document.getElementById('rqState').value.trim(),county=document.getElementById('rqCounty').value.trim(),city=document.getElementById('rqCity').value.trim();
   let ok=true;[['rqName',name],['rqPhone',phone],['rqState',state]].forEach(([id,v])=>{document.getElementById(id).style.borderColor=v?'':'var(--rep)';if(!v)ok=false;});
   if(!ok)return;
-  document.getElementById('reqDoneMsg').textContent=REQ_LIVE?`Thanks, ${name}! Your request for ${state} is in — you'll get a text at ${phone} when it's ready.`:`Thanks, ${name}! Request delivery is being switched on shortly. In the meantime, please also let the person who shared this guide know you'd like ${state} added.`;
-  document.getElementById('reqForm').hidden=true;document.getElementById('reqDone').hidden=false;
+  const err=document.getElementById('reqErr');err.hidden=true;
+  const btn=e.target.querySelector('.req-submit');btn.disabled=true;const bt=btn.textContent;btn.textContent='Sending…';
+  try{
+    const res=await fetch('/api/request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,phone,state,county,city})});
+    if(!res.ok)throw new Error('send failed');
+    document.getElementById('reqDoneMsg').textContent=`Thanks, ${name}! Your request for ${state} is in — you'll be contacted at ${phone} when it's ready.`;
+    document.getElementById('reqForm').hidden=true;document.getElementById('reqDone').hidden=false;
+  }catch(e2){
+    btn.disabled=false;btn.textContent=bt;
+    err.textContent='Sorry, that didn’t send — please check your connection and try again.';err.hidden=false;
+  }
 });
 
 /* ---------------- Foreword + rotating quotes ---------------- */
