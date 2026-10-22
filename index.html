@@ -367,7 +367,7 @@ footer a{color:var(--violet-ink)}
       <div style="margin-top:7px; color:var(--muted); font-size:.78rem">Documented = official record, court, or on-the-record admission. Reported = credible reporting, contested. Unsubstantiated = circulating but unverified. When there's no verified issue, this tool says so instead of amplifying rumor.</div>
     </div>
     <div id="races"></div>
-    <div class="notice" style="margin-top:4px"><span aria-hidden="true">📍</span><span><b>U.S. House and local races are by district.</b> Tell me your county or ZIP and I'll add your specific House race and down-ballot candidates. Governor and statewide offices apply to everyone.</span></div>
+    <div class="notice" style="margin-top:4px"><span aria-hidden="true">📍</span><span><b>Your U.S. House, state legislative, and local races depend on your address.</b> Look them up — with every candidate — using <a href="https://www.vote411.org/lwvc" target="_blank" rel="noopener">Vote411</a>, the League of Women Voters’ free, non-partisan by-address ballot tool. The statewide offices below are the same for every California voter.</span></div>
   </div>
 </section>
 
@@ -677,12 +677,12 @@ function updateImpactsOnly(){
 }
 
 /* ---------------- Candidates ---------------- */
-function candHTML(c){
+function candHTML(c,issues){
   return `<div class="cand">
     <h3>${esc(c.name)}</h3><span class="party ${c.pcls}"><span class="pd"></span>${esc(c.party)}</span>
     <p class="bio">${esc(c.bio)}</p>
     <div class="stand"><div class="sk">Where they stand</div>
-      ${ISSUES.map(i=>`<div class="issue"><span class="it">${esc(i)}</span><p>${esc(c.stand[i]||'—')}</p></div>`).join('')}</div>
+      ${(issues||ISSUES).map(i=>`<div class="issue"><span class="it">${esc(i)}</span><p>${esc(c.stand[i]||'—')}</p></div>`).join('')}</div>
     <div class="rec"><div class="sk">Record &amp; controversies</div>
       ${c.record.map(r=>`<div class="rec-item"><span class="tag ${r.tag}">${r.tag==='doc'?'Documented':r.tag==='rep2'?'Reported':'Unverified'}</span><span>${esc(r.t)}</span></div>`).join('')}
       ${c.clean?`<div class="clean"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>${esc(c.noScandal)}</div>`:''}</div>
@@ -694,7 +694,7 @@ function renderRaces(){
   document.getElementById('races').innerHTML=RACES.map(r=>`<div class="race">
     <div class="race-hd"><span class="rk" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 17l-6.3 4.4L8 14 2 9.4h7.6z"/></svg></span>
       <div><h2>${esc(r.office)}</h2><p class="rmeta">${esc(r.meta)}</p></div></div>
-    <div class="cands">${r.candidates.map(candHTML).join('')}</div></div>`).join('');
+    <div class="cands">${r.candidates.map(c=>candHTML(c,r.issues||ISSUES)).join('')}</div></div>`).join('');
 }
 
 /* ---------------- Before you vote ---------------- */
