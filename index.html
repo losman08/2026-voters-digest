@@ -1,0 +1,708 @@
+<title>Ballot Cliffnotes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: a civic quick-reference stack with three tabs (Measures / Candidates / Before you vote).
+   Visual identity borrows the historic suffrage palette — violet + gold on paper — to signal voting
+   rights and empowerment, deliberately not flag red-white-blue. One hue leads (violet); gold is the
+   accent of record. The two sides of any measure or race are told apart by labels, never good/bad color. */
+:root{
+  --bg:#f4f3f7; --surface:#ffffff; --surface-2:#f6f5fa; --inset:#f3eefa; --gold-soft:#f5eedb;
+  --ink:#231a33; --muted:#5a516b; --faint:#8a8398; --line:#e6e3ee; --line-2:#efedf4;
+  --violet:#5a3f8f; --violet-ink:#4a3078; --violet-soft:#ece4f6; --mast-bg:#4a3078;
+  --gold:#a9823a; --gold-ink:#8a6a2c;
+  --dem:#5a6ba0; --rep:#a05a5a;
+  --ok:#3f7a5a;
+  --warn-bg:#fbe8d4; --warn-fg:#7a4a16; --warn-line:#eccf9f;
+  --urgent-bg:#f8e1d9; --urgent-fg:#8a2f1a; --urgent-line:#e7bcae;
+  --font-display:"Spectral", Georgia, "Times New Roman", serif;
+  --font-ui:"Libre Franklin", system-ui, -apple-system, Segoe UI, sans-serif;
+  --maxw:780px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141020; --surface:#1d1830; --surface-2:#241e38; --inset:#241a38; --gold-soft:#2a2213;
+  --ink:#efeaf6; --muted:#a79fba; --faint:#7d7590; --line:#2d2742; --line-2:#262037;
+  --violet:#a88fd8; --violet-ink:#cbb4f0; --violet-soft:#2a2141; --mast-bg:#241a3f;
+  --gold:#d2ad5f; --gold-ink:#e0c07d;
+  --dem:#8ea0d6; --rep:#d68e8e; --ok:#6fb98f;
+  --warn-bg:#2e2410; --warn-fg:#e3b877; --warn-line:#4a3c1c;
+  --urgent-bg:#311a14; --urgent-fg:#e39b86; --urgent-line:#4a2820; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#141020; --surface:#1d1830; --surface-2:#241e38; --inset:#241a38; --gold-soft:#2a2213;
+  --ink:#efeaf6; --muted:#a79fba; --faint:#7d7590; --line:#2d2742; --line-2:#262037;
+  --violet:#a88fd8; --violet-ink:#cbb4f0; --violet-soft:#2a2141; --mast-bg:#241a3f;
+  --gold:#d2ad5f; --gold-ink:#e0c07d;
+  --dem:#8ea0d6; --rep:#d68e8e; --ok:#6fb98f;
+  --warn-bg:#2e2410; --warn-fg:#e3b877; --warn-line:#4a3c1c;
+  --urgent-bg:#311a14; --urgent-fg:#e39b86; --urgent-line:#4a2820; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--font-ui); line-height:1.5;
+  -webkit-font-smoothing:antialiased; margin:0}
+body::before{content:""; position:fixed; inset:0 0 auto; height:env(safe-area-inset-top,0px);
+  background:var(--mast-bg); z-index:40}
+h1,h2,h3,h4{font-family:var(--font-display)}
+a{color:var(--violet-ink)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--gold); outline-offset:2px; border-radius:4px}
+.wrap{max-width:var(--maxw); margin:0 auto;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px))}
+
+/* Masthead */
+header.mast{position:sticky; top:env(safe-area-inset-top,0px); z-index:30;
+  background:var(--mast-bg); color:#fff}
+.mast .wrap{padding-block:9px; display:flex; align-items:center; gap:8px 12px; flex-wrap:wrap}
+.seal{flex:none; width:30px; height:30px; border-radius:50%; border:1.5px solid var(--gold);
+  display:flex; align-items:center; justify-content:center; color:var(--gold)}
+.brand{font-weight:600; font-size:1.16rem; letter-spacing:.01em; margin:0; color:#fff}
+.brand .cal{color:var(--gold)}
+.eday{font-family:var(--font-ui); font-size:.72rem; letter-spacing:.03em; color:#e7dff5;
+  margin-left:auto; text-align:right; line-height:1.3}
+.eday b{color:var(--gold)}
+.theme-btn{font-family:var(--font-ui); font-size:.72rem; background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.25); color:#fff; border-radius:999px; padding:4px 10px; cursor:pointer}
+.mast-row2{flex-basis:100%; display:flex; align-items:baseline; gap:10px; justify-content:space-between}
+.statebtn{display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.3); color:#fff; border-radius:999px; padding:4px 11px 4px 5px; cursor:pointer; font-family:var(--font-ui); font-weight:600; font-size:.92rem}
+.statebtn:hover{background:rgba(255,255,255,.16)}
+.statebtn .flagwrap{flex:none; width:30px; height:20px; border-radius:3px; overflow:hidden; display:block; box-shadow:0 0 0 1px rgba(0,0,0,.18)}
+.statebtn .flagwrap svg{display:block; width:100%; height:100%}
+.statebtn .sym{flex:none; width:17px; height:17px; display:inline-flex}
+.statebtn .sym svg{width:100%; height:100%}
+.statebtn .chev{opacity:.85; flex:none}
+.state-panel{position:fixed; left:max(16px,env(safe-area-inset-left,0px)); z-index:50; top:72px; background:var(--surface); border:1px solid var(--line); border-radius:12px; box-shadow:0 14px 44px rgba(0,0,0,.28); padding:7px; width:min(290px,calc(100vw - 32px))}
+.state-panel[hidden]{display:none!important}
+.state-opt{display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:none; border:none; border-radius:9px; padding:9px 10px; cursor:pointer; font-family:var(--font-ui); font-size:.92rem; color:var(--ink)}
+.state-opt:hover:not([disabled]){background:var(--surface-2)}
+.state-opt .flagwrap{flex:none; width:32px; height:21px; border-radius:3px; overflow:hidden; box-shadow:0 0 0 1px var(--line)}
+.state-opt .flagwrap svg{width:100%; height:100%; display:block}
+.state-opt .soon{margin-left:auto; font-size:.66rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--faint); background:var(--surface-2); border:1px solid var(--line); border-radius:999px; padding:2px 8px}
+.state-opt[disabled]{cursor:default; color:var(--muted)}
+.state-opt .ck{margin-left:auto; color:var(--violet-ink); font-weight:800}
+.state-opt .abbrtile{flex:none; width:32px; height:21px; border-radius:3px; background:var(--violet-soft); color:var(--violet-ink); font-family:var(--font-ui); font-weight:800; font-size:.64rem; display:flex; align-items:center; justify-content:center; letter-spacing:.02em}
+.state-opt .tagb{margin-left:auto; font-size:.63rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; border-radius:999px; padding:2px 8px}
+.state-opt .tagb.build{background:var(--warn-bg); color:var(--warn-fg); border:1px solid var(--warn-line)}
+.state-opt .tagb.queue{background:var(--surface-2); color:var(--faint); border:1px solid var(--line)}
+.state-panel{max-height:min(66vh,520px); overflow-y:auto}
+.panel-note b{color:var(--ink)}
+.icon-btn{margin-left:auto; flex:none; width:31px; height:31px; border-radius:50%; background:var(--gold); border:1px solid var(--gold); color:#2a1c42; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 3px rgba(169,130,58,.28)}
+.icon-btn:hover{filter:brightness(1.08)}
+.req-open{display:flex; align-items:center; justify-content:center; gap:7px; width:100%; margin-top:6px; font-family:var(--font-ui); font-weight:700; font-size:.86rem; color:var(--violet-ink); background:var(--violet-soft); border:1px solid var(--violet-soft); border-radius:9px; padding:10px; cursor:pointer}
+.req-open:hover{background:var(--violet); color:#fff}
+.modal-scrim{position:fixed; inset:0; z-index:60; background:rgba(10,8,20,.55); display:flex; align-items:flex-start; justify-content:center; padding:16px; overflow-y:auto}
+.modal-scrim[hidden]{display:none!important}
+.modal{background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:16px; width:min(520px,100%); margin:max(24px,env(safe-area-inset-top,0px)) 0 24px; box-shadow:0 22px 64px rgba(0,0,0,.45)}
+.modal-hd{display:flex; align-items:center; gap:10px; padding:15px 16px 13px; border-bottom:1px solid var(--line-2)}
+.modal-hd h2{font-family:var(--font-display); font-size:1.14rem; margin:0; font-weight:600; flex:1; color:var(--ink)}
+.modal-x{flex:none; width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:var(--surface-2); color:var(--muted); cursor:pointer; font-size:.95rem; line-height:1}
+.modal-x:hover{color:var(--ink)}
+.modal-body{padding:16px}
+.help-intro{margin:0 0 6px; font-size:.9rem; color:var(--muted)}
+.help-sec{display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--line-2)}
+.help-sec:last-child{border-bottom:none; padding-bottom:0}
+.help-ic{flex:none; width:34px; height:34px; border-radius:9px; background:var(--violet-soft); display:flex; align-items:center; justify-content:center; font-size:1.02rem}
+.help-sec h3{font-family:var(--font-display); font-size:1rem; margin:0 0 3px; font-weight:600; color:var(--ink)}
+.help-sec p{margin:0; font-size:.88rem; color:var(--muted); line-height:1.5}
+.req-field{display:flex; flex-direction:column; gap:5px; margin-bottom:12px}
+.req-field label{font-family:var(--font-ui); font-size:.75rem; font-weight:700; color:var(--muted)}
+.req-field input{font-family:var(--font-ui); font-size:.95rem; padding:10px 12px; border:1px solid var(--line); border-radius:9px; background:var(--surface-2); color:var(--ink); width:100%}
+.req-field input:focus{outline:2px solid var(--violet); outline-offset:1px}
+.req-disc{background:var(--violet-soft); border-radius:10px; padding:11px 13px; font-family:var(--font-ui); font-size:.8rem; color:var(--ink); line-height:1.5; margin:4px 0 14px; display:flex; gap:9px}
+.req-disc b{color:var(--violet-ink)}
+.req-submit{width:100%; font-family:var(--font-ui); font-weight:700; font-size:.95rem; background:var(--violet); color:#fff; border:none; border-radius:10px; padding:12px; cursor:pointer}
+.req-submit:hover{background:var(--violet-ink)}
+.req-done{text-align:center; padding:14px 6px}
+.req-done .chk{width:48px; height:48px; border-radius:50%; background:var(--violet-soft); color:var(--violet-ink); display:inline-flex; align-items:center; justify-content:center}
+.req-done .big{font-family:var(--font-display); font-size:1.1rem; color:var(--ink); margin:10px 0 5px; font-weight:600}
+.panel-note{font-family:var(--font-ui); font-size:.73rem; color:var(--faint); padding:7px 10px 3px; line-height:1.4}
+.card h2,.race h2,.cand h3,.pcard h4,.pending-wrap h3,.lede.serif,.vcard h4{color:var(--ink)}
+
+/* Tabs */
+nav.tabs{position:sticky; top:calc(env(safe-area-inset-top,0px) + var(--masth,72px)); z-index:25;
+  background:var(--surface); border-bottom:1px solid var(--line)}
+.tabs .wrap{display:flex; gap:4px}
+.tab{font-family:var(--font-ui); font-size:.86rem; font-weight:600; cursor:pointer; color:var(--muted);
+  background:none; border:none; border-bottom:2.5px solid transparent; padding:12px 10px 10px}
+.tab[aria-selected="true"]{color:var(--violet-ink); border-bottom-color:var(--gold)}
+
+.view{padding-block:18px 44px}
+.view[hidden]{display:none!important}
+
+/* Intro */
+.lede{font-size:1.02rem; color:var(--muted); margin:0 0 14px; max-width:62ch}
+.lede.serif{font-family:var(--font-display); font-size:1.12rem; color:var(--ink); line-height:1.45}
+.notice{display:flex; gap:10px; align-items:flex-start; background:var(--surface-2);
+  border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:9px;
+  padding:11px 13px; font-size:.84rem; color:var(--muted); line-height:1.48}
+.notice b{color:var(--ink)}
+
+/* Control rail */
+.rail{background:var(--bg); border-bottom:1px solid var(--line-2); padding-block:12px; margin-top:16px}
+.rail .grp{display:flex; flex-direction:column; gap:7px; margin-bottom:11px}
+.rail .grp:last-child{margin-bottom:0}
+.glabel{font-family:var(--font-ui); font-size:.67rem; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--faint); font-weight:700; display:flex; gap:8px; align-items:baseline}
+.glabel .hint{font-weight:500; letter-spacing:0; text-transform:none; color:var(--faint); font-size:.72rem}
+.chips{display:flex; flex-wrap:wrap; gap:7px}
+.chip{font-family:var(--font-ui); font-size:.8rem; font-weight:500; cursor:pointer; color:var(--muted);
+  background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:6px 13px; line-height:1.2; transition:.12s}
+.chip:hover{border-color:var(--violet)}
+.chip[aria-pressed="true"]{background:var(--violet); color:#fff; border-color:var(--violet); font-weight:600}
+.srch{display:flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:8px 12px}
+.srch input{flex:1; min-width:0; border:none; background:none; color:var(--ink); font-family:var(--font-ui); font-size:.9rem}
+.srch input::placeholder{color:var(--faint)}
+.srch svg{flex:none; color:var(--faint)}
+
+.count{font-family:var(--font-ui); font-size:.78rem; color:var(--faint); letter-spacing:.03em; margin:4px 0 14px}
+
+/* Measure card */
+.card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px 18px 16px; margin-bottom:16px}
+.card-top{display:flex; gap:13px; align-items:flex-start}
+.num{flex:none; font-family:var(--font-ui); font-weight:800; font-size:.84rem; color:var(--violet-ink);
+  background:var(--violet-soft); border-radius:9px; width:46px; height:46px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; line-height:1}
+.num small{font-size:.5rem; letter-spacing:.1em; color:var(--violet); font-weight:700; margin-bottom:2px}
+.htext{min-width:0; flex:1}
+.cat-tag{font-family:var(--font-ui); font-size:.66rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--gold-ink); display:block; margin-bottom:2px}
+.card h2{font-family:var(--font-display); font-size:1.2rem; line-height:1.24; margin:0; letter-spacing:0; text-wrap:balance; font-weight:600}
+.placed{font-family:var(--font-ui); font-size:.74rem; color:var(--faint); margin-top:4px}
+.summary{margin:14px 0 0; font-size:1rem; color:var(--ink)}
+.yn{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px}
+.yn .box{background:var(--surface-2); border:1px solid var(--line); border-radius:10px; padding:11px 12px; min-width:0}
+.yn .box .k{font-family:var(--font-ui); font-size:.68rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:6px; margin-bottom:5px}
+.yn .box.pass .k{color:var(--violet-ink)}
+.yn .box .k .dot{width:7px; height:7px; border-radius:50%; background:var(--faint)}
+.yn .box.pass .k .dot{background:var(--violet)}
+.yn .box p{margin:0; font-size:.9rem; color:var(--ink)}
+.fiscal{display:flex; gap:8px; margin-top:12px; font-size:.8rem; color:var(--muted); align-items:baseline}
+.fiscal .flab{font-family:var(--font-ui); font-size:.66rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--faint); flex:none}
+.fiscal b{font-weight:600; color:var(--ink)}
+.impacts{margin-top:14px; display:flex; flex-direction:column; gap:8px}
+.impact{background:var(--inset); border:1px solid var(--violet-soft); border-radius:10px; padding:11px 13px}
+.impact .ihd{font-family:var(--font-ui); font-size:.66rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--violet-ink); margin-bottom:4px}
+.impact p{margin:0; font-size:.93rem; color:var(--ink)}
+.sides{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px; padding-top:14px; border-top:1px solid var(--line-2)}
+.side .k{font-family:var(--font-ui); font-size:.68rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-bottom:5px}
+.side ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:3px}
+.side li{font-family:var(--font-ui); font-size:.82rem; color:var(--ink); line-height:1.35}
+.side li.med{color:var(--muted); font-size:.76rem; font-style:italic}
+.links{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid var(--line-2)}
+.links a{font-family:var(--font-ui); font-size:.78rem; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:5px;
+  background:var(--surface-2); color:var(--violet-ink); border:1px solid var(--line); border-radius:999px; padding:6px 12px}
+.links a:hover{border-color:var(--violet)}
+.links a svg{opacity:.7}
+.ai-soon{margin-top:12px; display:flex; gap:9px; align-items:center; background:var(--surface-2); border:1px dashed var(--line); border-radius:10px; padding:10px 12px; font-family:var(--font-ui); font-size:.8rem; color:var(--faint)}
+.ai-soon b{color:var(--muted)}
+.ai-soon .soon{margin-left:auto; flex:none; font-size:.62rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gold-ink); background:var(--gold-soft); border-radius:999px; padding:2px 8px}
+
+/* Pending */
+.pending-wrap{margin-top:26px}
+.pending-wrap h3{font-family:var(--font-display); font-size:1.05rem; margin:0 0 4px; font-weight:600}
+.pending-wrap .sub{font-family:var(--font-ui); font-size:.8rem; color:var(--faint); margin:0 0 14px}
+.pcard{background:var(--surface); border:1px solid var(--line-2); border-radius:11px; padding:13px 14px; margin-bottom:10px; display:flex; gap:12px; align-items:flex-start}
+.pcard .pnum{flex:none; font-family:var(--font-ui); font-weight:800; font-size:.78rem; color:var(--muted); width:38px; height:38px; border:1px solid var(--line); border-radius:8px; display:flex; align-items:center; justify-content:center}
+.pcard .pbody{min-width:0; flex:1}
+.pcard .pcat{font-family:var(--font-ui); font-size:.64rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--faint); display:block}
+.pcard h4{font-family:var(--font-display); font-size:1rem; margin:1px 0 3px; color:var(--ink); font-weight:600}
+.pcard p{margin:0 0 7px; font-size:.86rem; color:var(--muted)}
+.pcard .plink{font-family:var(--font-ui); font-size:.76rem; font-weight:600; text-decoration:none; color:var(--violet-ink)}
+
+/* Candidate race */
+.race{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px; margin-bottom:18px}
+.race-hd{display:flex; gap:12px; align-items:flex-start; margin-bottom:4px}
+.race-hd .rk{flex:none; color:var(--gold); margin-top:2px}
+.race h2{font-family:var(--font-display); font-size:1.26rem; margin:0; font-weight:600}
+.race .rmeta{font-family:var(--font-ui); font-size:.8rem; color:var(--muted); margin:2px 0 0}
+.cands{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px}
+.cand{border:1px solid var(--line); border-radius:12px; padding:14px; min-width:0; background:var(--surface-2)}
+.cand h3{font-family:var(--font-display); font-size:1.08rem; margin:0; font-weight:600}
+.party{font-family:var(--font-ui); font-size:.72rem; font-weight:600; display:inline-flex; align-items:center; gap:6px; margin-top:4px; color:var(--muted)}
+.party .pd{width:8px; height:8px; border-radius:50%}
+.party.dem .pd{background:var(--dem)} .party.rep .pd{background:var(--rep)}
+.cand .bio{font-size:.9rem; color:var(--ink); margin:10px 0 0}
+.stand{margin-top:12px; border-top:1px solid var(--line-2); padding-top:10px}
+.stand .sk{font-family:var(--font-ui); font-size:.66rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--faint); margin-bottom:7px}
+.issue{margin-bottom:8px}
+.issue .it{font-family:var(--font-ui); font-size:.72rem; font-weight:700; color:var(--violet-ink); display:block}
+.issue p{margin:1px 0 0; font-size:.85rem; color:var(--ink)}
+.endorse{margin-top:11px; font-family:var(--font-ui); font-size:.78rem; color:var(--muted)}
+.endorse b{font-size:.66rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--faint); display:block; margin-bottom:2px}
+
+/* Controversy framing */
+.standard{background:var(--gold-soft); border:1px solid #e7d9b0; border-radius:10px; padding:12px 13px; margin:14px 0; font-family:var(--font-ui); font-size:.82rem; color:var(--ink); line-height:1.5}
+:root[data-theme="dark"] .standard, @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .standard{border-color:#4a3c1c}}
+.standard b{font-family:var(--font-ui)}
+.statuses{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
+.tag{font-family:var(--font-ui); font-size:.68rem; font-weight:700; border-radius:999px; padding:2px 9px; letter-spacing:.02em}
+.tag.doc{background:var(--violet-soft); color:var(--violet-ink)}
+.tag.rep2{background:var(--gold-soft); color:var(--gold-ink)}
+.tag.uns{background:var(--surface-2); color:var(--muted); border:1px solid var(--line)}
+.rec{margin-top:12px; border-top:1px solid var(--line-2); padding-top:10px}
+.rec .sk{font-family:var(--font-ui); font-size:.66rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--faint); margin-bottom:6px}
+.rec-item{display:flex; gap:8px; align-items:flex-start; margin-bottom:7px; font-size:.85rem; color:var(--ink)}
+.rec-item .tag{flex:none; margin-top:1px}
+.clean{display:flex; gap:7px; align-items:center; font-family:var(--font-ui); font-size:.82rem; color:var(--ok); font-weight:600}
+
+/* Before you vote */
+.vote-grid{display:flex; flex-direction:column; gap:11px; margin-top:16px}
+.vcard{display:flex; gap:13px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:14px 15px; text-decoration:none; color:inherit}
+.vcard:hover{border-color:var(--violet)}
+.vcard .vic{flex:none; width:38px; height:38px; border-radius:9px; background:var(--violet-soft); color:var(--violet-ink); display:flex; align-items:center; justify-content:center}
+.vcard .vb{flex:1; min-width:0}
+.vcard h4{font-family:var(--font-display); font-size:1rem; margin:0; color:var(--ink); font-weight:600}
+.vcard p{font-family:var(--font-ui); font-size:.8rem; color:var(--muted); margin:2px 0 0}
+.vcard .arr{flex:none; color:var(--faint)}
+
+#deadlineBanner{font-family:var(--font-ui); font-size:.85rem; line-height:1.45; border-bottom:1px solid var(--line); background:var(--gold-soft); color:var(--ink)}
+#deadlineBanner .wrap{padding-block:10px; display:flex; gap:9px; align-items:baseline}
+#deadlineBanner[hidden]{display:none!important}
+#deadlineBanner b{font-weight:800}
+[data-deadline="final"] #deadlineBanner{background:var(--warn-bg); color:var(--warn-fg); border-bottom-color:var(--warn-line)}
+[data-deadline="today"] #deadlineBanner{background:var(--urgent-bg); color:var(--urgent-fg); border-bottom-color:var(--urgent-line)}
+[data-deadline="ended"] #deadlineBanner{background:var(--surface-2); color:var(--muted)}
+[data-deadline="final"] .eday b{color:#f3c178}
+[data-deadline="today"] .eday b{color:#f4a58f}
+[data-deadline="final"] .eday b,[data-deadline="today"] .eday b{animation:pulse 1.9s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+@media (prefers-reduced-motion:reduce){.eday b{animation:none!important}}
+footer{border-top:1px solid var(--line); padding-block:22px 36px; margin-top:28px}
+footer .wrap{font-family:var(--font-ui); font-size:.78rem; color:var(--faint); line-height:1.55}
+footer a{color:var(--violet-ink)}
+.empty{font-family:var(--font-ui); color:var(--faint); text-align:center; padding:40px 0; font-size:.9rem}
+
+@media (max-width:520px){ .yn,.sides,.cands{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Spectral:wght@400;500;600;700&display=swap">
+
+<header class="mast">
+  <div class="wrap">
+    <button class="statebtn" id="stateBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change your state">
+      <span class="flagwrap" id="stateFlag"></span>
+      <span class="sname" id="stateName">California</span>
+      <span class="sym" id="stateSym" aria-hidden="true"></span>
+      <svg class="chev" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <button class="icon-btn" id="helpBtn" aria-label="How to use this guide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="12" y1="7.6" x2="12" y2="7.65"/></svg></button>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle light or dark theme">Theme</button>
+    <div class="mast-row2">
+      <h1 class="brand">Ballot Cliffnotes</h1>
+      <span class="eday" id="eday">Election Day · Nov 3, 2026</span>
+    </div>
+  </div>
+</header>
+
+<div class="state-panel" id="statePanel" role="listbox" aria-label="Choose your state" hidden></div>
+
+<nav class="tabs">
+  <div class="wrap">
+    <button class="tab" data-tab="measures" aria-selected="true">Measures</button>
+    <button class="tab" data-tab="candidates" aria-selected="false">Candidates</button>
+    <button class="tab" data-tab="vote" aria-selected="false">Before you vote</button>
+  </div>
+</nav>
+
+<div id="deadlineBanner" hidden><div class="wrap"></div></div>
+
+<!-- MEASURES -->
+<section class="view" id="view-measures">
+  <div class="wrap">
+    <p class="lede serif">The 14 statewide propositions on California's November 2026 ballot, in plain English — what each does, what Yes or No actually means, who's behind each side, and how it touches your life.</p>
+    <div class="notice"><span aria-hidden="true">⚖️</span><span><b>Non-partisan.</b> Summarized from California's official voter guide and the non-partisan newsroom CalMatters. This does not tell you how to vote; colors and labels only separate the two sides. Always confirm with the linked sources.</span></div>
+  </div>
+  <div class="rail">
+    <div class="wrap">
+      <div class="grp">
+        <span class="glabel">Show impact for <span class="hint">· pick one or more</span></span>
+        <div class="chips" id="sitChips" role="group" aria-label="Your situation"></div>
+      </div>
+      <div class="grp">
+        <span class="glabel">Filter by topic</span>
+        <div class="chips" id="catChips" role="group" aria-label="Topic filter"></div>
+      </div>
+      <div class="grp">
+        <div class="srch">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input id="search" type="search" placeholder="Search measures (housing, tax, voting…)" aria-label="Search measures">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="count" id="count"></p>
+    <div id="cards"></div>
+    <div id="pending" class="pending-wrap"></div>
+    <p class="empty" id="empty" hidden>No measures match that search or filter.</p>
+  </div>
+</section>
+
+<!-- CANDIDATES -->
+<section class="view" id="view-candidates" hidden>
+  <div class="wrap">
+    <p class="lede serif">Who's running, where they stand, and what's on the record — side by side, same questions for each.</p>
+    <div class="standard">
+      <b>How controversies are handled.</b> Every item is labeled by how well it's established, and every candidate is held to the same bar. Policy disagreements are not scandals.
+      <div class="statuses">
+        <span class="tag doc">Documented</span><span class="tag rep2">Reported</span><span class="tag uns">Unsubstantiated</span>
+      </div>
+      <div style="margin-top:7px; color:var(--muted); font-size:.78rem">Documented = official record, court, or on-the-record admission. Reported = credible reporting, contested. Unsubstantiated = circulating but unverified. When there's no verified issue, this tool says so instead of amplifying rumor.</div>
+    </div>
+    <div id="races"></div>
+    <div class="notice" style="margin-top:4px"><span aria-hidden="true">📍</span><span><b>U.S. House and local races are by district.</b> Tell me your county or ZIP and I'll add your specific House race and down-ballot candidates. Governor and statewide offices apply to everyone.</span></div>
+  </div>
+</section>
+
+<!-- BEFORE YOU VOTE -->
+<section class="view" id="view-vote" hidden>
+  <div class="wrap">
+    <p class="lede serif">Everything you need to actually cast your ballot — all official California tools.</p>
+    <div class="vote-grid" id="voteGrid"></div>
+    <div class="notice" style="margin-top:16px"><span aria-hidden="true">🗳️</span><span>California mails a ballot to every registered voter. You can return it by mail (postmarked by Election Day), at any drop box, or at a vote center. In-person vote centers and drop boxes are open in the days before <b>November 3, 2026</b>.</span></div>
+  </div>
+</section>
+
+<div class="modal-scrim" id="helpModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-label="How to use this guide">
+    <div class="modal-hd"><h2>How to use this guide</h2><button class="modal-x" data-close="helpModal" aria-label="Close">✕</button></div>
+    <div class="modal-body">
+      <p class="help-intro">A quick tour of each part — close with the ✕ when you're done.</p>
+      <div class="help-sec"><span class="help-ic" aria-hidden="true">📍</span><div><h3>Choose your state</h3><p>Tap the flag and state name at the top-left. You'll see which states are covered, switch between them, or request one that isn't listed yet.</p></div></div>
+      <div class="help-sec"><span class="help-ic" aria-hidden="true">⏳</span><div><h3>The countdown</h3><p>The colored bar shows how many days remain until Election Day, November 3. It turns amber in the final week and red on Election Day.</p></div></div>
+      <div class="help-sec"><span class="help-ic" aria-hidden="true">📋</span><div><h3>Measures</h3><p>Each card explains one ballot measure in plain English: what it does, what Yes and No mean, the cost, who backs and opposes it, and official links — including the full legal text as written by lawmakers.</p></div></div>
+      <div class="help-sec"><span class="help-ic" aria-hidden="true">🎯</span><div><h3>Show the impact for you</h3><p>On the Measures tab, pick one or more situations — renter, homeowner, senior, and so on. Each measure then shows how it could affect people like you. Use the topic chips or search to narrow the list.</p></div></div>
+      <div class="help-sec"><span class="help-ic" aria-hidden="true">👤</span><div><h3>Candidates</h3><p>Candidates shown side by side: background, where they stand issue by issue, endorsements, and a “Record &amp; controversies” section that labels each item by how well it's verified. No scandal is invented.</p></div></div>
+      <div class="help-sec"><span class="help-ic" aria-hidden="true">🗳️</span><div><h3>Before you vote</h3><p>Official links to find your polling place and ballot drop boxes, track your mail ballot, and register — all from the Secretary of State.</p></div></div>
+      <div class="help-sec"><span class="help-ic" aria-hidden="true">✉️</span><div><h3>Request a state</h3><p>Don't see your state? Open the state menu at the top-left and tap “Request your state.” Your details stay private, and you'll be contacted when it's ready.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-scrim" id="reqModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Request your state">
+    <div class="modal-hd"><h2>Request your state</h2><button class="modal-x" data-close="reqModal" aria-label="Close">✕</button></div>
+    <div class="modal-body">
+      <form id="reqForm" novalidate>
+        <p class="help-intro" style="margin-bottom:14px">Don't see your state yet? Tell us where you vote and it'll be built — you'll hear back when it's ready.</p>
+        <div class="req-field"><label for="rqName">Your name</label><input id="rqName" type="text" autocomplete="name" required></div>
+        <div class="req-field"><label for="rqPhone">Phone (so you can be texted when it's ready)</label><input id="rqPhone" type="tel" inputmode="tel" autocomplete="tel" required></div>
+        <div class="req-field"><label for="rqState">State</label><input id="rqState" type="text" required></div>
+        <div class="req-field"><label for="rqCounty">County</label><input id="rqCounty" type="text"></div>
+        <div class="req-field"><label for="rqCity">City</label><input id="rqCity" type="text"></div>
+        <div class="req-disc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="flex:none;margin-top:1px"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Your request and contact details stay <b>private</b> — seen only by the person who maintains this guide, used solely to build out your state's ballot information and to let you know when it's complete. Never shared, sold, or shown to anyone else.</span></div>
+        <button type="submit" class="req-submit">Send request</button>
+      </form>
+      <div class="req-done" id="reqDone" hidden>
+        <span class="chk" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <div class="big">Request sent</div>
+        <p id="reqDoneMsg" style="margin:0; color:var(--muted); font-size:.9rem; line-height:1.5"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div><b style="color:var(--muted)">Ballot Cliffnotes</b> — a plain-language companion for California voters. Built for family and friends, free to share.</div>
+    <div style="margin-top:8px">Sources: California Secretary of State <a href="https://voterguide.sos.ca.gov/" target="_blank" rel="noopener">Official Voter Guide</a>, the non-partisan <a href="https://calmatters.org/california-voter-guide-2026/" target="_blank" rel="noopener">CalMatters 2026 Voter Guide</a>, and official sos.ca.gov voter tools. Positions and endorsements reflect each side's own statements and may change.</div>
+    <div style="margin-top:8px">Four measures and the Governor's race are shown in full; remaining measures carry verified titles and official links while their breakdowns are written. A personalized "ask the AI about my situation" answer is planned for a later version.</div>
+  </div>
+</footer>
+
+<script>
+/* ---------------- Measure data ---------------- */
+const SITUATIONS=[
+  {key:'most',label:'Most people'},{key:'renter',label:'Renter / buying soon'},
+  {key:'homeowner',label:'Homeowner'},{key:'parent',label:'Parent / student'},
+  {key:'senior',label:'Senior'},{key:'business',label:'Business owner'},{key:'wealthy',label:'High income'}
+];
+const CM='https://calmatters.org/california-voter-guide-2026/', VG='https://voterguide.sos.ca.gov/';
+const BP='https://ballotpedia.org/';
+
+const PROPS=[
+  {num:1,cat:'Housing',title:'$11.25 billion housing bond',placed:'Placed on the ballot by the Legislature',
+   summary:'Lets the state borrow $11.25 billion to fund affordable housing — rental homes, help for first-time buyers, plus set-asides for veterans ($1.25B), farmworkers, students and tribal housing. Backers estimate it could fund about 40,000 rental units and help another 40,000 households buy a home.',
+   pass:'The state sells the bonds and funds these housing programs.',fail:'No bond is issued; these programs go unfunded.',
+   fiscal:'State repayment of about $500–600 million a year for ~25 years, from the general fund.',
+   support:['California Democratic Party','Gov. Gavin Newsom','California Apartment Association','AFL-CIO California'],supportMedia:['Sacramento Bee','S.F. Chronicle'],
+   oppose:['Some Republican legislators'],opposeMedia:['Orange County Register'],
+   impacts:{most:"No separate bill for you, but the state repays it from the general fund (~$500–600M a year for ~25 years) — money not available for other things.",renter:"Could expand affordable rentals and first-time-buyer help you might qualify for.",homeowner:"No new property tax; it's repaid from the general fund, not your home's assessment.",parent:"Includes dedicated funding for affordable student housing.",senior:"Funds supportive and affordable housing that can help fixed-income renters.",business:"No direct tax on you; any effects are broad and economic.",wealthy:"No targeted tax on you — repaid from the general fund like other state spending."},
+   links:[{label:'CalMatters',url:CM+'proposition-1-housing-bond/'},{label:'Official Voter Guide',url:VG}]},
+  {num:37,cat:'Housing',title:'Low-cost mortgages for middle-income buyers',placed:'Placed on the ballot by real-estate and labor groups',
+   summary:'Lets the state housing agency borrow up to $25 billion to lend to buyers of newly built homes — covering up to 17% of the price, so a buyer could put ~3% down instead of 20% (about $24,000 on an $800,000 home). Buyers repay the extra loan monthly to private lenders. Open to residents who live in the home, earn up to twice their area’s median income, and buy a new home under ~$1.5 million. Private lenders, not taxpayers, bear default risk.',
+   pass:'The loan program is created at the state housing agency.',fail:'No program is created.',
+   fiscal:'No direct cost to state or local government (official estimate).',
+   support:['California Democratic Party','Xavier Becerra','California Association of Realtors','California Conference of Carpenters','SEIU'],supportMedia:['Sacramento Bee','S.F. Chronicle'],
+   oppose:['Reform California','League of Women Voters'],opposeMedia:['San Diego Union-Tribune','Orange County Register'],
+   impacts:{most:"No tax cost. This mostly matters if you're buying a newly built home.",renter:"Could let you buy a new-construction home with ~3% down instead of ~20% — but you repay the extra loan monthly, so more total debt.",homeowner:"Little direct effect unless you buy again; may shift demand for new homes.",parent:"Helps middle-income families buy if under the income limit (up to ~2x area median income).",senior:"Relevant only if you're purchasing a qualifying new home.",business:"No tax; could boost homebuilding and construction work.",wealthy:"Income limits and the ~$1.5M price cap aim it at middle-income buyers, not high earners."},
+   links:[{label:'CalMatters',url:CM+'proposition-37-homebuyers-loan/'},{label:'Official Voter Guide',url:VG}]},
+  {num:39,cat:'Elections',title:'Require government ID to vote',placed:'Placed on the ballot by conservative groups',
+   summary:'Requires voters to show government-issued ID at the polls, and mail voters to write the last four digits of a government ID on the ballot envelope. Directs officials to verify all registered voters are U.S. citizens. California already requires ID and an SSN to register, but does not ask at polling places. Would make California the 37th state with a voter-ID requirement.',
+   pass:'ID is required to vote in person; mail ballots need the ID digits to count.',fail:'Current rules stay — no ID check at the polls.',
+   fiscal:'Tens of millions to low hundreds of millions of dollars a year to run.',
+   support:['California Republican Party','Reform California','Uline CEO Richard Uihlein'],supportMedia:[],
+   oppose:['ACLU','Common Cause','League of Women Voters','California Democratic Party'],opposeMedia:['Sacramento Bee'],
+   impacts:{most:"You'd show a government ID to vote in person, and write the last 4 digits of a government ID on your mail-ballot envelope — or it can be rejected.",renter:"If you've moved recently, mismatched records could complicate voting (opponents' concern).",homeowner:"The same ID steps as everyone else when voting.",parent:"Student or young voters without a driver's license may need another government ID.",senior:"You'll need valid government ID; those who no longer drive may need an alternative ID.",business:"No business impact — it changes how you personally vote.",wealthy:"No different for you than any other voter: ID required to vote in person."},
+   links:[{label:'CalMatters',url:CM+'proposition-39-voter-id/'},{label:'Official Voter Guide',url:VG}]},
+  {num:40,cat:'Taxes',title:'One-time tax on billionaires',placed:'Placed on the ballot by the healthcare union SEIU-UHW',
+   summary:'A one-time 5% tax on the ~200 Californians worth over $1 billion at the start of 2026. Backers project ~$100 billion over five years, earmarked mainly for health care, with some for food assistance and education. Note: if Prop 41 or Prop 42 get more Yes votes, this measure is cancelled.',
+   pass:'About 200 billionaires pay the one-time tax; revenue funds health care and more.',fail:'No new tax is imposed.',
+   fiscal:'A temporary increase of tens of billions over several years; possibly a small ongoing drop in income-tax revenue if some billionaires leave.',
+   support:['SEIU-United Healthcare Workers West','Sen. Bernie Sanders','Teamsters California','AFSCME California','California Democratic Party','California Labor Federation'],supportMedia:['Sacramento Bee'],
+   oppose:['California Business Roundtable','California Medical Association','California Teachers Association','Planned Parenthood','California Professional Firefighters','State Building & Construction Trades','Chris Larsen','Ron Conway'],opposeMedia:['L.A. Times','San Diego Union-Tribune','Orange County Register'],
+   impacts:{most:"You almost certainly aren't taxed — it hits only ~200 billionaires. You'd feel it only through the health-care funding it raises.",renter:"Could fund health care, Medi-Cal and food assistance used by many lower-income residents.",homeowner:"No change to your property or income taxes.",parent:"Some of the revenue is earmarked for education.",senior:"Health-care funding could support clinics and hospitals you rely on.",business:"No direct tax unless you're a billionaire; opponents warn of broader effects if billionaires leave the state.",wealthy:"As written it applies only at $1B+ net worth, so high earners below that aren't taxed. (A CalMatters fact-check examined whether it could later be expanded.)"},
+   links:[{label:'CalMatters',url:CM+'proposition-40-billionaire-tax/'},{label:'Official Voter Guide',url:VG}]}
+];
+const PENDING=[
+  {num:2,cat:'Budget',title:'Increase the state’s rainy-day fund',one:'Raises the cap on how much California can set aside in savings.',url:CM+'proposition-2-rainy-day-fund/'},
+  {num:3,cat:'Taxes',title:'Make the high-income tax permanent',one:'Extends the existing tax on high earners permanently, for schools and health care.',url:CM+'proposition-3-high-income-tax/'},
+  {num:4,cat:'Elections',title:'Allow public funding of campaigns',one:'Lets state and local governments create public-financing programs for candidates.',url:CM+'proposition-4-public-fundraising/'},
+  {num:5,cat:'Elections',title:'Change the recall process',one:'Changes how a recalled statewide officer is replaced.',url:CM+'proposition-5-recall-reform/'},
+  {num:38,cat:'Health',title:'$8.4 billion immunology research bond',one:'Borrows $8.4 billion to fund immunology medical research.',url:CM+'proposition-38-research-bond/'},
+  {num:41,cat:'Taxes',title:'Require audits for new special taxes',one:'Requires audits of new state special taxes (competes with Prop 40).',url:CM+'proposition-41-tax-audits/'},
+  {num:42,cat:'Taxes',title:'Ban new taxes on personal property',one:'Prohibits new state taxes on personal property (competes with Prop 40).',url:CM+'proposition-42-property-taxes/'},
+  {num:43,cat:'Taxes',title:'Raise the vote threshold for local taxes',one:'Raises the share of votes needed to pass some local tax measures.',url:CM+'proposition-43-tax-threshold/'},
+  {num:44,cat:'Health',title:'Require clinics to spend more on care',one:'Requires certain clinics to spend more of their money on patient care.',url:CM+'proposition-44-clinic-funding/'},
+  {num:45,cat:'Environment',title:'Speed up environmental review',one:'Changes environmental-review rules to speed some housing and infrastructure.',url:CM+'proposition-45-environmental-review/'}
+];
+
+/* ---------------- Candidate data ---------------- */
+const ISSUES=['Housing','Healthcare','Cost of living','Immigration','Public safety','Taxes','Environment'];
+const RACES=[{
+  office:'Governor of California',
+  meta:'Open seat — Gov. Gavin Newsom is term-limited. Top-two runoff from the June 2026 primary.',
+  candidates:[
+    {name:'Xavier Becerra',party:'Democrat',pcls:'dem',
+     bio:'Former U.S. Health & Human Services Secretary (2021–2025), who oversaw the COVID-19 vaccine rollout; California Attorney General (2017–2021); and before that represented Los Angeles in Congress for more than two decades.',
+     stand:{Housing:'Declare a housing emergency to finance ~40,000 approved affordable units; push cities to zone for apartments and condos; expand down-payment aid; limit bulk home-buying by large corporations.',
+       Healthcare:'Shifted from single-payer to expanding state coverage as broadly as possible; cut insurer administrative costs; require more telehealth; a state fund to recruit health workers.',
+       'Cost of living':'Declare an emergency to freeze utility and insurance rates and crack down on price gouging.',
+       Immigration:'Supports and would defend the state sanctuary law; signals a legal stance against federal immigration actions.',
+       'Public safety':'Voted for Prop 36 (2024) and would fully fund it, including court-ordered drug treatment; leaves sentencing largely to judges.',
+       Taxes:'Backs a progressive income tax and extending the higher rate on high earners for schools; opposes Prop 40; hasn’t ruled out raising taxes.',
+       Environment:'Supports clean-energy goals but open to revising them if they raise costs, including the 2035 new-gas-car phase-out.'},
+     endorse:'California Faculty Association, Equality California, Planned Parenthood California',
+     clean:true,
+     record:[{tag:'doc',t:'Long public record: U.S. House (1993–2017), California AG, U.S. HHS Secretary — votes and official actions are on the public record.'},
+       {tag:'rep2',t:'Faced partisan criticism over pandemic-era HHS decisions and, from some on the left, over moving away from single-payer. Policy debate, not misconduct.'}],
+     noScandal:'No criminal or personal-conduct scandal documented.',
+     links:[{label:'CalMatters',url:CM+'governor/'},{label:'Ballotpedia',url:BP+'Xavier_Becerra'}]},
+    {name:'Steve Hilton',party:'Republican',pcls:'rep',
+     bio:'Political commentator and author; senior adviser to UK Prime Minister David Cameron (2010–2012); co-founded a political crowdfunding platform and hosted a weekly Fox News show (2017–2023). Has not previously held elected office.',
+     stand:{Housing:'"Bring back the starter home" by cutting fees and rules for smaller single-family homes; a state loan program for first-time buyers; limit CEQA lawsuits; favor suburban over dense development.',
+       Healthcare:'End state-funded Medi-Cal for undocumented immigrants and redirect the money to lower costs for legal residents; more insurer competition; limits on provider consolidation.',
+       'Cost of living':'Suspend environmental rules to lower gas prices; end greenhouse-gas mandates he says raise utility bills; curb lawsuits against businesses; drop the company registration fee.',
+       Immigration:'Would overturn the state sanctuary law that limits police cooperation with ICE.',
+       'Public safety':'Reopen closed prisons; reduce good-conduct early releases; expand rehabilitation; loosen limits on police stops; reduce some firearm restrictions.',
+       Taxes:'Eliminate state income tax on the first $150,000 earned and set a flat rate above that; halve the gas tax; opposes Prop 40.',
+       Environment:'Roll back clean-energy mandates; end solar/wind purchase requirements; allow more natural gas; a volunteer tree-planting and forest-restoration program.'},
+     endorse:'President Donald Trump, Nisei Farmers League, Israeli-American Civic Action Network',
+     clean:true,
+     record:[{tag:'doc',t:'No prior elected office, so no voting record; career is as an adviser, author and TV commentator — statements are largely on the record.'},
+       {tag:'rep2',t:'As a Fox News host made polarizing on-air statements (on the record); critics question his lack of governing experience. Rhetoric/experience debate, not misconduct.'}],
+     noScandal:'No criminal or personal-conduct scandal documented.',
+     links:[{label:'CalMatters',url:CM+'governor/'},{label:'Ballotpedia',url:BP+'Steve_Hilton'}]}
+  ]
+}];
+
+/* ---------------- Before-you-vote links (official) ---------------- */
+const VOTE_LINKS=[
+  {icon:'📍',title:'Find your polling place & drop boxes',desc:'Official Secretary of State locator by address',url:'https://www.sos.ca.gov/elections/polling-place'},
+  {icon:'🗳️',title:'Track your mail ballot',desc:'Where’s My Ballot — official status alerts',url:'https://www.sos.ca.gov/elections/ballot-status/wheres-my-ballot'},
+  {icon:'✍️',title:'Register or re-register to vote',desc:'registertovote.ca.gov (official)',url:'https://registertovote.ca.gov/'},
+  {icon:'🔎',title:'Check your registration status',desc:'Confirm you’re registered and current',url:'https://voterstatus.sos.ca.gov/'},
+  {icon:'🇺🇸',title:'Voting in another state?',desc:'vote.gov — official links for all 50 states',url:'https://vote.gov/'}
+];
+
+/* ---------------- State ---------------- */
+const store={get(k,d){try{return localStorage.getItem(k)??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+let sitSel=new Set((store.get('bcn_sits','most')||'most').split(',').filter(Boolean));
+if(!sitSel.size) sitSel.add('most');
+let cat='all', query='';
+const CATS=['all','Taxes','Housing','Elections','Health','Environment','Budget'];
+const extIco='<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg>';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const sitLabel=k=>{const s=SITUATIONS.find(x=>x.key===k);return s?s.label:'Most people'};
+
+/* ---------------- Chips ---------------- */
+function renderSitChips(){document.getElementById('sitChips').innerHTML=SITUATIONS.map(s=>`<button class="chip" aria-pressed="${sitSel.has(s.key)}" data-sit="${s.key}">${esc(s.label)}</button>`).join('')}
+function renderCatChips(){document.getElementById('catChips').innerHTML=CATS.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-cat="${c}">${c==='all'?'All 14':esc(c)}</button>`).join('')}
+
+/* ---------------- Measures ---------------- */
+function sideList(n,m){return (n||[]).map(x=>`<li>${esc(x)}</li>`).join('')+((m||[]).length?`<li class="med">Editorials: ${m.map(esc).join(', ')}</li>`:'')}
+function impactBlocks(p){const keys=[...sitSel];return keys.map(k=>`<div class="impact"><div class="ihd">If you're: ${esc(sitLabel(k))}</div><p>${esc(p.impacts[k]||p.impacts.most)}</p></div>`).join('')}
+function cardHTML(p){
+  const _op=`https://voterguide.sos.ca.gov/propositions/${p.num}/index.htm`;
+  const _tx=`https://vig.cdn.sos.ca.gov/2026/general/pdf/prop${p.num}-text-proposed-laws.pdf`;
+  const _lk=[...p.links.filter(l=>l.label==='CalMatters'),{label:'Official guide',url:_op},{label:'Full legal text (PDF)',url:_tx}];
+  return `<article class="card" data-cat="${p.cat}">
+  <div class="card-top"><div class="num"><small>PROP</small>${p.num}</div>
+    <div class="htext"><span class="cat-tag">${esc(p.cat)}</span><h2>${esc(p.title)}</h2><div class="placed">${esc(p.placed)}</div></div></div>
+  <p class="summary">${esc(p.summary)}</p>
+  <div class="yn"><div class="box pass"><div class="k"><span class="dot"></span>If it passes</div><p>${esc(p.pass)}</p></div>
+    <div class="box fail"><div class="k"><span class="dot"></span>If it fails</div><p>${esc(p.fail)}</p></div></div>
+  <div class="fiscal"><span class="flab">Cost</span><b>${esc(p.fiscal)}</b></div>
+  <div class="impacts" data-impacts>${impactBlocks(p)}</div>
+  <div class="sides"><div class="side"><div class="k">Backed by</div><ul>${sideList(p.support,p.supportMedia)}</ul></div>
+    <div class="side"><div class="k">Opposed by</div><ul>${sideList(p.oppose,p.opposeMedia)}</ul></div></div>
+  <div class="ai-soon"><span aria-hidden="true">✦</span><span><b>Ask how this affects your exact situation</b> — personalized AI answer</span><span class="soon">Coming in v2</span></div>
+  <div class="links">${_lk.map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ${extIco}</a>`).join('')}</div>
+</article>`}
+function renderCards(){
+  const vis=PROPS.filter(p=>(cat==='all'||p.cat===cat)&&(!query||(p.title+' '+p.summary+' '+p.cat).toLowerCase().includes(query)));
+  document.getElementById('cards').innerHTML=vis.map(cardHTML).join('');
+  const pv=PENDING.filter(p=>(cat==='all'||p.cat===cat)&&(!query||(p.title+' '+p.one+' '+p.cat).toLowerCase().includes(query)));
+  const pend=document.getElementById('pending');
+  if(pv.length){pend.hidden=false;pend.innerHTML=`<h3>More on the ballot</h3><p class="sub">Verified titles and official links — full breakdowns are being written.</p>`+
+    pv.map(p=>`<div class="pcard"><div class="pnum">${p.num}</div><div class="pbody"><span class="pcat">${esc(p.cat)}</span>
+      <h4>Prop ${p.num}: ${esc(p.title)}</h4><p>${esc(p.one)}</p>
+      <a class="plink" href="${esc(p.url)}" target="_blank" rel="noopener">Read it on CalMatters ${extIco}</a></div></div>`).join('');
+  }else pend.hidden=true;
+  const total=vis.length+pv.length;
+  document.getElementById('count').textContent=`${total} of 14 measures${cat!=='all'?` · ${cat}`:''}${query?` · "${query}"`:''}`;
+  document.getElementById('empty').hidden=total>0;
+}
+function updateImpactsOnly(){
+  const vis=PROPS.filter(p=>(cat==='all'||p.cat===cat)&&(!query||(p.title+' '+p.summary+' '+p.cat).toLowerCase().includes(query)));
+  document.querySelectorAll('#cards .card').forEach((c,i)=>{if(vis[i])c.querySelector('[data-impacts]').innerHTML=impactBlocks(vis[i])});
+}
+
+/* ---------------- Candidates ---------------- */
+function candHTML(c){
+  return `<div class="cand">
+    <h3>${esc(c.name)}</h3><span class="party ${c.pcls}"><span class="pd"></span>${esc(c.party)}</span>
+    <p class="bio">${esc(c.bio)}</p>
+    <div class="stand"><div class="sk">Where they stand</div>
+      ${ISSUES.map(i=>`<div class="issue"><span class="it">${esc(i)}</span><p>${esc(c.stand[i]||'—')}</p></div>`).join('')}</div>
+    <div class="rec"><div class="sk">Record &amp; controversies</div>
+      ${c.record.map(r=>`<div class="rec-item"><span class="tag ${r.tag}">${r.tag==='doc'?'Documented':r.tag==='rep2'?'Reported':'Unverified'}</span><span>${esc(r.t)}</span></div>`).join('')}
+      ${c.clean?`<div class="clean"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>${esc(c.noScandal)}</div>`:''}</div>
+    <div class="endorse"><b>Endorsed by</b>${esc(c.endorse)}</div>
+    <div class="links">${c.links.map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ${extIco}</a>`).join('')}</div>
+  </div>`;
+}
+function renderRaces(){
+  document.getElementById('races').innerHTML=RACES.map(r=>`<div class="race">
+    <div class="race-hd"><span class="rk" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 17l-6.3 4.4L8 14 2 9.4h7.6z"/></svg></span>
+      <div><h2>${esc(r.office)}</h2><p class="rmeta">${esc(r.meta)}</p></div></div>
+    <div class="cands">${r.candidates.map(candHTML).join('')}</div></div>`).join('');
+}
+
+/* ---------------- Before you vote ---------------- */
+function renderVote(){
+  document.getElementById('voteGrid').innerHTML=VOTE_LINKS.map(v=>`<a class="vcard" href="${esc(v.url)}" target="_blank" rel="noopener">
+    <span class="vic" aria-hidden="true">${v.icon}</span><span class="vb"><h4>${esc(v.title)}</h4><p>${esc(v.desc)}</p></span>
+    <span class="arr" aria-hidden="true">${extIco}</span></a>`).join('');
+}
+
+/* ---------------- Tabs ---------------- */
+const TABS=['measures','candidates','vote'];
+function showTab(t){
+  if(!TABS.includes(t))t='measures';
+  TABS.forEach(x=>{document.getElementById('view-'+x).hidden=(x!==t);
+    document.querySelector(`.tab[data-tab="${x}"]`).setAttribute('aria-selected',x===t)});
+  if(location.hash.slice(1)!==t)history.replaceState(null,'','#'+t);
+  window.scrollTo(0,0);
+}
+document.querySelector('.tabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b)showTab(b.dataset.tab)});
+
+/* ---------------- Election day ---------------- */
+(function(){
+  const dMid=new Date('2026-11-03T00:00:00-08:00');
+  const d=Math.ceil((dMid-new Date())/86400000);
+  const el=document.getElementById('eday');
+  const banner=document.getElementById('deadlineBanner');
+  const bw=banner.querySelector('.wrap');
+  let tier='calm';
+  if(d<0)tier='ended';else if(d===0)tier='today';else if(d<=7)tier='final';else if(d<=14)tier='soon';
+  document.documentElement.setAttribute('data-deadline',tier);
+  if(d>0)el.innerHTML=`Election Day Nov 3<br><b>${d} day${d===1?'':'s'} left</b>`;
+  else if(d===0)el.innerHTML=`<b>Today — polls close 8 PM</b>`;
+  else el.innerHTML=`Nov 3, 2026 election`;
+  let msg='';
+  if(tier==='soon')msg=`<span aria-hidden="true">⏳</span><span><b>${d} days left to vote.</b> California mails every registered voter a ballot — return it by mail (postmarked by Nov 3), or at any drop box or vote center.</span>`;
+  else if(tier==='final')msg=`<span aria-hidden="true">⏳</span><span><b>Final week — ${d} day${d===1?'':'s'} left.</b> Mail your ballot now, or drop it at a ballot box or vote center by Election Day, Nov 3.</span>`;
+  else if(tier==='today')msg=`<span aria-hidden="true">🗳️</span><span><b>Today is Election Day.</b> Vote centers and drop boxes close at 8:00 PM; a mailed ballot must be postmarked today.</span>`;
+  else if(tier==='ended')msg=`<span>The November 3, 2026 election has ended. Thank you for voting.</span>`;
+  if(msg){bw.innerHTML=msg;banner.hidden=false;}else banner.hidden=true;
+})();
+
+/* ---------------- Theme ---------------- */
+(function(){const s=store.get('bcn_theme',null);if(s)document.documentElement.setAttribute('data-theme',s);
+  document.getElementById('themeBtn').addEventListener('click',()=>{const cur=document.documentElement.getAttribute('data-theme');
+    const dark=window.matchMedia('(prefers-color-scheme: dark)').matches;const next=cur?(cur==='dark'?'light':'dark'):(dark?'light':'dark');
+    document.documentElement.setAttribute('data-theme',next);store.set('bcn_theme',next)})})();
+
+/* ---------------- Wire up ---------------- */
+document.getElementById('sitChips').addEventListener('click',e=>{const b=e.target.closest('[data-sit]');if(!b)return;
+  const k=b.dataset.sit;if(sitSel.has(k))sitSel.delete(k);else sitSel.add(k);if(!sitSel.size)sitSel.add('most');
+  store.set('bcn_sits',[...sitSel].join(','));
+  document.querySelectorAll('#sitChips .chip').forEach(c=>c.setAttribute('aria-pressed',sitSel.has(c.dataset.sit)));
+  updateImpactsOnly()});
+document.getElementById('catChips').addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;cat=b.dataset.cat;
+  document.querySelectorAll('#catChips .chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.cat===cat));renderCards()});
+let t;document.getElementById('search').addEventListener('input',e=>{clearTimeout(t);t=setTimeout(()=>{query=e.target.value.trim().toLowerCase();renderCards()},120)});
+
+/* ---------------- State selector ---------------- */
+const STATES={
+  CA:{name:'California',abbr:'CA',available:true,status:'live',
+    flag:`<svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="40" fill="#f4f1e8"/><rect y="33" width="60" height="7" fill="#b3202e"/><polygon points="9,4 10.3,7.6 14.1,7.6 11,10 12.2,13.8 9,11.5 5.8,13.8 7,10 3.9,7.6 7.7,7.6" fill="#b3202e"/><g fill="#6f4a2a"><ellipse cx="31" cy="25" rx="12" ry="5"/><circle cx="42" cy="22.5" r="4.2"/><circle cx="44.6" cy="18.8" r="1.5"/><path d="M45 22l3 .4-1 2.2-2.5-.6z"/><rect x="21.5" y="28" width="2.6" height="5" rx="1.2"/><rect x="27" y="29" width="2.6" height="4.4" rx="1.2"/><rect x="34" y="29" width="2.6" height="4.4" rx="1.2"/><rect x="39" y="28" width="2.6" height="5" rx="1.2"/></g></svg>`,
+    symbol:`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#e8973a"><ellipse cx="12" cy="7.5" rx="3" ry="4.4"/><ellipse cx="12" cy="16.5" rx="3" ry="4.4"/><ellipse cx="7.5" cy="12" rx="4.4" ry="3"/><ellipse cx="16.5" cy="12" rx="4.4" ry="3"/></g><circle cx="12" cy="12" r="2.3" fill="#7a4a16"/></svg>`},
+  CO:{name:'Colorado',abbr:'CO',available:false,status:'building',
+    flag:`<svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="40" fill="#fff"/><rect width="60" height="13.3" fill="#2b4b9b"/><rect y="26.7" width="60" height="13.3" fill="#2b4b9b"/><path d="M28 13A9 9 0 1 0 28 27" fill="none" stroke="#bf2a34" stroke-width="5.5"/><circle cx="21" cy="20" r="4" fill="#f2c14e"/></svg>`,symbol:''},
+  NV:{name:'Nevada',abbr:'NV',available:false,status:'queued'},
+  AZ:{name:'Arizona',abbr:'AZ',available:false,status:'queued'},
+  OR:{name:'Oregon',abbr:'OR',available:false,status:'queued'},
+  WA:{name:'Washington',abbr:'WA',available:false,status:'queued'},
+  VA:{name:'Virginia',abbr:'VA',available:false,status:'queued'},
+  OK:{name:'Oklahoma',abbr:'OK',available:false,status:'queued'},
+  TX:{name:'Texas',abbr:'TX',available:false,status:'queued'}
+};
+let stateKey=store.get('bcn_state','CA');
+if(!STATES[stateKey]||!STATES[stateKey].available)stateKey='CA';
+function renderState(){const s=STATES[stateKey];document.getElementById('stateFlag').innerHTML=s.flag;document.getElementById('stateName').textContent=s.name;document.getElementById('stateSym').innerHTML=s.symbol||'';}
+function renderStatePanel(){
+  const rows=Object.entries(STATES).map(([k,s])=>{
+    const thumb=s.flag?`<span class="flagwrap">${s.flag}</span>`:`<span class="abbrtile">${esc(s.abbr)}</span>`;
+    let badge='';
+    if(s.available)badge=(k===stateKey)?'<span class="ck">✓</span>':'';
+    else if(s.status==='building')badge='<span class="tagb build">Building now</span>';
+    else badge='<span class="tagb queue">Queued</span>';
+    return `<button class="state-opt" data-state="${k}" ${s.available?'':'disabled'} role="option" aria-selected="${k===stateKey}">${thumb}<span>${esc(s.name)}</span>${badge}</button>`;
+  }).join('');
+  document.getElementById('statePanel').innerHTML=rows+`<button class="req-open" data-action="request"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>Request your state</button><div class="panel-note"><b>California is live.</b> Colorado is in progress; the rest are queued and added before Nov 3. Every state is curated by hand so the information stays accurate.</div>`;
+}
+function openPanel(){const p=document.getElementById('statePanel');p.style.top=(document.querySelector('header.mast').getBoundingClientRect().bottom+6)+'px';renderStatePanel();p.hidden=false;document.getElementById('stateBtn').setAttribute('aria-expanded','true');}
+function closePanel(){document.getElementById('statePanel').hidden=true;document.getElementById('stateBtn').setAttribute('aria-expanded','false');}
+document.getElementById('stateBtn').addEventListener('click',e=>{e.stopPropagation();document.getElementById('statePanel').hidden?openPanel():closePanel();});
+document.getElementById('statePanel').addEventListener('click',e=>{
+  const r=e.target.closest('[data-action="request"]');if(r){closePanel();openReq();return;}
+  const b=e.target.closest('[data-state]');if(!b||b.disabled)return;stateKey=b.dataset.state;store.set('bcn_state',stateKey);renderState();closePanel();});
+document.addEventListener('click',e=>{if(!document.getElementById('statePanel').hidden&&!e.target.closest('#statePanel')&&!e.target.closest('#stateBtn'))closePanel();});
+
+/* ---------------- Modals (help + request) ---------------- */
+function openModal(id){document.getElementById(id).hidden=false;document.body.style.overflow='hidden';}
+function closeModal(id){document.getElementById(id).hidden=true;document.body.style.overflow='';}
+function openReq(){document.getElementById('reqForm').hidden=false;document.getElementById('reqDone').hidden=true;['rqName','rqPhone','rqState'].forEach(id=>document.getElementById(id).style.borderColor='');openModal('reqModal');}
+document.getElementById('helpBtn').addEventListener('click',()=>openModal('helpModal'));
+document.querySelectorAll('.modal-scrim').forEach(s=>s.addEventListener('click',e=>{if(e.target===s)closeModal(s.id);}));
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeModal(b.dataset.close)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-scrim:not([hidden])').forEach(s=>closeModal(s.id));closePanel();}});
+const REQ_LIVE=false;
+document.getElementById('reqForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=document.getElementById('rqName').value.trim(),phone=document.getElementById('rqPhone').value.trim(),state=document.getElementById('rqState').value.trim();
+  let ok=true;[['rqName',name],['rqPhone',phone],['rqState',state]].forEach(([id,v])=>{document.getElementById(id).style.borderColor=v?'':'var(--rep)';if(!v)ok=false;});
+  if(!ok)return;
+  document.getElementById('reqDoneMsg').textContent=REQ_LIVE?`Thanks, ${name}! Your request for ${state} is in — you'll get a text at ${phone} when it's ready.`:`Thanks, ${name}! Request delivery is being switched on shortly. In the meantime, please also let the person who shared this guide know you'd like ${state} added.`;
+  document.getElementById('reqForm').hidden=true;document.getElementById('reqDone').hidden=false;
+});
+function setMastH(){document.documentElement.style.setProperty('--masth',document.querySelector('header.mast').offsetHeight+'px');}
+window.addEventListener('resize',setMastH);window.addEventListener('load',setMastH);
+
+/* ---------------- Init ---------------- */
+renderState();
+renderSitChips();renderCatChips();renderCards();renderRaces();renderVote();
+showTab(location.hash.slice(1)||'measures');
+setMastH();
+</script>
