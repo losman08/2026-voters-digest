@@ -326,8 +326,8 @@ footer a{color:var(--violet-ink)}
 <section class="view" id="view-measures">
   <div class="wrap">
     <div class="quotebar" id="quoteBar"><blockquote><span class="qt"></span><span class="qa"></span></blockquote></div>
-    <p class="lede serif">The 14 statewide propositions on California's November 2026 ballot, in plain English — what each does, what Yes or No actually means, who's behind each side, and how it touches your life.</p>
-    <div class="notice"><span aria-hidden="true">⚖️</span><span><b>Non-partisan.</b> Summarized from California's official voter guide and the non-partisan newsroom CalMatters. This does not tell you how to vote; colors and labels only separate the two sides. Always confirm with the linked sources.</span></div>
+    <p class="lede serif" id="measLede">The 14 statewide propositions on California's November 2026 ballot, in plain English — what each does, what Yes or No actually means, who's behind each side, and how it touches your life.</p>
+    <div class="notice"><span aria-hidden="true">⚖️</span><span id="measNote"><b>Non-partisan.</b> Summarized from California's official voter guide and the non-partisan newsroom CalMatters. This does not tell you how to vote; colors and labels only separate the two sides. Always confirm with the linked sources.</span></div>
   </div>
   <div class="rail">
     <div class="wrap">
@@ -367,16 +367,16 @@ footer a{color:var(--violet-ink)}
       <div style="margin-top:7px; color:var(--muted); font-size:.78rem">Documented = official record, court, or on-the-record admission. Reported = credible reporting, contested. Unsubstantiated = circulating but unverified. When there's no verified issue, this tool says so instead of amplifying rumor.</div>
     </div>
     <div id="races"></div>
-    <div class="notice" style="margin-top:4px"><span aria-hidden="true">📍</span><span><b>Your U.S. House, state legislative, and local races depend on your address.</b> Look them up — with every candidate — using <a href="https://www.vote411.org/lwvc" target="_blank" rel="noopener">Vote411</a>, the League of Women Voters’ free, non-partisan by-address ballot tool. The statewide offices below are the same for every California voter.</span></div>
+    <div class="notice" style="margin-top:4px"><span aria-hidden="true">📍</span><span id="distNote"><b>Your U.S. House, state legislative, and local races depend on your address.</b> Look them up — with every candidate — using <a href="https://www.vote411.org/lwvc" target="_blank" rel="noopener">Vote411</a>, the League of Women Voters’ free, non-partisan by-address ballot tool. The statewide offices below are the same for every California voter.</span></div>
   </div>
 </section>
 
 <!-- BEFORE YOU VOTE -->
 <section class="view" id="view-vote" hidden>
   <div class="wrap">
-    <p class="lede serif">Everything you need to actually cast your ballot — all official California tools.</p>
+    <p class="lede serif" id="voteLede">Everything you need to actually cast your ballot — all official California tools.</p>
     <div class="vote-grid" id="voteGrid"></div>
-    <div class="notice" style="margin-top:16px"><span aria-hidden="true">🗳️</span><span>California mails a ballot to every registered voter. You can return it by mail (postmarked by Election Day), at any drop box, or at a vote center. In-person vote centers and drop boxes are open in the days before <b>November 3, 2026</b>.</span></div>
+    <div class="notice" style="margin-top:16px"><span aria-hidden="true">🗳️</span><span id="voteNote">California mails a ballot to every registered voter. You can return it by mail (postmarked by Election Day), at any drop box, or at a vote center. In-person vote centers and drop boxes are open in the days before <b>November 3, 2026</b>.</span></div>
   </div>
 </section>
 
@@ -443,8 +443,8 @@ footer a{color:var(--violet-ink)}
     <div><b style="color:var(--muted)">Voter's Digest</b> — a plain-language companion for voters. Built for family and friends, free to share. &nbsp;<button class="linklike" id="forewordLink" type="button">Read the welcome note</button></div>
     <div style="margin-top:8px">For educational and informational purposes only — not legal or voting advice. Always confirm details with the official sources linked throughout.</div>
     <div style="margin-top:8px">Found this useful? You can <a href="https://venmo.com/code?user_id=2969379075522560281" target="_blank" rel="noopener">chip in toward building more free tools like this</a> — entirely optional.</div>
-    <div style="margin-top:8px">Sources: California Secretary of State <a href="https://voterguide.sos.ca.gov/" target="_blank" rel="noopener">Official Voter Guide</a>, the non-partisan <a href="https://calmatters.org/california-voter-guide-2026/" target="_blank" rel="noopener">CalMatters 2026 Voter Guide</a>, and official sos.ca.gov voter tools. Positions and endorsements reflect each side's own statements and may change.</div>
-    <div style="margin-top:8px">Four measures and the Governor's race are shown in full; remaining measures carry verified titles and official links while their breakdowns are written. A personalized "ask the AI about my situation" answer is planned for a later version.</div>
+    <div style="margin-top:8px" id="footSrc">Sources: California Secretary of State <a href="https://voterguide.sos.ca.gov/" target="_blank" rel="noopener">Official Voter Guide</a>, the non-partisan <a href="https://calmatters.org/california-voter-guide-2026/" target="_blank" rel="noopener">CalMatters 2026 Voter Guide</a>, and official sos.ca.gov voter tools. Positions and endorsements reflect each side's own statements and may change.</div>
+    <div style="margin-top:8px" id="footNote">Four measures and the Governor's race are shown in full; remaining measures carry verified titles and official links while their breakdowns are written. A personalized "ask the AI about my situation" answer is planned for a later version.</div>
   </div>
 </footer>
 
@@ -797,7 +797,13 @@ const sitLabel=k=>{const s=SITUATIONS.find(x=>x.key===k);return s?s.label:'Most 
 
 /* ---------------- Chips ---------------- */
 function renderSitChips(){document.getElementById('sitChips').innerHTML=SITUATIONS.map(s=>`<button class="chip" aria-pressed="${sitSel.has(s.key)}" data-sit="${s.key}">${esc(s.label)}</button>`).join('')}
-function renderCatChips(){document.getElementById('catChips').innerHTML=CATS.map(c=>`<button class="chip" aria-pressed="${c===cat}" data-cat="${c}">${c==='all'?'All 14':esc(c)}</button>`).join('')}
+function renderCatChips(){const mine=[...PROPS,...PENDING].filter(inSt),used=new Set(mine.map(p=>p.cat));if(cat!=='all'&&!used.has(cat))cat='all';
+  document.getElementById('catChips').innerHTML=CATS.filter(c=>c==='all'||used.has(c)).map(c=>`<button class="chip" aria-pressed="${c===cat}" data-cat="${c}">${c==='all'?'All '+mine.length:esc(c)}</button>`).join('')}
+
+/* ---------------- Per-state scoping ----------------
+   Data items carry an optional st:'XX'; untagged items belong to California. */
+const inSt=x=>(x.st||'CA')===stateKey;
+const SC=k=>(STATES[stateKey].copy||{})[k]??STATES.CA.copy[k];
 
 /* ---------------- Measures ---------------- */
 function sideList(n,m){return (n||[]).map(x=>`<li>${esc(x)}</li>`).join('')+((m||[]).length?`<li class="med">Editorials: ${m.map(esc).join(', ')}</li>`:'')}
@@ -805,9 +811,9 @@ function impactBlocks(p){const keys=[...sitSel];return keys.map(k=>`<div class="
 function cardHTML(p){
   const _op=`https://voterguide.sos.ca.gov/propositions/${p.num}/index.htm`;
   const _tx=`https://vig.cdn.sos.ca.gov/2026/general/pdf/prop${p.num}-text-proposed-laws.pdf`;
-  const _lk=[...p.links.filter(l=>l.label==='CalMatters'),{label:'Official guide',url:_op},{label:'Full legal text (PDF)',url:_tx}];
+  const _lk=(p.st||'CA')==='CA'?[...p.links.filter(l=>l.label==='CalMatters'),{label:'Official guide',url:_op},{label:'Full legal text (PDF)',url:_tx}]:p.links;
   return `<article class="card" data-cat="${p.cat}">
-  <div class="card-top"><div class="num"><small>PROP</small>${p.num}</div>
+  <div class="card-top"><div class="num"><small>${esc(SC('mlabel'))}</small>${p.num}</div>
     <div class="htext"><span class="cat-tag">${esc(p.cat)}</span><h2>${esc(p.title)}</h2><div class="placed">${esc(p.placed)}</div></div></div>
   <p class="summary">${esc(p.summary)}</p>
   <div class="yn"><div class="box pass"><div class="k"><span class="dot"></span>If it passes</div><p>${esc(p.pass)}</p></div>
@@ -820,21 +826,21 @@ function cardHTML(p){
   <div class="links">${_lk.map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ${extIco}</a>`).join('')}</div>
 </article>`}
 function renderCards(){
-  const vis=PROPS.filter(p=>(cat==='all'||p.cat===cat)&&(!query||(p.title+' '+p.summary+' '+p.cat).toLowerCase().includes(query)));
+  const vis=PROPS.filter(p=>inSt(p)&&(cat==='all'||p.cat===cat)&&(!query||(p.title+' '+p.summary+' '+p.cat).toLowerCase().includes(query)));
   document.getElementById('cards').innerHTML=vis.map(cardHTML).join('');
-  const pv=PENDING.filter(p=>(cat==='all'||p.cat===cat)&&(!query||(p.title+' '+p.one+' '+p.cat).toLowerCase().includes(query)));
+  const pv=PENDING.filter(p=>inSt(p)&&(cat==='all'||p.cat===cat)&&(!query||(p.title+' '+p.one+' '+p.cat).toLowerCase().includes(query)));
   const pend=document.getElementById('pending');
   if(pv.length){pend.hidden=false;pend.innerHTML=`<h3>More on the ballot</h3><p class="sub">Verified titles and official links — full breakdowns are being written.</p>`+
     pv.map(p=>`<div class="pcard"><div class="pnum">${p.num}</div><div class="pbody"><span class="pcat">${esc(p.cat)}</span>
-      <h4>Prop ${p.num}: ${esc(p.title)}</h4><p>${esc(p.one)}</p>
-      <a class="plink" href="${esc(p.url)}" target="_blank" rel="noopener">Read it on CalMatters ${extIco}</a></div></div>`).join('');
+      <h4>${esc(SC('mname'))} ${p.num}: ${esc(p.title)}</h4><p>${esc(p.one)}</p>
+      <a class="plink" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(SC('pendLink'))} ${extIco}</a></div></div>`).join('');
   }else pend.hidden=true;
   const total=vis.length+pv.length;
-  document.getElementById('count').textContent=`${total} of 14 measures${cat!=='all'?` · ${cat}`:''}${query?` · "${query}"`:''}`;
+  document.getElementById('count').textContent=`${total} of ${[...PROPS,...PENDING].filter(inSt).length} measures${cat!=='all'?` · ${cat}`:''}${query?` · "${query}"`:''}`;
   document.getElementById('empty').hidden=total>0;
 }
 function updateImpactsOnly(){
-  const vis=PROPS.filter(p=>(cat==='all'||p.cat===cat)&&(!query||(p.title+' '+p.summary+' '+p.cat).toLowerCase().includes(query)));
+  const vis=PROPS.filter(p=>inSt(p)&&(cat==='all'||p.cat===cat)&&(!query||(p.title+' '+p.summary+' '+p.cat).toLowerCase().includes(query)));
   document.querySelectorAll('#cards .card').forEach((c,i)=>{if(vis[i])c.querySelector('[data-impacts]').innerHTML=impactBlocks(vis[i])});
 }
 
@@ -853,7 +859,7 @@ function candHTML(c,issues){
   </div>`;
 }
 function renderRaces(){
-  document.getElementById('races').innerHTML=RACES.map(r=>`<div class="race">
+  document.getElementById('races').innerHTML=RACES.filter(inSt).map(r=>`<div class="race">
     <div class="race-hd"><span class="rk" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 17l-6.3 4.4L8 14 2 9.4h7.6z"/></svg></span>
       <div><h2>${esc(r.office)}</h2><p class="rmeta">${esc(r.meta)}</p></div></div>
     <div class="cands">${r.candidates.map(c=>candHTML(c,r.issues||ISSUES)).join('')}</div></div>`).join('');
@@ -861,7 +867,7 @@ function renderRaces(){
 
 /* ---------------- Before you vote ---------------- */
 function renderVote(){
-  document.getElementById('voteGrid').innerHTML=VOTE_LINKS.map(v=>`<a class="vcard" href="${esc(v.url)}" target="_blank" rel="noopener">
+  document.getElementById('voteGrid').innerHTML=VOTE_LINKS.filter(inSt).map(v=>`<a class="vcard" href="${esc(v.url)}" target="_blank" rel="noopener">
     <span class="vic" aria-hidden="true">${v.icon}</span><span class="vb"><h4>${esc(v.title)}</h4><p>${esc(v.desc)}</p></span>
     <span class="arr" aria-hidden="true">${extIco}</span></a>`).join('');
 }
@@ -878,7 +884,7 @@ function showTab(t){
 document.querySelector('.tabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(b)showTab(b.dataset.tab)});
 
 /* ---------------- Election day ---------------- */
-(function(){
+function renderDeadline(){
   const dMid=new Date('2026-11-03T00:00:00-08:00');
   const d=Math.ceil((dMid-new Date())/86400000);
   const el=document.getElementById('eday');
@@ -888,15 +894,15 @@ document.querySelector('.tabs').addEventListener('click',e=>{const b=e.target.cl
   if(d<0)tier='ended';else if(d===0)tier='today';else if(d<=7)tier='final';else if(d<=14)tier='soon';
   document.documentElement.setAttribute('data-deadline',tier);
   if(d>0)el.innerHTML=`Election Day Nov 3<br><b>${d} day${d===1?'':'s'} left</b>`;
-  else if(d===0)el.innerHTML=`<b>Today — polls close 8 PM</b>`;
+  else if(d===0)el.innerHTML=`<b>Today — ${esc(SC('pollClose'))}</b>`;
   else el.innerHTML=`Nov 3, 2026 election`;
   let msg='';
-  if(tier==='soon')msg=`<span aria-hidden="true">⏳</span><span><b>${d} days left to vote.</b> California mails every registered voter a ballot — return it by mail (postmarked by Nov 3), or at any drop box or vote center.</span>`;
-  else if(tier==='final')msg=`<span aria-hidden="true">⏳</span><span><b>Final week — ${d} day${d===1?'':'s'} left.</b> Mail your ballot now, or drop it at a ballot box or vote center by Election Day, Nov 3.</span>`;
-  else if(tier==='today')msg=`<span aria-hidden="true">🗳️</span><span><b>Today is Election Day.</b> Vote centers and drop boxes close at 8:00 PM; a mailed ballot must be postmarked today.</span>`;
+  if(tier==='soon')msg=`<span aria-hidden="true">⏳</span><span><b>${d} days left to vote.</b> ${SC('soonMsg')}</span>`;
+  else if(tier==='final')msg=`<span aria-hidden="true">⏳</span><span><b>Final week — ${d} day${d===1?'':'s'} left.</b> ${SC('finalMsg')}</span>`;
+  else if(tier==='today')msg=`<span aria-hidden="true">🗳️</span><span><b>Today is Election Day.</b> ${SC('todayMsg')}</span>`;
   else if(tier==='ended')msg=`<span>The November 3, 2026 election has ended. Thank you for voting.</span>`;
   if(msg){bw.innerHTML=msg;banner.hidden=false;}else banner.hidden=true;
-})();
+}
 
 /* ---------------- Theme ---------------- */
 (function(){const s=store.get('bcn_theme',null);if(s)document.documentElement.setAttribute('data-theme',s);
@@ -917,6 +923,7 @@ let t;document.getElementById('search').addEventListener('input',e=>{clearTimeou
 /* ---------------- State selector ---------------- */
 const STATES={
   CA:{name:'California',abbr:'CA',available:true,status:'live',
+    copy:{measLede:'The 14 statewide propositions on California\'s November 2026 ballot, in plain English — what each does, what Yes or No actually means, who\'s behind each side, and how it touches your life.',measNote:'<b>Non-partisan.</b> Summarized from California\'s official voter guide and the non-partisan newsroom CalMatters. This does not tell you how to vote; colors and labels only separate the two sides. Always confirm with the linked sources.</span>',distNote:'<b>Your U.S. House, state legislative, and local races depend on your address.</b> Look them up — with every candidate — using <a href="https://www.vote411.org/lwvc" target="_blank" rel="noopener">Vote411</a>, the League of Women Voters’ free, non-partisan by-address ballot tool. The statewide offices below are the same for every California voter.</span>',voteLede:'Everything you need to actually cast your ballot — all official California tools.',voteNote:'California mails a ballot to every registered voter. You can return it by mail (postmarked by Election Day), at any drop box, or at a vote center. In-person vote centers and drop boxes are open in the days before <b>November 3, 2026</b>.</span>',footSrc:'Sources: California Secretary of State <a href="https://voterguide.sos.ca.gov/" target="_blank" rel="noopener">Official Voter Guide</a>, the non-partisan <a href="https://calmatters.org/california-voter-guide-2026/" target="_blank" rel="noopener">CalMatters 2026 Voter Guide</a>, and official sos.ca.gov voter tools. Positions and endorsements reflect each side\'s own statements and may change.',footNote:'Four measures and the Governor\'s race are shown in full; remaining measures carry verified titles and official links while their breakdowns are written. A personalized "ask the AI about my situation" answer is planned for a later version.',mlabel:'PROP',mname:'Prop',pendLink:'Read it on CalMatters',pollClose:'polls close 8 PM',soonMsg:'California mails every registered voter a ballot — return it by mail (postmarked by Nov 3), or at any drop box or vote center.',finalMsg:'Mail your ballot now, or drop it at a ballot box or vote center by Election Day, Nov 3.',todayMsg:'Vote centers and drop boxes close at 8:00 PM; a mailed ballot must be postmarked today.'},
     flag:`<svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="60" height="40" fill="#f4f1e8"/><rect y="33" width="60" height="7" fill="#b3202e"/><polygon points="9,4 10.3,7.6 14.1,7.6 11,10 12.2,13.8 9,11.5 5.8,13.8 7,10 3.9,7.6 7.7,7.6" fill="#b3202e"/><g fill="#6f4a2a"><ellipse cx="31" cy="25" rx="12" ry="5"/><circle cx="42" cy="22.5" r="4.2"/><circle cx="44.6" cy="18.8" r="1.5"/><path d="M45 22l3 .4-1 2.2-2.5-.6z"/><rect x="21.5" y="28" width="2.6" height="5" rx="1.2"/><rect x="27" y="29" width="2.6" height="4.4" rx="1.2"/><rect x="34" y="29" width="2.6" height="4.4" rx="1.2"/><rect x="39" y="28" width="2.6" height="5" rx="1.2"/></g></svg>`,
     symbol:`<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#e8973a"><ellipse cx="12" cy="7.5" rx="3" ry="4.4"/><ellipse cx="12" cy="16.5" rx="3" ry="4.4"/><ellipse cx="7.5" cy="12" rx="4.4" ry="3"/><ellipse cx="16.5" cy="12" rx="4.4" ry="3"/></g><circle cx="12" cy="12" r="2.3" fill="#7a4a16"/></svg>`},
   CO:{name:'Colorado',abbr:'CO',available:false,status:'building',
@@ -931,7 +938,9 @@ const STATES={
 };
 let stateKey=store.get('bcn_state','CA');
 if(!STATES[stateKey]||!STATES[stateKey].available)stateKey='CA';
-function renderState(){const s=STATES[stateKey];document.getElementById('stateFlag').innerHTML=s.flag;document.getElementById('stateName').textContent=s.name;document.getElementById('stateSym').innerHTML=s.symbol||'';}
+function renderState(){const s=STATES[stateKey];document.getElementById('stateFlag').innerHTML=s.flag;document.getElementById('stateName').textContent=s.name;document.getElementById('stateSym').innerHTML=s.symbol||'';
+  ['measLede','measNote','distNote','voteLede','voteNote','footSrc','footNote'].forEach(k=>{document.getElementById(k).innerHTML=SC(k)});}
+function switchState(){renderState();renderCatChips();renderCards();renderRaces();renderVote();renderDeadline();}
 function renderStatePanel(){
   const rows=Object.entries(STATES).map(([k,s])=>{
     const thumb=s.flag?`<span class="flagwrap">${s.flag}</span>`:`<span class="abbrtile">${esc(s.abbr)}</span>`;
@@ -948,7 +957,7 @@ function closePanel(){document.getElementById('statePanel').hidden=true;document
 document.getElementById('stateBtn').addEventListener('click',e=>{e.stopPropagation();document.getElementById('statePanel').hidden?openPanel():closePanel();});
 document.getElementById('statePanel').addEventListener('click',e=>{
   const r=e.target.closest('[data-action="request"]');if(r){closePanel();openReq();return;}
-  const b=e.target.closest('[data-state]');if(!b||b.disabled)return;stateKey=b.dataset.state;store.set('bcn_state',stateKey);renderState();closePanel();});
+  const b=e.target.closest('[data-state]');if(!b||b.disabled)return;stateKey=b.dataset.state;store.set('bcn_state',stateKey);switchState();closePanel();});
 document.addEventListener('click',e=>{if(!document.getElementById('statePanel').hidden&&!e.target.closest('#statePanel')&&!e.target.closest('#stateBtn'))closePanel();});
 
 /* ---------------- Modals (help + request) ---------------- */
@@ -1001,7 +1010,7 @@ window.addEventListener('resize',setMastH);window.addEventListener('load',setMas
 
 /* ---------------- Init ---------------- */
 renderState();
-renderSitChips();renderCatChips();renderCards();renderRaces();renderVote();
+renderSitChips();renderCatChips();renderCards();renderRaces();renderVote();renderDeadline();
 showTab(location.hash.slice(1)||'measures');
 setMastH();
 </script>
