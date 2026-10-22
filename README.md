@@ -1,4 +1,4 @@
-# Ballot Cliffnotes
+# Voter's Digest
 
 A non-partisan, plain-language voter guide. It explains ballot measures and candidates in clear terms — what each does, what a Yes/No vote means, who's for and against, the official full legal text, and how each measure could affect you based on your situation — so people can vote with confidence instead of wading through legalese.
 

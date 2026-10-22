@@ -1,4 +1,4 @@
-<title>Ballot Cliffnotes</title>
+<title>Voter's Digest</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
 /* Layout: a civic quick-reference stack with three tabs (Measures / Candidates / Before you vote).
@@ -114,6 +114,18 @@ header.mast{position:sticky; top:env(safe-area-inset-top,0px); z-index:30;
 .req-done{text-align:center; padding:14px 6px}
 .req-done .chk{width:48px; height:48px; border-radius:50%; background:var(--violet-soft); color:var(--violet-ink); display:inline-flex; align-items:center; justify-content:center}
 .req-done .big{font-family:var(--font-display); font-size:1.1rem; color:var(--ink); margin:10px 0 5px; font-weight:600}
+.quotebar{margin:0 0 14px; padding:12px 14px; background:var(--violet-soft); border-radius:10px}
+.quotebar blockquote{margin:0; transition:opacity .8s ease}
+.quotebar .qt{font-family:var(--font-display); font-style:italic; font-size:.96rem; color:var(--ink); line-height:1.45}
+.quotebar .qa{display:block; margin-top:6px; font-family:var(--font-ui); font-size:.75rem; font-weight:600; color:var(--violet-ink); letter-spacing:.02em}
+@media (prefers-reduced-motion:reduce){.quotebar blockquote{transition:none}}
+.linklike{background:none; border:none; padding:0; font:inherit; color:var(--violet-ink); cursor:pointer; text-decoration:underline}
+.foreword p{margin:0 0 12px; font-size:.95rem; color:var(--ink); line-height:1.6}
+.fw-greet{font-family:var(--font-display); font-size:1.08rem; font-weight:600}
+.fw-sign{margin-top:14px; color:var(--muted)}
+.fw-name{font-family:var(--font-display); font-size:1.1rem; color:var(--ink); font-weight:600}
+.fw-quote{margin:14px 0 4px; padding:12px 14px; background:var(--gold-soft); border-radius:10px; font-family:var(--font-display); font-style:italic; font-size:.92rem; color:var(--ink); line-height:1.45}
+.fw-quote span{display:block; margin-top:6px; font-family:var(--font-ui); font-style:normal; font-size:.75rem; font-weight:600; color:var(--gold-ink)}
 .panel-note{font-family:var(--font-ui); font-size:.73rem; color:var(--faint); padding:7px 10px 3px; line-height:1.4}
 .card h2,.race h2,.cand h3,.pcard h4,.pending-wrap h3,.lede.serif,.vcard h4{color:var(--ink)}
 
@@ -287,7 +299,7 @@ footer a{color:var(--violet-ink)}
     <button class="icon-btn" id="helpBtn" aria-label="How to use this guide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="12" y1="7.6" x2="12" y2="7.65"/></svg></button>
     <button class="theme-btn" id="themeBtn" aria-label="Toggle light or dark theme">Theme</button>
     <div class="mast-row2">
-      <h1 class="brand">Ballot Cliffnotes</h1>
+      <h1 class="brand">Voter's Digest</h1>
       <span class="eday" id="eday">Election Day · Nov 3, 2026</span>
     </div>
   </div>
@@ -308,6 +320,7 @@ footer a{color:var(--violet-ink)}
 <!-- MEASURES -->
 <section class="view" id="view-measures">
   <div class="wrap">
+    <div class="quotebar" id="quoteBar"><blockquote><span class="qt"></span><span class="qa"></span></blockquote></div>
     <p class="lede serif">The 14 statewide propositions on California's November 2026 ballot, in plain English — what each does, what Yes or No actually means, who's behind each side, and how it touches your life.</p>
     <div class="notice"><span aria-hidden="true">⚖️</span><span><b>Non-partisan.</b> Summarized from California's official voter guide and the non-partisan newsroom CalMatters. This does not tell you how to vote; colors and labels only separate the two sides. Always confirm with the linked sources.</span></div>
   </div>
@@ -401,9 +414,26 @@ footer a{color:var(--violet-ink)}
   </div>
 </div>
 
+<div class="modal-scrim" id="forewordModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-label="A note to family and friends">
+    <div class="modal-hd"><h2>A note before you begin</h2><button class="modal-x" data-close="forewordModal" aria-label="Close">✕</button></div>
+    <div class="modal-body">
+      <div class="foreword">
+        <p class="fw-greet">Dear Family and Friends,</p>
+        <p>Every election, I watch people I love want to vote well and feel buried — ballots written in legalese, a dozen tabs open, arguments flying from all sides, and not enough plain truth. I built this for you.</p>
+        <p>This is a non-partisan guide. It gathers the official facts about your ballot — what each measure and candidate actually does, what a Yes or No really means, who stands on each side, and how it could touch your life — and puts them in one clear place, in plain language, with every claim linked back to its official source. It will never tell you how to vote. That part is yours, and it always should be.</p>
+        <p>Pick your state at the top, take your time, and vote with confidence.</p>
+        <p class="fw-sign">With love and respect,<br><span class="fw-name">Los</span></p>
+        <blockquote class="fw-quote">“The vote is precious. It is almost sacred. It is the most powerful nonviolent tool we have in a democratic society.”<span>— John Lewis</span></blockquote>
+      </div>
+      <button class="req-submit" data-close="forewordModal" style="margin-top:4px">Get started</button>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="wrap">
-    <div><b style="color:var(--muted)">Ballot Cliffnotes</b> — a plain-language companion for California voters. Built for family and friends, free to share.</div>
+    <div><b style="color:var(--muted)">Voter's Digest</b> — a plain-language companion for voters. Built for family and friends, free to share. &nbsp;<button class="linklike" id="forewordLink" type="button">Read the welcome note</button></div>
     <div style="margin-top:8px">Sources: California Secretary of State <a href="https://voterguide.sos.ca.gov/" target="_blank" rel="noopener">Official Voter Guide</a>, the non-partisan <a href="https://calmatters.org/california-voter-guide-2026/" target="_blank" rel="noopener">CalMatters 2026 Voter Guide</a>, and official sos.ca.gov voter tools. Positions and endorsements reflect each side's own statements and may change.</div>
     <div style="margin-top:8px">Four measures and the Governor's race are shown in full; remaining measures carry verified titles and official links while their breakdowns are written. A personalized "ask the AI about my situation" answer is planned for a later version.</div>
   </div>
@@ -697,6 +727,26 @@ document.getElementById('reqForm').addEventListener('submit',e=>{
   document.getElementById('reqDoneMsg').textContent=REQ_LIVE?`Thanks, ${name}! Your request for ${state} is in — you'll get a text at ${phone} when it's ready.`:`Thanks, ${name}! Request delivery is being switched on shortly. In the meantime, please also let the person who shared this guide know you'd like ${state} added.`;
   document.getElementById('reqForm').hidden=true;document.getElementById('reqDone').hidden=false;
 });
+
+/* ---------------- Foreword + rotating quotes ---------------- */
+document.getElementById('forewordLink').addEventListener('click',()=>openModal('forewordModal'));
+try{if(!localStorage.getItem('vd_fw_seen')){openModal('forewordModal');localStorage.setItem('vd_fw_seen','1');}}catch(e){}
+(function(){
+  const Q=[
+    {t:"The vote is the most powerful instrument ever devised by man for breaking down injustice.",a:"Lyndon B. Johnson"},
+    {t:"Nobody will ever deprive the American people of the right to vote except the American people themselves — and the only way they could do this is by not voting.",a:"Franklin D. Roosevelt"},
+    {t:"The ballot is stronger than the bullet.",a:"Abraham Lincoln"},
+    {t:"The future of this republic is in the hands of the American voter.",a:"Dwight D. Eisenhower"},
+    {t:"Bad officials are elected by good citizens who do not vote.",a:"George Jean Nathan"}
+  ];
+  const bar=document.getElementById('quoteBar');if(!bar)return;
+  const bq=bar.querySelector('blockquote'),qt=bar.querySelector('.qt'),qa=bar.querySelector('.qa');
+  let i=Math.floor(Math.random()*Q.length);
+  const show=n=>{qt.textContent='“'+Q[n].t+'”';qa.textContent='— '+Q[n].a;};
+  show(i);
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setInterval(()=>{i=(i+1)%Q.length;if(reduce){show(i);return;}bq.style.opacity='0';setTimeout(()=>{show(i);bq.style.opacity='1';},800);},60000);
+})();
 function setMastH(){document.documentElement.style.setProperty('--masth',document.querySelector('header.mast').offsetHeight+'px');}
 window.addEventListener('resize',setMastH);window.addEventListener('load',setMastH);
 
