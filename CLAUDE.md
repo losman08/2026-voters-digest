@@ -6,9 +6,10 @@ carries the standard this project is built to. Follow it.
 ## What this is
 A **non-partisan, plain-language voter guide** for family & friends. Each
 ballot measure and candidate is explained clearly so people can vote
-informed. Multi-state; California is live. **It never tells anyone how to
-vote — educational and informational only.** Strictly non-partisan
-throughout.
+informed. Multi-state; California, Nevada, Oklahoma, Colorado, and Virginia
+are live (all measures and statewide races complete). **It never tells
+anyone how to vote — educational and informational only.** Strictly
+non-partisan throughout.
 
 ## The app
 - A single self-contained **`index.html`** (static site). **All content lives
