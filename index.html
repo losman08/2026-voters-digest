@@ -231,6 +231,26 @@ nav.tabs{position:sticky; top:calc(env(safe-area-inset-top,0px) + var(--masth,72
 .race h2{font-family:var(--font-display); font-size:1.26rem; margin:0; font-weight:600}
 .race .rmeta{font-family:var(--font-ui); font-size:.8rem; color:var(--muted); margin:2px 0 0}
 .cands{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px}
+.poll{background:var(--surface-2); border:1px solid var(--line-2); border-radius:12px; padding:12px 14px; margin-top:14px; font-size:.84rem}
+.poll .phd{display:flex; flex-wrap:wrap; gap:6px 10px; align-items:baseline; font-family:var(--font-ui)}
+.poll .phd b{font-size:.68rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--violet-ink)}
+.poll .phd span{font-size:.74rem; color:var(--faint)}
+.poll .pi{margin-top:10px; padding-top:10px; border-top:1px dashed var(--line)}
+.poll .pi:first-of-type{border-top:0; padding-top:0}
+.poll .psrc{font-family:var(--font-ui); font-size:.76rem; color:var(--muted); margin-bottom:6px}
+.poll .psrc a{color:var(--violet-ink)}
+.poll .pr{display:grid; grid-template-columns:minmax(0,9.5em) 1fr 3em; gap:8px; align-items:center; margin:3px 0}
+.poll .pr .pn{overflow-wrap:anywhere}
+.poll .pr .pb{height:8px; border-radius:4px; background:var(--line)}
+.poll .pr .pb i{display:block; height:100%; border-radius:4px; background:var(--faint)}
+.poll .pr .pp{text-align:right; font-variant-numeric:tabular-nums; font-weight:600}
+.poll .pnote{font-size:.76rem; color:var(--muted); margin:6px 0 0}
+.poll .moe{display:inline-block; font-family:var(--font-ui); font-size:.7rem; font-weight:700; color:var(--gold-ink); background:var(--gold-soft); border-radius:6px; padding:2px 7px; margin-top:6px}
+.poll .pfine{font-size:.72rem; color:var(--faint); margin:10px 0 0}
+.turnout{background:var(--surface); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:12px; padding:12px 16px; margin-bottom:18px; font-size:.86rem}
+.turnout .phd b{font-family:var(--font-ui); font-size:.68rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--gold-ink)}
+.turnout p{margin:6px 0 0}
+.turnout a{color:var(--violet-ink)}
 .cand{border:1px solid var(--line); border-radius:12px; padding:14px; min-width:0; background:var(--surface-2)}
 .cand h3{font-family:var(--font-display); font-size:1.08rem; margin:0; font-weight:600}
 .party{font-family:var(--font-ui); font-size:.72rem; font-weight:600; display:inline-flex; align-items:center; gap:6px; margin-top:4px; color:var(--muted)}
@@ -366,6 +386,7 @@ footer a{color:var(--violet-ink)}
       </div>
       <div style="margin-top:7px; color:var(--muted); font-size:.78rem">Documented = official record, court, or on-the-record admission. Reported = credible reporting, contested. Unsubstantiated = circulating but unverified. When there's no verified issue, this tool says so instead of amplifying rumor.</div>
     </div>
+    <div id="turnout"></div>
     <div id="races"></div>
     <div class="notice" style="margin-top:4px"><span aria-hidden="true">📍</span><span id="distNote"><b>Your U.S. House, state legislative, and local races depend on your address.</b> Look them up — with every candidate — using <a href="https://www.vote411.org/lwvc" target="_blank" rel="noopener">Vote411</a>, the League of Women Voters’ free, non-partisan by-address ballot tool. The statewide offices below are the same for every California voter.</span></div>
   </div>
@@ -1705,6 +1726,59 @@ function renderCatChips(){const mine=[...PROPS,...PENDING].filter(inSt),used=new
 const inSt=x=>(x.st||'CA')===stateKey;
 const SC=k=>(STATES[stateKey].copy||{})[k]??STATES.CA.copy[k];
 
+/* ---------------- Polling snapshot & ballots returned ----------------
+   Neutral, cited snapshot only — never a prediction, never a "leading" label.
+   Rules: independent polls only (campaign/party-sponsored excluded); fieldwork
+   within ~45 days of POLL_ASOF; n>=300; up to 3 most recent; each figure checked
+   against the pollster's own release. Keys: 'ST|office' for races, 'ST|num' for
+   measures. Races in scope with no qualifying poll get {none:true}.
+   TURNOUT = official counts of ballots returned/cast (never how people voted). */
+const POLL_ASOF='Oct 23, 2026';
+const PPIC_SEP={src:'PPIC Statewide Survey',dates:'Sep 4–10, 2026',n:'1,103 likely voters',moe:3.8,url:'https://www.ppic.org/wp-content/uploads/crosstabs-likely-voters-0926.pdf'};
+const ppicProp=(y,n,d)=>({items:[{...PPIC_SEP,res:[['Yes',y],['No',n],['Don’t know',d]]}]});
+const POLLS={
+ 'CA|Governor of California':{items:[
+  {src:'Emerson College Polling',dates:'Oct 17–19, 2026',n:'1,000 likely voters',moe:3.1,res:[['Xavier Becerra',60],['Steve Hilton',33],['Undecided',7]],
+   note:'When undecided voters were asked which way they lean: Becerra 64%, Hilton 36%.',url:'https://emersoncollegepolling.com/california-2026-poll-xavier-becerra-holds-27-point-lead-over-steve-hilton/'},
+  {...PPIC_SEP,res:[['Xavier Becerra',60],['Steve Hilton',38],['Neither / don’t know',2]],note:'Neither 1%, don’t know 1%.'}]},
+ 'NV|Governor of Nevada':{items:[
+  {src:'Emerson College Polling / KLAS-TV',dates:'Sep 5–8, 2026',n:'680 likely voters',moe:3.7,res:[['Aaron Ford',44],['Joe Lombardo',42],['Undecided',11]],
+   note:'The release does not break out the remaining 3% or report a figure for Danielle Ford (no political party).',url:'https://emersoncollegepolling.com/nevada-2026-poll-ford-and-lombardo/'}]},
+ 'OK|Governor of Oklahoma':{none:true},
+ 'OK|U.S. Senate (special election)':{none:true},
+ 'CO|Governor of Colorado':{none:true},
+ 'CO|U.S. Senate':{none:true},
+ 'VA|U.S. Senate':{none:true},
+ 'CA|1':ppicProp(55,43,2),'CA|2':ppicProp(60,39,1),'CA|3':ppicProp(58,40,2),'CA|4':ppicProp(42,53,5),'CA|5':ppicProp(35,59,5),
+ 'CA|37':ppicProp(61,35,3),'CA|38':ppicProp(55,42,3),'CA|39':ppicProp(43,55,1),'CA|40':ppicProp(52,46,2),'CA|41':ppicProp(51,44,5),
+ 'CA|42':ppicProp(54,43,4),'CA|43':ppicProp(43,51,6),'CA|44':ppicProp(34,61,6),'CA|45':ppicProp(49,46,5)
+};
+const TURNOUT={
+ CA:{asof:'Oct 21, 2026',text:'2,350,922 vote-by-mail ballots returned to county election offices, out of 23,438,326 mailed.',src:'California Secretary of State (VoteCal statistics)',url:'https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics-10-21-2026.pdf'},
+ CO:{asof:'11:59 PM Oct 21, 2026',text:'661,879 ballots returned statewide.',src:'Colorado Secretary of State daily update',url:'https://www.coloradosos.gov/pubs/newsRoom/pressReleases/2026/PR20261022BallotReturns.html'},
+ VA:{asof:'Oct 21, 2026',text:'870,229 early ballots cast (in person and by mail). For scale, the final early total in 2022 was 976,558.',src:'Virginia Public Access Project (non-partisan), compiled from Virginia Department of Elections data',url:'https://www.vpap.org/elections/early-voting/'},
+ NV:{asof:'Oct 23, 2026',text:'Statewide early-voting and mail-ballot counts are published by the Nevada Secretary of State; we could not retrieve them for this update, so none are shown here.',src:'Nevada Secretary of State',url:'https://www.nvsos.gov/'},
+ OK:{asof:'Oct 23, 2026',text:'In-person early voting runs Wednesday, Oct 28 through Saturday, Oct 31, so there is no statewide count yet.',src:'Oklahoma State Election Board',url:'https://oklahoma.gov/elections.html'}
+};
+function pollHTML(P){
+  if(!P)return'';
+  const hd=`<div class="phd"><b>Polling snapshot</b><span>as of ${esc(POLL_ASOF)} · Polls are snapshots, not predictions</span></div>`;
+  if(P.none)return`<div class="poll">${hd}<p class="pnote">No recent independent public polling found (fieldwork in the last ~45 days, 300+ respondents, not sponsored by a campaign or party).</p></div>`;
+  const it=P.items.map(x=>{
+    const top=x.res.filter(r=>!/undecided|don’t know|neither/i.test(r[0])).map(r=>r[1]).sort((a,b)=>b-a);
+    const close=top.length>1&&top[0]-top[1]<2*x.moe;
+    return`<div class="pi"><div class="psrc"><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.src)} ${extIco}</a> · ${esc(x.dates)} · ${esc(x.n)} · ±${x.moe} pts</div>
+      ${x.res.map(r=>`<div class="pr"><span class="pn">${esc(r[0])}</span><span class="pb"><i style="width:${r[1]}%"></i></span><span class="pp">${r[1]}%</span></div>`).join('')}
+      ${x.note?`<p class="pnote">${esc(x.note)}</p>`:''}${close?`<span class="moe">Gap is within the margin of error</span>`:''}</div>`}).join('');
+  return`<div class="poll">${hd}${it}<p class="pfine">Independent polls only; campaign- and party-sponsored polls are excluded. A gap smaller than about twice the margin of error is not statistically meaningful. Only votes decide the outcome.</p></div>`;
+}
+function turnoutHTML(){
+  const t=TURNOUT[stateKey];if(!t)return'';
+  return`<div class="turnout"><div class="phd"><b>Ballots returned so far · official count</b></div><p>${esc(t.text)}</p>
+    <p class="pnote">As of ${esc(t.asof)} · <a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.src)} ${extIco}</a></p>
+    <p class="pnote">These counts show how many people have voted, not how they voted. No results are released before polls close.</p></div>`;
+}
+
 /* ---------------- Measures ---------------- */
 function sideList(n,m){return (n||[]).map(x=>`<li>${esc(x)}</li>`).join('')+((m||[]).length?`<li class="med">Editorials: ${m.map(esc).join(', ')}</li>`:'')}
 function impactBlocks(p){const keys=[...sitSel];return keys.map(k=>`<div class="impact"><div class="ihd">If you're: ${esc(sitLabel(k))}</div><p>${esc(p.impacts[k]||p.impacts.most)}</p></div>`).join('')}
@@ -1720,6 +1794,7 @@ function cardHTML(p){
     <div class="box fail"><div class="k"><span class="dot"></span>If it fails</div><p>${esc(p.fail)}</p></div></div>
   <div class="fiscal"><span class="flab">Cost</span><b>${esc(p.fiscal)}</b></div>
   <div class="impacts" data-impacts>${impactBlocks(p)}</div>
+  ${pollHTML(POLLS[(p.st||'CA')+'|'+p.num])}
   <div class="sides"><div class="side"><div class="k">Backed by</div><ul>${sideList(p.support,p.supportMedia)}</ul></div>
     <div class="side"><div class="k">Opposed by</div><ul>${sideList(p.oppose,p.opposeMedia)}</ul></div></div>
   <div class="ai-soon"><span aria-hidden="true">✦</span><span><b>Ask how this affects your exact situation</b> — personalized AI answer</span><span class="soon">Coming in v2</span></div>
@@ -1759,9 +1834,11 @@ function candHTML(c,issues){
   </div>`;
 }
 function renderRaces(){
+  document.getElementById('turnout').innerHTML=turnoutHTML();
   document.getElementById('races').innerHTML=RACES.filter(inSt).map(r=>`<div class="race">
     <div class="race-hd"><span class="rk" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7.4L12 17l-6.3 4.4L8 14 2 9.4h7.6z"/></svg></span>
       <div><h2>${esc(r.office)}</h2><p class="rmeta">${esc(r.meta)}</p></div></div>
+    ${pollHTML(POLLS[(r.st||'CA')+'|'+r.office])}
     <div class="cands">${r.candidates.map(c=>candHTML(c,r.issues||ISSUES)).join('')}</div></div>`).join('');
 }
 
