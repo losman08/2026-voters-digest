@@ -56,8 +56,12 @@ links:[]}]}`
   (down-ballot offices use job-relevant ones — e.g. Insurance Commissioner →
   home/wildfire insurance); if absent it falls back to the 7 global `ISSUES`
   (Governor only). `stand` is keyed to whichever topics apply.
-- `record[].tag` = `'doc'` (Documented) | `'rep2'` (Reported) | anything else
-  (Unsubstantiated). `clean:true` + `noScandal` shows the "no scandal
+- `record[].tag` = `'doc'` (Documented: an official finding, ruling, fine,
+  lawsuit or fact-check) | `'rep2'` (Reported: credible reporting, not
+  adjudicated) | `'rec'` (Record: neutral fact about the candidate's public
+  record, e.g. "Public legislative record since 2019") | `'note'` (Note: e.g.
+  "Independent coverage of this candidate is limited") | anything else
+  (Unsubstantiated). Never use `'doc'` for a neutral note. `clean:true` + `noScandal` shows the "no scandal
   documented" checkmark.
 
 ## Sourcing & non-partisan standard (non-negotiable)

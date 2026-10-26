@@ -273,6 +273,7 @@ nav.tabs{position:sticky; top:calc(env(safe-area-inset-top,0px) + var(--masth,72
 .tag{font-family:var(--font-ui); font-size:.68rem; font-weight:700; border-radius:999px; padding:2px 9px; letter-spacing:.02em}
 .tag.doc{background:var(--violet-soft); color:var(--violet-ink)}
 .tag.rep2{background:var(--gold-soft); color:var(--gold-ink)}
+.tag.rec,.tag.note{background:var(--surface-2); color:var(--muted); box-shadow:inset 0 0 0 1px var(--line)}
 .tag.uns{background:var(--surface-2); color:var(--muted); border:1px solid var(--line)}
 .rec{margin-top:12px; border-top:1px solid var(--line-2); padding-top:10px}
 .rec .sk{font-family:var(--font-ui); font-size:.66rem; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--faint); margin-bottom:6px}
@@ -850,7 +851,7 @@ const RACES=[{
        Environment:'Supports clean-energy goals but open to revising them if they raise costs, including the 2035 new-gas-car phase-out.'},
      endorse:'California Faculty Association, Equality California, Planned Parenthood California',
      clean:true,
-     record:[{tag:'doc',t:'Long public record: U.S. House (1993–2017), California AG, U.S. HHS Secretary — votes and official actions are on the public record.'},
+     record:[{tag:'rec',t:'Long public record: U.S. House (1993–2017), California AG, U.S. HHS Secretary — votes and official actions are on the public record.'},
        {tag:'rep2',t:'Faced partisan criticism over pandemic-era HHS decisions and, from some on the left, over moving away from single-payer. Policy debate, not misconduct.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'CalMatters',url:CM+'governor/'},{label:'Ballotpedia',url:BP+'Xavier_Becerra'}]},
@@ -865,7 +866,7 @@ const RACES=[{
        Environment:'Roll back clean-energy mandates; end solar/wind purchase requirements; allow more natural gas; a volunteer tree-planting and forest-restoration program.'},
      endorse:'President Donald Trump, Nisei Farmers League, Israeli-American Civic Action Network',
      clean:true,
-     record:[{tag:'doc',t:'No prior elected office, so no voting record; career is as an adviser, author and TV commentator — statements are largely on the record.'},
+     record:[{tag:'rec',t:'No prior elected office, so no voting record; career is as an adviser, author and TV commentator — statements are largely on the record.'},
        {tag:'rep2',t:'As a Fox News host made polarizing on-air statements (on the record); critics question his lack of governing experience. Rhetoric/experience debate, not misconduct.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'CalMatters',url:CM+'governor/'},{label:'Ballotpedia',url:BP+'Steve_Hilton'}]}
@@ -881,7 +882,7 @@ const RACES=[{
      stand:{'Crime & criminal justice':'Has enforced the criminal-justice laws the state passed in the early 2020s; frames the office around upholding state law.','State housing laws':'Used the office to press cities to build the housing that state law requires.','The federal government':'Says he has filed or joined more than 50 lawsuits against the Trump administration since 2025.'},
      endorse:'California Democratic Party, California Teachers Association, California Environmental Voters',
      clean:true,
-     record:[{tag:'doc',t:'Official record as Attorney General since 2021 — housing-law enforcement and more than 50 lawsuits filed or joined against the federal administration — is on the public record.'}],
+     record:[{tag:'rec',t:'Official record as Attorney General since 2021 — housing-law enforcement and more than 50 lawsuits filed or joined against the federal administration — is on the public record.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'attorney-general/'}]},
     {name:'Michael Gates',party:'Republican',pcls:'rep',
@@ -889,7 +890,7 @@ const RACES=[{
      stand:{'Crime & criminal justice':'As Huntington Beach city attorney, challenged what he called lenient state criminal-justice policy.','State housing laws':'Fought state laws that would require Huntington Beach to build more affordable housing.','The federal government':'Served in 2025 as a deputy in the U.S. DOJ Civil Rights Division, then returned to the Huntington Beach city attorney’s office.'},
      endorse:'California Republican Party, California Parents Union, California Rifle & Pistol Association',
      clean:true,
-     record:[{tag:'doc',t:'On the record: as Huntington Beach city attorney, challenged state criminal-justice and housing laws; served briefly in the U.S. DOJ Civil Rights Division in 2025.'}],
+     record:[{tag:'rec',t:'On the record: as Huntington Beach city attorney, challenged state criminal-justice and housing laws; served briefly in the U.S. DOJ Civil Rights Division in 2025.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'attorney-general/'}]}
   ]
@@ -904,7 +905,7 @@ const RACES=[{
      stand:{'Elections & voter access':'Pledges to expand voting access and oversaw the permanent move to universal mail-in voting.','Election integrity & security':'Says she would strengthen cybersecurity protections and improve transparency in election filings.','Record in office':'Administered the 2021 Newsom recall election and has taken local governments to court over voting laws.'},
      endorse:'California Democratic Party, California Federation of Teachers, SEIU California',
      clean:true,
-     record:[{tag:'doc',t:'Official record as Secretary of State since 2021 — including administering the 2021 recall election and litigation with local governments over voting laws — is on the public record.'}],
+     record:[{tag:'rec',t:'Official record as Secretary of State since 2021 — including administering the 2021 recall election and litigation with local governments over voting laws — is on the public record.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'secretary-of-state/'}]},
     {name:'Donald Wagner',party:'Republican',pcls:'rep',
@@ -912,7 +913,7 @@ const RACES=[{
      stand:{'Elections & voter access':'Campaigns on election integrity and criticizes the state’s slow ballot-counting process.','Election integrity & security':'Supports requiring voter ID at the polls.','Record in office':'As a county supervisor, pushed to release voter information to the U.S. Department of Justice over claims of voting irregularities, and questioned county DEI programs.'},
      endorse:'California Republican Party, Reform California, California Republican Assembly',
      clean:true,
-     record:[{tag:'doc',t:'On the record as an Orange County supervisor: criticized the state’s COVID-19 response, questioned county DEI programs, and pushed to release voter data to the U.S. DOJ over irregularity claims.'}],
+     record:[{tag:'rec',t:'On the record as an Orange County supervisor: criticized the state’s COVID-19 response, questioned county DEI programs, and pushed to release voter data to the U.S. DOJ over irregularity claims.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'secretary-of-state/'}]}
   ]
@@ -927,7 +928,7 @@ const RACES=[{
      stand:{'Priorities for the office':'Pledges to manage state finances with transparency, efficiency and fairness.','Fiscal approach':'Urged lawmakers to spend cautiously during recent state budget negotiations.','Experience':'Incumbent State Controller since 2023.'},
      endorse:'California Democratic Party, California Labor Federation, Equality California',
      clean:true,
-     record:[{tag:'doc',t:'Record as State Controller since 2023, including urging fiscal caution in recent state budget talks, is on the public record.'}],
+     record:[{tag:'rec',t:'Record as State Controller since 2023, including urging fiscal caution in recent state budget talks, is on the public record.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'controller/'}]},
     {name:'Herb Morgan',party:'Republican',pcls:'rep',
@@ -935,7 +936,7 @@ const RACES=[{
      stand:{'Priorities for the office':'Centers his campaign on investigating and exposing government fraud.','Fiscal approach':'Frames the role around rooting out waste and fraud in state spending.','Experience':'Private-sector investment career; no prior public office.'},
      endorse:'California Republican Party, California Republican Assembly, Unity Party of California',
      clean:true,
-     record:[{tag:'doc',t:'Private-sector investment career; no prior public-office record on file.'}],
+     record:[{tag:'rec',t:'Private-sector investment career; no prior public-office record on file.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'controller/'}]}
   ]
@@ -950,7 +951,7 @@ const RACES=[{
      stand:{'Background':'Two-term Lieutenant Governor and former U.S. ambassador to Hungary; entered politics through Democratic fundraising.','Relevant experience':'On the UC Board of Regents and CSU Board of Trustees, has repeatedly voted against proposed tuition increases.','Main pitch':'Runs on her statewide governing experience; CalMatters notes no detailed treasurer-office platform.'},
      endorse:'California Labor Federation, Teamsters California, National Union of Healthcare Workers',
      clean:true,
-     record:[{tag:'doc',t:'Record includes two terms as Lieutenant Governor, service as U.S. ambassador to Hungary, and votes against tuition increases on the UC and CSU boards.'}],
+     record:[{tag:'rec',t:'Record includes two terms as Lieutenant Governor, service as U.S. ambassador to Hungary, and votes against tuition increases on the UC and CSU boards.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'treasurer/'}]},
     {name:'Jennifer Hawks',party:'Republican',pcls:'rep',
@@ -958,7 +959,7 @@ const RACES=[{
      stand:{'Background':'Retired Silicon Valley businessperson and local Republican activist; no prior elected office.','Relevant experience':'Private-sector business management; no public financial-office record.','Main pitch':'Says her business background and independence would make her a check on state government.'},
      endorse:'California Republican Party, California Republican Assembly, Reform California',
      clean:true,
-     record:[{tag:'doc',t:'Business-management career; no prior public office or voting record on file.'}],
+     record:[{tag:'rec',t:'Business-management career; no prior public office or voting record on file.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'treasurer/'}]}
   ]
@@ -973,7 +974,7 @@ const RACES=[{
      stand:{'Top priorities':'Boosting school funding, early childhood education, and making it easier to become a teacher.','Classroom & culture issues':'CalMatters does not detail his positions on curriculum or culture-war issues.','Background':'President of the San Diego Unified school board.'},
      endorse:'California Teachers Association, United Domestic Workers, California Charter School Advocates',
      clean:true,
-     record:[{tag:'doc',t:'President of the San Diego Unified school board; won the California Teachers Association endorsement.'}],
+     record:[{tag:'rec',t:'President of the San Diego Unified school board; won the California Teachers Association endorsement.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'superintendent-of-public-instruction/'}]},
     {name:'Sonja Shaw',party:'Republican',pcls:'rep',
@@ -996,7 +997,7 @@ const RACES=[{
      stand:{'Background':'State Treasurer since 2019, overseeing the state’s investments and financing.','Positions':'CalMatters does not describe her policy priorities for the office.','Of note':'Long record across statewide and local office.'},
      endorse:'California Labor Federation, State Building & Construction Trades Council, AFSCME',
      clean:true,
-     record:[{tag:'doc',t:'Long public record: State Treasurer since 2019, Board of Equalization, San Francisco supervisor, and four State Assembly terms.'}],
+     record:[{tag:'rec',t:'Long public record: State Treasurer since 2019, Board of Equalization, San Francisco supervisor, and four State Assembly terms.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'lieutenant-governor/'}]},
     {name:'Gloria Romero',party:'Republican',pcls:'rep',
@@ -1004,7 +1005,7 @@ const RACES=[{
      stand:{'Background':'Nearly 12 years in the Legislature, including as the first woman Senate majority leader.','Positions':'Says she differs with Democrats on school choice, COVID-19 policies, and gender identity.','Of note':'Republican gubernatorial candidate Steve Hilton, an ally, asked her to run "on the ticket" with him.'},
      endorse:'California Republican Party, Reform California',
      clean:true,
-     record:[{tag:'doc',t:'Nearly 12 years in the Legislature, including as the first woman Senate majority leader; switched party registration from Democrat to Republican in 2024.'}],
+     record:[{tag:'rec',t:'Nearly 12 years in the Legislature, including as the first woman Senate majority leader; switched party registration from Democrat to Republican in 2024.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'lieutenant-governor/'}]}
   ]
@@ -1019,7 +1020,7 @@ const RACES=[{
      stand:{'Core approach':'Would strengthen the existing insurance department — its enforcement, oversight, and complaint handling.','Home & wildfire insurance':'Emphasizes home- and community-level mitigation to make neighborhoods more resilient and insurable.','Consumer protection':'Would require insurers to report claim delays in real time after disasters, explain denials, and add a consumer advocate within the department.'},
      endorse:'California Democratic Party, California Professional Firefighters, Sierra Club, California Environmental Voters, S.F. Chronicle (editorial)',
      clean:true,
-     record:[{tag:'doc',t:'Legislative record includes the single-use-plastics law and post-2025-fire wildfire-resilience and insurance-enforcement bills; says he authored 2024’s Prop 4 climate bond.'}],
+     record:[{tag:'rec',t:'Legislative record includes the single-use-plastics law and post-2025-fire wildfire-resilience and insurance-enforcement bills; says he authored 2024’s Prop 4 climate bond.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'insurance-commissioner/'}]},
     {name:'Jane Kim',party:'Democrat',pcls:'dem',
@@ -1027,7 +1028,7 @@ const RACES=[{
      stand:{'Core approach':'Proposes a new state-run "natural disaster insurance for all" authority, funded by premiums, to guarantee wildfire and flood coverage.','Home & wildfire insurance':'Would tie insurers’ ability to sell auto insurance in California to their willingness to offer home coverage.','Consumer protection':'Would explore freezing rates when a policyholder files a claim, penalize insurers that delay claims, and publish a dashboard of insurers’ claims records.'},
      endorse:'SEIU California, California Teachers Association, California Faculty Association, California Labor Federation',
      clean:true,
-     record:[{tag:'doc',t:'As a San Francisco supervisor, helped secure free community college for residents, an early $15 minimum-wage ordinance, and a tenant-protection ordinance.'}],
+     record:[{tag:'rec',t:'As a San Francisco supervisor, helped secure free community college for residents, an early $15 minimum-wage ordinance, and a tenant-protection ordinance.'}],
      noScandal:'No documented controversies on the record.',
      links:[{label:'CalMatters',url:CM+'insurance-commissioner/'}]}
   ]
@@ -1043,7 +1044,7 @@ const RACES=[{
      stand:{Housing:'Vetoed a 2023 bill capping corporate home ownership and reportedly blocked a stricter 2025 effort. Says he is forming a working group on the issue and supports President Trump’s efforts to stop corporate investors from buying single-family homes. Gave no direct yes or no on a cap.','Cost of living':'On data centers and power bills, says the state already shields ratepayers through the Public Utilities Commission, and that data centers seeking tax breaks could be required to give residential customers a net benefit. Gave no direct yes or no on requiring them to supply their own power.',Education:'Reinstated holding back third-graders who can’t read at grade level (2023, AB400) and opposes repealing it. Says he won’t cut K-12 funding but hasn’t committed to raising it to the national average; specific proposals await the state’s revenue forecasts.',Taxes:'Pledges no new taxes. Opposes resetting property-tax values to raise revenue.','Public safety':'Proposed lowering the felony-theft threshold from $1,200 to $750 (it didn’t pass the Legislature). Supports the death penalty, calling it “a natural deterrent.”',Abortion:'Gave no direct yes or no on Question 6. Says he would personally support a 15-week limit, but abortion rights are set in state law and should be left to Nevada voters.','Voting & elections':'Supports photo voter ID; publicly and financially backed the 2024 voter-ID question (Question 7). Vetoed a 2025 Democratic voter-ID bill, saying it “fell short.”',Labor:'Supports keeping Nevada’s “right-to-work” law, under which workers can’t be required to join a union.'},
      endorse:'President Donald Trump, Clark County Education Association, Laborers, Las Vegas Police Protective Association, Vegas Chamber',
      clean:true,
-     record:[{tag:'doc',t:'Ethics case over using his sheriff’s badge and uniform in 2022 campaign materials: the Ethics Commission first censured him and fined him $20,000 (2023). After court appeals, it was settled with no finding of a willful violation, no censure, and a $5,000 payment to the state general fund.'},{tag:'doc',t:'Public record as sheriff and governor, including a record number of vetoes of bills passed by the Democratic-controlled Legislature. Policy disagreements, not misconduct.'}],
+     record:[{tag:'doc',t:'Ethics case over using his sheriff’s badge and uniform in 2022 campaign materials: the Ethics Commission first censured him and fined him $20,000 (2023). After court appeals, it was settled with no finding of a willful violation, no censure, and a $5,000 payment to the state general fund.'},{tag:'rec',t:'Public record as sheriff and governor, including a record number of vetoes of bills passed by the Democratic-controlled Legislature. Policy disagreements, not misconduct.'}],
      noScandal:'No criminal conduct documented; the ethics matter above ended with no finding of a willful violation.',
      links:[{label:'Nevada Independent',url:'https://thenevadaindependent.com/elections/2026/general'},{label:'Ballotpedia',url:'https://ballotpedia.org/Joe_Lombardo'}]},
     {name:'Aaron Ford',party:'Democrat',pcls:'dem',
@@ -1083,7 +1084,7 @@ const RACES=[{
      stand:{Tourism:'Public-private partnerships with resorts to steer visitors to rural Nevada (such as Great Basin National Park or Elko’s Cowboy Poetry Gathering) and lengthen their stays.','Data centers':'Opposes tax breaks: “no public dollars should be spent on data centers”. They should pay for roads and transmission lines.',Transportation:'Would prioritize infrastructure projects that create jobs.','Top priority':'Would create a “PACT Office” to keep guns from people barred from having them, and push licensing, background checks and age rules for firearm dealers. Several of her gun bills were vetoed by Gov. Lombardo.','Working across party lines':'Cites bipartisan bills with Lombardo (such as a film tax credit) but says repeated vetoes of her bills motivated her run.'},
      endorse:'AFL-CIO, Clark County Education Association, Laborers, Teamsters',
      clean:true,
-     record:[{tag:'doc',t:'Ten-year legislative voting record is public. Opponents criticize her gun-control bills; that is a policy disagreement, not misconduct.'}],
+     record:[{tag:'rec',t:'Ten-year legislative voting record is public. Opponents criticize her gun-control bills; that is a policy disagreement, not misconduct.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'Nevada Independent',url:'https://thenevadaindependent.com/elections/2026/general'},{label:'Ballotpedia',url:'https://ballotpedia.org/Sandra_Jauregui'}]},
     {name:'Janine Hansen',party:'Independent American Party',pcls:'',
@@ -1091,7 +1092,7 @@ const RACES=[{
      stand:{Tourism:'Expand tourism, especially outdoor recreation, to help rural counties (campaign website).','Data centers':'Source does not detail.',Transportation:'Source does not detail.','Top priority':'Keep taxes low and cut them to spur growth, and oppose the expansion of state government (campaign website).','Working across party lines':'Says a lifetime of lobbying the Legislature gives her knowledge of the process (campaign website).'},
      endorse:'None listed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited; positions above are from her own campaign website.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited; positions above are from her own campaign website.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'Campaign website',url:'https://www.janinehansen.com/'},{label:'Ballotpedia',url:'https://ballotpedia.org/Janine_Hansen'}]}
   ]
@@ -1147,7 +1148,7 @@ const RACES=[{
      stand:{'Mail ballots':'Source does not detail.','Voter rolls':'Would create a “flag-and-investigate” voter-roll program with quarterly public reports. Says he sued in federal court after the SoS closed his complaint about 12,465 apparent duplicate Clark County registrations (his campaign’s account).','Ballots arriving after Election Day':'Source does not detail.','Voter ID':'If Question 7 passes, would lead a “transparent, bipartisan rollout” with free or low-cost ID help and accommodations for rural voters, seniors and students (campaign website).','Sharing voter data with federal officials':'Source does not detail.','Claims of election fraud':'Source does not detail his view. His platform stresses paper records, cybersecurity and audits “Nevadans can verify.”','Business court':'Source does not detail.'},
      endorse:'None listed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited; positions above are from his own campaign website.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited; positions above are from his own campaign website.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'Campaign website',url:'https://electbarnhill.net/'},{label:'Ballotpedia',url:'https://ballotpedia.org/Brad_Barnhill'}]},
     {name:'John T. Kennedy',party:'Libertarian',pcls:'',
@@ -1179,7 +1180,7 @@ const RACES=[{
      stand:{'Millennium Scholarship':'Keep seeking funding from the governor and Legislature, add private partnerships, and consider larger awards to fewer students.',Divestment:'Would keep the divestment from assault-weapon makers; says she would make data-driven decisions focused on “not losing money.”','College savings':'Emphasize Nevada Prepaid Tuition, raise 529 matching funds, and expand apprenticeship partnerships with the building trades.','Affordable housing (Infrastructure Bank)':'Continue the bank’s work; says she was on the leadership team that helped finance 10,000+ affordable units. Prioritize down-payment assistance.','Unclaimed property':'Invest in staff and technology to return property while stepping up fraud prevention.','Rainy-day fund & other ideas':'Notes the fund is at a record high; would put money toward programs that make Nevada more affordable. Would expand student-loan help for medical workers in underserved areas.'},
      endorse:'Culinary Union, Laborers, Teamsters, Treasurer Zach Conine',
      clean:true,
-     record:[{tag:'doc',t:'Has served in the treasurer’s office under Conine; no elected record.'}],
+     record:[{tag:'rec',t:'Has served in the treasurer’s office under Conine; no elected record.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'Nevada Independent',url:'https://thenevadaindependent.com/elections/2026/general'},{label:'Ballotpedia',url:'https://ballotpedia.org/Tya_Mathis-Coleman'}]}
   ]
@@ -1203,7 +1204,7 @@ const RACES=[{
      stand:{'Annual financial report':'Has made late reports the center of his campaign. Welcomes the recent improvement but questions whether it will last.','Collecting debts owed to the state':'Make collecting unpaid debts a focus, including more staff. The state has written off about $118 million since 2023.',Transparency:'Calls for a state audit. Would use the controller’s seat on the state transportation board to push for better public transit.',Experience:'Cites small-business experience: “pay our bills, pay our taxes, pay our fees.”'},
      endorse:'AFL-CIO, Teamsters',
      clean:true,
-     record:[{tag:'doc',t:'No prior public office, so there is no official record to review.'}],
+     record:[{tag:'rec',t:'No prior public office, so there is no official record to review.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'Nevada Independent',url:'https://thenevadaindependent.com/elections/2026/general'},{label:'Ballotpedia',url:'https://ballotpedia.org/Michael_MacDougall'}]}
   ]
@@ -1227,7 +1228,7 @@ const RACES=[{
      stand:{'Economy & taxes':'Raise the federal minimum wage, add price-gouging protections, and create paid family leave.','Health care':'Expand access to health care and address the nursing shortage.',Education:'Fully fund special education.','Immigration & border':'Not a focus of her platform as described; source does not detail.','Other priorities':'Abortion rights, tribal sovereignty, infrastructure, civil rights, and expanding the size of the U.S. House.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'No prior public office, so there is no official record to review.'}],
+     record:[{tag:'rec',t:'No prior public office, so there is no official record to review.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'News 9 guide',url:'https://www.news9.com/oklahoma-politics/oklahoma-us-senate-election-candidates-2026'},{label:'Ballotpedia',url:'https://ballotpedia.org/N%27Kiyla_Thomas'}]},
     {name:'Sevier White',party:'Libertarian',pcls:'',
@@ -1235,7 +1236,7 @@ const RACES=[{
      stand:{'Economy & taxes':'Source does not detail.','Health care':'Source does not detail.',Education:'Source does not detail.','Immigration & border':'Source does not detail.','Other priorities':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'Ballotpedia',url:'https://ballotpedia.org/Sevier_White'}]},
     {name:'Curtis Stinnett',party:'Independent',pcls:'',
@@ -1243,7 +1244,7 @@ const RACES=[{
      stand:{'Economy & taxes':'Source does not detail.','Health care':'Source does not detail.',Education:'Source does not detail.','Immigration & border':'Source does not detail.','Other priorities':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'News 9 guide',url:'https://www.news9.com/oklahoma-politics/oklahoma-us-senate-election-candidates-2026'}]},
     {name:'Ron Meinhardt',party:'Independent',pcls:'',
@@ -1251,7 +1252,7 @@ const RACES=[{
      stand:{'Economy & taxes':'Source does not detail.','Health care':'Source does not detail.',Education:'Source does not detail.','Immigration & border':'Source does not detail.','Other priorities':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'News 9 guide',url:'https://www.news9.com/oklahoma-politics/oklahoma-us-senate-election-candidates-2026'}]}
   ]
@@ -1275,7 +1276,7 @@ const RACES=[{
      stand:{Taxes:'Opposes broad income-tax cuts as favoring high earners; prefers targeted relief for working families, pointing to the grocery-tax repeal.',Education:'More public-school funding to shrink classes and raise pay for teachers and staff; end the private-school tax credit (she says it costs nearly $300 million); expand Oklahoma’s Promise to veterans and school employees; free school meals statewide.',Abortion:'Supports a state question to overturn Oklahoma’s abortion ban and protect abortion access in the constitution.','Data centers':'Would sign an order on day one pausing new data-center projects until guidelines are set, and make sure families don’t pay for their power or infrastructure.','Inola aluminum smelter':'Opposes it, citing foreign ownership and state tax incentives.','Tribal relations':'Treats it as government-to-government; would create a Secretary of Native American Affairs in state law.','Spending & government':'Redirect money from private-school vouchers and corporate incentives to public schools, teacher pay, rural hospitals and child care.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Eleven years of legislative votes are public. Criticism of her centers on policy, such as the smelter and tax votes.'}],
+     record:[{tag:'rec',t:'Eleven years of legislative votes are public. Criticism of her centers on policy, such as the smelter and tax votes.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'News 9 guide',url:'https://www.news9.com/oklahoma-elections/mike-mazzei-cyndi-munson-oklahoma-governor-key-issues'},{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/21/democratic-gubernatorial-nominee-talks-trump-money/'},{label:'Ballotpedia',url:'https://ballotpedia.org/Cyndi_Munson'}]},
     {name:'Orlando Lynn Bush',party:'Independent',pcls:'',
@@ -1283,7 +1284,7 @@ const RACES=[{
      stand:{Taxes:'Source does not detail.',Education:'Source does not detail.',Abortion:'Source does not detail.','Data centers':'Source does not detail.','Inola aluminum smelter':'Source does not detail.','Tribal relations':'Source does not detail.','Spending & government':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/21/democratic-gubernatorial-nominee-talks-trump-money/'}]},
     {name:'Robert E. Brooks Sr.',party:'Independent',pcls:'',
@@ -1291,7 +1292,7 @@ const RACES=[{
      stand:{Taxes:'Source does not detail.',Education:'Source does not detail.',Abortion:'Source does not detail.','Data centers':'Source does not detail.','Inola aluminum smelter':'Source does not detail.','Tribal relations':'Source does not detail.','Spending & government':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/05/independent-candidates-hope-to-shake-up-status-quo-give-oklahoma-voters-alternative-option/'}]},
     {name:'Jerry Griffin',party:'Independent',pcls:'',
@@ -1299,7 +1300,7 @@ const RACES=[{
      stand:{Taxes:'Source does not detail.',Education:'Source does not detail.',Abortion:'Source does not detail.','Data centers':'Source does not detail.','Inola aluminum smelter':'Source does not detail.','Tribal relations':'Source does not detail.','Spending & government':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/21/democratic-gubernatorial-nominee-talks-trump-money/'}]}
   ]
@@ -1315,7 +1316,7 @@ const RACES=[{
      stand:{'Economy & jobs':'An “America First” and “Oklahoma First” agenda of tax cuts, lower spending and fewer regulations. Says his philosophy rests on “capitalism, the Constitution, and Christianity.”',Education:'School choice, including the federal scholarship tax credit starting in 2027. Opposes diversity, equity and inclusion (DEI) mandates.','Tourism & state operations':'Fiscal transparency and accountability in state agencies, including the Tourism Department. Build on energy, agriculture, aerospace and tribal partnerships.','Health care':'Source does not detail.','Working across party lines':'Source does not detail (he declined Oklahoma Voice’s interview requests).'},
      endorse:'President Donald Trump, DHS Secretary Markwayne Mullin, Oklahoma Republican Party, Associated General Contractors of Oklahoma, state nursing and firefighter groups',
      clean:true,
-     record:[{tag:'doc',t:'Public record as House speaker and state transportation commissioner.'}],
+     record:[{tag:'rec',t:'Public record as House speaker and state transportation commissioner.'}],
      noScandal:'No criminal or ethics finding documented.',
      links:[{label:'News 9 guide',url:'https://www.news9.com/oklahoma-elections/oklahoma-lieutenant-governor-race-guide-shannon-forbes'},{label:'Ballotpedia',url:'https://ballotpedia.org/T.W._Shannon'}]},
     {name:'Kelly Forbes',party:'Democrat',pcls:'dem',
@@ -1323,7 +1324,7 @@ const RACES=[{
      stand:{'Economy & jobs':'Support small businesses, CareerTech, affordable housing and food security; work with tribal nations on growth; fix inaccurate broadband maps; stop unfunded mandates on cities.',Education:'More public-school funding and support for teachers and staff; keep state education dollars in public schools.','Tourism & state operations':'Continue Lt. Gov. Pinnell’s tourism work as a statewide “ambassador and cheerleader”; more transparency in state decision-making.','Health care':'Address health-care shortages in rural and underserved areas and offer incentives to recruit health professionals.','Working across party lines':'Says he can work with the Republican Legislature, the way a principal works with every family.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'No prior public office, so there is no official record to review.'}],
+     record:[{tag:'rec',t:'No prior public office, so there is no official record to review.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/19/democrat-in-lieutenant-governors-race-hopes-to-bridge-divides-fix-oklahomas-big-problems/'},{label:'News 9 guide',url:'https://www.news9.com/oklahoma-elections/oklahoma-lieutenant-governor-race-guide-shannon-forbes'}]}
   ]
@@ -1339,7 +1340,7 @@ const RACES=[{
      stand:{'Public safety':'Calls himself “the public safety candidate,” citing endorsements from sheriffs and district attorneys.','Public corruption':'Says officials should be held to a higher standard, “no matter their party.” Points to LOFT, which he says uncovered the Swadley’s scandal, and to his work on a committee that recommended expelling a fellow Republican.','Abortion-ban lawsuit':'Would defend the state’s abortion law as written: “As somebody who’s 100% pro-life, I would follow the law.” As a lawmaker, filed a bill to clarify “terminal” diagnoses and allow early inducement of labor in those cases.','Illegal marijuana':'Promises to “rid illegal marijuana” with a regional enforcement plan alongside local police. Authored the 2023 law (HB 2095) giving the AG authority over illegal grows.','Inola smelter lawsuit':'Would continue the state’s lawsuit, citing 60% foreign ownership and fluoride emissions. Open to the project if it is proven safe.','Consumer protection':'Source does not detail specific plans; stresses his small-business experience.','Artificial intelligence':'Wants heavy sanctions for lawyers who file unchecked AI-drafted documents and updated criminal laws (for example, on AI-generated child sexual-abuse imagery). Sees AI as a useful tool for the office.'},
      endorse:'Many sheriffs and district attorneys (per his campaign)',
      clean:true,
-     record:[{tag:'doc',t:'Long public legislative record, including authoring major medical-marijuana legislation.'}],
+     record:[{tag:'rec',t:'Long public legislative record, including authoring major medical-marijuana legislation.'}],
      noScandal:'No criminal or ethics finding documented.',
      links:[{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/15/views-on-abortion-ai-set-oklahoma-attorney-general-candidates-apart/'},{label:'News 9 guide',url:'https://www.news9.com/oklahoma-elections/oklahoma-ag-echols-coffey-issues'},{label:'Ballotpedia',url:'https://ballotpedia.org/Jon_Echols'}]},
     {name:'Nick Coffey',party:'Democrat',pcls:'dem',
@@ -1347,7 +1348,7 @@ const RACES=[{
      stand:{'Public safety':'Says the AG “should be a prosecutor, not a politician,” citing his trial work, including two extraditions of a cartel leader.','Public corruption':'Would create an Office of Public Integrity. Criticizes same-day plea deals given to two legislators (one from each party) as a “double standard.”','Abortion-ban lawsuit':'Says the AG must defend state laws, but calls what mothers with fatal fetal diagnoses describe “inhumane” and says he would have “a very hard time” defending the law in that situation.','Illegal marijuana':'Enforcement against black-market grows is a first-100-days priority.','Inola smelter lawsuit':'Would continue the lawsuit; says the ownership group should listen to residents and respect property rights.','Consumer protection':'Says the state’s Data Center Consumer Protection Act is “not a consumer protection act at all” and that the AG must fight for ratepayers at the Corporation Commission. Promises a crackdown on spam calls.','Artificial intelligence':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'No prior elected office; his prosecutions are public court record.'}],
+     record:[{tag:'rec',t:'No prior elected office; his prosecutions are public court record.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/15/views-on-abortion-ai-set-oklahoma-attorney-general-candidates-apart/'},{label:'News 9 guide',url:'https://www.news9.com/oklahoma-elections/oklahoma-ag-echols-coffey-issues'},{label:'Ballotpedia',url:'https://ballotpedia.org/Nick_Coffey'}]}
   ]
@@ -1363,7 +1364,7 @@ const RACES=[{
      stand:{Priorities:'Track education spending while keeping local control; review state mental-health spending; require agencies to plan for reduced state funding; promote tourism (per News 9).','Background & approach':'“I probably know more about the finances of Oklahoma, both at the state and local government, than most officials serving.”'},
      endorse:'President Donald Trump',
      clean:true,
-     record:[{tag:'doc',t:'Her audits as State Auditor are public; some, such as a 2024 Tulsa Public Schools audit, drew pushback from the audited entity.'}],
+     record:[{tag:'rec',t:'Her audits as State Auditor are public; some, such as a 2024 Tulsa Public Schools audit, drew pushback from the audited entity.'}],
      noScandal:'No criminal or ethics finding documented.',
      links:[{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/16/oklahoma-treasurers-race-pits-veteran-against-newcomer/'},{label:'Ballotpedia',url:'https://ballotpedia.org/Cindy_Byrd'}]},
     {name:'Kiefer Perry',party:'Libertarian',pcls:'',
@@ -1395,7 +1396,7 @@ const RACES=[{
      stand:{'Top priority':'“The Marshall Plan”: six pillars built on data-driven decisions, quality learning standards and relationships, plus monthly regional problem-solving sessions.','Teacher pay & shortage':'Aim above the regional average, and restore respect for teachers’ professional judgment instead of “cookie-cutter curriculums.”','State testing':'Doesn’t call for a new state test but says results arrive too late to act on.',Reading:'Recruit, train and keep strong teachers, noting many non-traditional teachers lack classroom-management training. Reinvest in the “Great Expectations” teacher program.','Working with schools':'Hold districts accountable with help rather than punishment: “Educators can’t teach while walking on eggshells.”'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Public record as an elected Tulsa school board member.'}],
+     record:[{tag:'rec',t:'Public record as an elected Tulsa school board member.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/16/oklahoma-state-superintendent-candidates-seek-more-unified-approach-to-education/'},{label:'News 9 guide',url:'https://www.news9.com/oklahoma-elections/oklahoma-education-superintendent-franklin-marshall'}]}
   ]
@@ -1411,7 +1412,7 @@ const RACES=[{
      stand:{'Inspector shortage':'Contract with private-sector inspectors in the short term so elevators keep running safely; would prefer full-time state staff over time.','Red tape & regulation':'Start by reviewing the department’s administrative rules to make sure each is about safety, “not a barrier to entry.”','Agency budget':'Keep legislative appropriations flat, but open to asking for more if a need is shown. Compare inspector pay with other states.',Priorities:'Expand apprenticeships and career-tech partnerships; enforce wage claims consistently; improve workplace-safety consultations; more transparency in licensing.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Public legislative record. He joined fellow lawmakers in a court appeal challenging Corporation Commission approval of billions of dollars in utility fuel charges (a policy dispute).'}],
+     record:[{tag:'rec',t:'Public legislative record. He joined fellow lawmakers in a court appeal challenging Corporation Commission approval of billions of dollars in utility fuel charges (a policy dispute).'}],
      noScandal:'No criminal or ethics finding documented.',
      links:[{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/07/labor-commissioner-candidates-to-tackle-red-tape-oklahoma-inspector-shortages/'},{label:'Ballotpedia',url:'https://ballotpedia.org/Kevin_West_(Oklahoma)'}]},
     {name:'Kevin Dawson',party:'Democrat',pcls:'dem',
@@ -1419,7 +1420,7 @@ const RACES=[{
      stand:{'Inspector shortage':'May ask the Legislature for more money; says inspectors must be paid competitively.','Red tape & regulation':'Supports streamlining but is “wary of cutting red tape” if it would hurt public safety.','Agency budget':'Strict accountability for spending, but the state “can’t go without inspectors.”',Priorities:'Consistent enforcement of labor laws, clear guidance for businesses and accountability for “bad actors,” focused inspections of high-risk workplaces, less bureaucracy.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'No prior public office, so there is no official record to review.'}],
+     record:[{tag:'rec',t:'No prior public office, so there is no official record to review.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/07/labor-commissioner-candidates-to-tackle-red-tape-oklahoma-inspector-shortages/'}]},
     {name:'Mike Hall',party:'Libertarian',pcls:'',
@@ -1443,7 +1444,7 @@ const RACES=[{
      stand:{'Insurance rates':'Cut rates. In the primary, he challenged the Insurance Department’s finding that the market is competitive, saying its metrics came from an industry trade group.',Competition:'Open the insurance market to more competition.','Consumer protection':'Hold large insurance companies accountable.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'No prior public office, so there is no official record to review.'}],
+     record:[{tag:'rec',t:'No prior public office, so there is no official record to review.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'News 9 guide',url:'https://www.news9.com/oklahoma-elections/oklahoma-treasurer-labor-insurance-corporation-races'},{label:'Ballotpedia',url:'https://ballotpedia.org/Bob_Sullivan_(Oklahoma)'}]},
     {name:'Craig MacIntyre',party:'Democrat',pcls:'dem',
@@ -1451,7 +1452,7 @@ const RACES=[{
      stand:{'Insurance rates':'Lower rates.',Competition:'Recruit new insurance companies to do business in Oklahoma.','Consumer protection':'A more transparent claims process that tracks patterns of complaints, plus stronger fraud investigations.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'No prior public office, so there is no official record to review.'}],
+     record:[{tag:'rec',t:'No prior public office, so there is no official record to review.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'News 9 guide',url:'https://www.news9.com/oklahoma-elections/oklahoma-treasurer-labor-insurance-corporation-races'}]}
   ]
@@ -1467,7 +1468,7 @@ const RACES=[{
      stand:{'Data centers':'Wrote a bill requiring new data centers to pay their own construction and energy costs. Says the commission should enforce whatever framework the Legislature sets.','Utility rates':'Balance affordability with a reliable grid, and make sure residential customers benefit from added large-load demand.','Oil & gas wells':'Protect natural resources and strengthen energy independence; streamline regulations to help business growth (campaign priorities).','Agency oversight':'Commissioners should approve every compensation package. Oklahoma Voice found the agency signed more than $310,000 in severance deals in 18 months, only one of them approved by commissioners.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Public legislative record since 2018.'}],
+     record:[{tag:'rec',t:'Public legislative record since 2018.'}],
      noScandal:'No criminal or ethics finding documented.',
      links:[{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/05/corporation-commission-candidates-differ-on-oklahoma-data-center-regulation-utility-rates/'},{label:'Ballotpedia',url:'https://ballotpedia.org/Brad_Boles'}]},
     {name:'Rhonda Eastman',party:'Democrat',pcls:'dem',
@@ -1475,7 +1476,7 @@ const RACES=[{
      stand:{'Data centers':'Pause new data-center construction while their impact is studied, and require full compliance with whatever rules are enacted. Worried about rapid job losses.','Utility rates':'The commission should advocate for ratepayers, not corporations, and push back on legislation that adds to their burden.','Oil & gas wells':'More regulation of orphaned oil and gas wells and of injection wells; study the impact of nuclear power.','Agency oversight':'Commissioners should monitor agency executives and step in on “bad faith” conduct.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'No prior public office, so there is no official record to review.'}],
+     record:[{tag:'rec',t:'No prior public office, so there is no official record to review.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'Oklahoma Voice',url:'https://oklahomavoice.com/2026/10/05/corporation-commission-candidates-differ-on-oklahoma-data-center-regulation-utility-rates/'}]}
   ]
@@ -1499,7 +1500,7 @@ const RACES=[{
      stand:{'Trump administration':'Praises the “amazing things” the administration is “pulling off” and says he would partner with it as part of a national “renaissance.”','Immigration & ICE':'Says America is “enriched by immigrants” who should be “self-reliant contributors” who “assimilate.” Said protesters were to blame for the shooting deaths of two U.S. citizens by ICE in Minneapolis.','Economy & budget':'Cut federal taxes, roll back regulations, restore “energy dominance”; push lower property taxes and have universities use endowments to pay down student debt.','Foreign policy':'Defends the Iran war and calls criticizing the commander-in-chief mid-battle “wholly inappropriate.”',Filibuster:'Newsline could not determine his position.','Supreme Court reform':'Newsline could not determine his position.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Public legislative record since 2019.'}],
+     record:[{tag:'rec',t:'Public legislative record since 2019.'}],
      noScandal:'No criminal or ethics finding documented.',
      links:[{label:'Colorado Newsline',url:'https://coloradonewsline.com/voter-guides/contests/2026-general-u-s-senate/'},{label:'Ballotpedia',url:'https://ballotpedia.org/Mark_Baisley'}]},
     {name:'Bob Chew',party:'Forward Party',pcls:'',
@@ -1507,7 +1508,7 @@ const RACES=[{
      stand:{'Trump administration':'Says he left a GOP that “veered away from fiscal responsibility”; would back Trump “when I think he’s right” and oppose him when wrong.','Immigration & ICE':'Remove violent criminals and cartel traffickers, but don’t spend resources pursuing peaceful immigrants who contribute.','Economy & budget':'Top priority is the national debt; urges a bipartisan coalition on tax reform and Social Security and Medicare changes.','Foreign policy':'Calls Iran’s regime “bloodthirsty,” but says the war has caused “a staggering collapse of American strategic influence.”',Filibuster:'Supports it, including restoring a 60-vote threshold for judicial nominees.','Supreme Court reform':'Newsline could not determine his position.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'Colorado Newsline',url:'https://coloradonewsline.com/voter-guides/contests/2026-general-u-s-senate/'}]},
     {name:'Blake Huber',party:'Libertarian',pcls:'',
@@ -1515,7 +1516,7 @@ const RACES=[{
      stand:{'Trump administration':'Source does not detail.','Immigration & ICE':'Source does not detail.','Economy & budget':'Source does not detail.','Foreign policy':'Source does not detail.',Filibuster:'Source does not detail.','Supreme Court reform':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'KSJD voter guide',url:'https://www.ksjd.org/2026-10-06/colorados-2026-statewide-candidates-voter-guide'}]},
     {name:'Christopher Baum',party:'Approval Voting Party',pcls:'',
@@ -1523,7 +1524,7 @@ const RACES=[{
      stand:{'Trump administration':'Source does not detail.','Immigration & ICE':'Source does not detail.','Economy & budget':'Source does not detail.','Foreign policy':'Source does not detail.',Filibuster:'Source does not detail.','Supreme Court reform':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'KSJD voter guide',url:'https://www.ksjd.org/2026-10-06/colorados-2026-statewide-candidates-voter-guide'}]},
     {name:'Adam Withrow',party:'Unity Party',pcls:'',
@@ -1531,7 +1532,7 @@ const RACES=[{
      stand:{'Trump administration':'Source does not detail.','Immigration & ICE':'Source does not detail.','Economy & budget':'Source does not detail.','Foreign policy':'Source does not detail.',Filibuster:'Source does not detail.','Supreme Court reform':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'KSJD voter guide',url:'https://www.ksjd.org/2026-10-06/colorados-2026-statewide-candidates-voter-guide'}]}
   ]
@@ -1571,7 +1572,7 @@ const RACES=[{
      stand:{Housing:'Source does not detail.','Health care & abortion':'Source does not detail.',Environment:'Source does not detail.','State budget & TABOR':'Source does not detail.','Business & regulation':'Source does not detail.','Data centers':'Source does not detail.','Trump administration':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'KSJD voter guide',url:'https://www.ksjd.org/2026-10-06/colorados-2026-statewide-candidates-voter-guide'}]},
     {name:'Erik Underwood',party:'Approval Voting Party',pcls:'',
@@ -1579,7 +1580,7 @@ const RACES=[{
      stand:{Housing:'Source does not detail.','Health care & abortion':'Source does not detail.',Environment:'Source does not detail.','State budget & TABOR':'Source does not detail.','Business & regulation':'Source does not detail.','Data centers':'Source does not detail.','Trump administration':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'KSJD voter guide',url:'https://www.ksjd.org/2026-10-06/colorados-2026-statewide-candidates-voter-guide'}]},
     {name:'Jeff Peckman',party:'Unity Party',pcls:'',
@@ -1587,7 +1588,7 @@ const RACES=[{
      stand:{Housing:'Source does not detail.','Health care & abortion':'Source does not detail.',Environment:'Source does not detail.','State budget & TABOR':'Source does not detail.','Business & regulation':'Source does not detail.','Data centers':'Source does not detail.','Trump administration':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'KSJD voter guide',url:'https://www.ksjd.org/2026-10-06/colorados-2026-statewide-candidates-voter-guide'}]},
     {name:'Stephen T. Hamilton',party:'American Constitution Party',pcls:'',
@@ -1595,7 +1596,7 @@ const RACES=[{
      stand:{Housing:'Source does not detail.','Health care & abortion':'Source does not detail.',Environment:'Source does not detail.','State budget & TABOR':'Source does not detail.','Business & regulation':'Source does not detail.','Data centers':'Source does not detail.','Trump administration':'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'Official candidate list',url:'https://www.coloradosos.gov/pubs/elections/vote/generalCandidates.html'}]}
   ]
@@ -1619,7 +1620,7 @@ const RACES=[{
      stand:{'Lawsuits against the federal government':'Calls the “vast majority” of the current AG’s suits against the Trump administration politically motivated; would review them and move to dismiss those without merit.',Immigration:'Criticizes Colorado laws limiting state-federal cooperation; says local law enforcement should be able to work with federal immigration authorities.','Background & priorities':'Runs on his record as an elected prosecutor; source does not detail other priorities.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Public record as an elected district attorney since 2021.'}],
+     record:[{tag:'rec',t:'Public record as an elected district attorney since 2021.'}],
      noScandal:'No criminal or ethics finding documented.',
      links:[{label:'Colorado Newsline',url:'https://coloradonewsline.com/voter-guides/contests/2026-general-colorado-attorney-general/'},{label:'Ballotpedia',url:'https://ballotpedia.org/Michael_Allen_(Colorado)'}]}
   ]
@@ -1651,7 +1652,7 @@ const RACES=[{
      stand:{'Mail ballots':'Source does not detail.','Voter rolls':'Source does not detail.',Priorities:'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'KSJD voter guide',url:'https://www.ksjd.org/2026-10-06/colorados-2026-statewide-candidates-voter-guide'}]},
     {name:'Sean Vadney',party:'Libertarian',pcls:'',
@@ -1659,7 +1660,7 @@ const RACES=[{
      stand:{'Mail ballots':'Source does not detail.','Voter rolls':'Source does not detail.',Priorities:'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'KSJD voter guide',url:'https://www.ksjd.org/2026-10-06/colorados-2026-statewide-candidates-voter-guide'}]},
     {name:'Amanda Campbell',party:'American Constitution Party',pcls:'',
@@ -1667,7 +1668,7 @@ const RACES=[{
      stand:{'Mail ballots':'Source does not detail.','Voter rolls':'Source does not detail.',Priorities:'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'KSJD voter guide',url:'https://www.ksjd.org/2026-10-06/colorados-2026-statewide-candidates-voter-guide'}]}
   ]
@@ -1683,7 +1684,7 @@ const RACES=[{
      stand:{'State investments':'Invest some state money in Colorado housing, infrastructure, clean energy and small businesses. Newsline notes such investments could benefit communities but would likely earn lower returns.',Priorities:'Investing state funds in Colorado.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Public legislative record.'}],
+     record:[{tag:'rec',t:'Public legislative record.'}],
      noScandal:'No criminal or ethics finding documented.',
      links:[{label:'Colorado Newsline',url:'https://coloradonewsline.com/voter-guides/contests/2026-general-colorado-treasurer/'},{label:'Ballotpedia',url:'https://ballotpedia.org/Jeff_Bridges_(Colorado)'}]},
     {name:'Kevin Grantham',party:'Republican',pcls:'rep',
@@ -1691,7 +1692,7 @@ const RACES=[{
      stand:{'State investments':'Maximize returns on state money; skeptical of investing in housing and infrastructure projects: “I don’t think we should be giving ourselves more jobs to do.”',Priorities:'Make the most of taxpayer dollars and address affordability.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Public legislative and county record.'}],
+     record:[{tag:'rec',t:'Public legislative and county record.'}],
      noScandal:'No criminal or ethics finding documented.',
      links:[{label:'Colorado Newsline',url:'https://coloradonewsline.com/voter-guides/contests/2026-general-colorado-treasurer/'},{label:'Ballotpedia',url:'https://ballotpedia.org/Kevin_Grantham'}]},
     {name:'Jodie Barr',party:'Libertarian',pcls:'',
@@ -1699,7 +1700,7 @@ const RACES=[{
      stand:{'State investments':'Source does not detail.',Priorities:'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'KSJD voter guide',url:'https://www.ksjd.org/2026-10-06/colorados-2026-statewide-candidates-voter-guide'}]},
     {name:'Marilee Langner Sturgis',party:'Approval Voting Party',pcls:'',
@@ -1707,7 +1708,7 @@ const RACES=[{
      stand:{'State investments':'Source does not detail.',Priorities:'Source does not detail.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'Independent coverage of this candidate is limited.'}],
+     record:[{tag:'note',t:'Independent coverage of this candidate is limited.'}],
      noScandal:'No scandal found in available coverage.',
      links:[{label:'KSJD voter guide',url:'https://www.ksjd.org/2026-10-06/colorados-2026-statewide-candidates-voter-guide'}]}
   ]
@@ -1731,7 +1732,7 @@ const RACES=[{
      stand:{'Trump administration & Iran':'Says his ties would give him influence with Trump: “If there’s anybody he’ll listen to, it would be me.” Defends the Iran strike; won’t rule out ground troops; would disagree with Trump “in private before … in public.”','Economy & prices':'Supports tariffs on countries he considers unfair traders but opposes blanket tariffs on every nation.','Health care':'Tie federal Medicaid money to states’ ability to account for spending; crack down on fraud and waste; expand telemedicine and AI for rural care.','Energy & data centers':'More domestic oil, natural gas and nuclear (including small modular reactors), with renewables in the mix. Data centers should pay the full cost of the infrastructure they need.',Housing:'Eliminate capital gains tax on the sale of a primary home to encourage owners to sell, adding supply and lowering prices and rents.','Voting & elections':'Supports photo ID; has raised concerns about fraud in ballots cast outside polling places, though he says he doesn’t know if fraud has changed outcomes. Says he would concede if certified results and challenges went against him.','Artificial intelligence':'Employers should stay responsible for discriminatory AI decisions; emphasizes enforcing the ADA rather than endorsing new federal AI rules.'},
      endorse:'Not listed in the sources reviewed.',
      clean:true,
-     record:[{tag:'doc',t:'No prior elected office; his military and government service is public record.'}],
+     record:[{tag:'rec',t:'No prior elected office; his military and government service is public record.'}],
      noScandal:'No criminal or personal-conduct scandal documented.',
      links:[{label:'Virginia Mercury',url:'https://virginiamercury.com/2026/10/14/warner-seeks-a-final-term-as-mizusawa-makes-his-case-for-change/'},{label:'Candidate forum (Virginia Mercury)',url:'https://virginiamercury.com/2026/10/08/warner-mizusawa-outline-competing-approaches-to-disability-policy/'}]}
   ]
@@ -1894,7 +1895,7 @@ function candHTML(c,issues){
     <div class="stand"><div class="sk">Where they stand</div>
       ${(issues||ISSUES).map(i=>`<div class="issue"><span class="it">${esc(i)}</span><p>${esc(c.stand[i]||'—')}</p></div>`).join('')}</div>
     <div class="rec"><div class="sk">Record &amp; controversies</div>
-      ${c.record.map(r=>`<div class="rec-item"><span class="tag ${r.tag}">${r.tag==='doc'?'Documented':r.tag==='rep2'?'Reported':'Unverified'}</span><span>${esc(r.t)}</span></div>`).join('')}
+      ${c.record.map(r=>`<div class="rec-item"><span class="tag ${r.tag}">${r.tag==='doc'?'Documented':r.tag==='rep2'?'Reported':r.tag==='rec'?'Record':r.tag==='note'?'Note':'Unverified'}</span><span>${esc(r.t)}</span></div>`).join('')}
       ${c.clean?`<div class="clean"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>${esc(c.noScandal)}</div>`:''}</div>
     <div class="endorse"><b>Endorsed by</b>${esc(c.endorse)}</div>
     <div class="links">${c.links.map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ${extIco}</a>`).join('')}</div>
