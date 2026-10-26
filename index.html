@@ -1733,32 +1733,28 @@ const SC=k=>(STATES[stateKey].copy||{})[k]??STATES.CA.copy[k];
    against the pollster's own release. Keys: 'ST|office' for races, 'ST|num' for
    measures. Races in scope with no qualifying poll get {none:true}.
    TURNOUT = official counts of ballots returned/cast (never how people voted). */
-const POLL_ASOF='Oct 23, 2026';
-const PPIC_SEP={src:'PPIC Statewide Survey',dates:'Sep 4–10, 2026',n:'1,103 likely voters',moe:3.8,url:'https://www.ppic.org/wp-content/uploads/crosstabs-likely-voters-0926.pdf'};
-const ppicProp=(y,n,d)=>({items:[{...PPIC_SEP,res:[['Yes',y],['No',n],['Don’t know',d]]}]});
+const POLL_ASOF='Oct 26, 2026';
+const NPI_NV={src:'Noble Predictive Insights (NVPOP)',dates:'Sep 22–26, 2026',n:'708 likely voters (online opt-in panel)',moe:3.68,url:'https://www.noblepredictiveinsights.com/post/lombardo-tries-to-escape-trump-s-orbit-up-2-over-ford'};
 const POLLS={
  'CA|Governor of California':{items:[
   {src:'Emerson College Polling',dates:'Oct 17–19, 2026',n:'1,000 likely voters',moe:3.1,res:[['Xavier Becerra',60],['Steve Hilton',33],['Undecided',7]],
-   note:'When undecided voters were asked which way they lean: Becerra 64%, Hilton 36%.',url:'https://emersoncollegepolling.com/california-2026-poll-xavier-becerra-holds-27-point-lead-over-steve-hilton/'},
-  {...PPIC_SEP,res:[['Xavier Becerra',60],['Steve Hilton',38],['Neither / don’t know',2]],note:'Neither 1%, don’t know 1%.'}]},
+   note:'When undecided voters were asked which way they lean: Becerra 64%, Hilton 36%.',url:'https://emersoncollegepolling.com/california-2026-poll-xavier-becerra-holds-27-point-lead-over-steve-hilton/'}]},
  'NV|Governor of Nevada':{items:[
-  {src:'Emerson College Polling / KLAS-TV',dates:'Sep 5–8, 2026',n:'680 likely voters',moe:3.7,res:[['Aaron Ford',44],['Joe Lombardo',42],['Undecided',11]],
-   note:'The release does not break out the remaining 3% or report a figure for Danielle Ford (no political party).',url:'https://emersoncollegepolling.com/nevada-2026-poll-ford-and-lombardo/'}]},
+  {...NPI_NV,res:[['Aaron Ford',40],['Joe Lombardo',42],['Danielle Ford',7],['Undecided',9]]}]},
+ 'NV|6':{items:[{...NPI_NV,res:[['Yes',69],['No',22],['Not sure',6]],note:'The rest said they would not vote on this question.'}]},
+ 'NV|7':{items:[{...NPI_NV,res:[['Yes',67],['No',25],['Not sure',6]],note:'The rest said they would not vote on this question.'}]},
  'OK|Governor of Oklahoma':{none:true},
  'OK|U.S. Senate (special election)':{none:true},
  'CO|Governor of Colorado':{none:true},
  'CO|U.S. Senate':{none:true},
- 'VA|U.S. Senate':{none:true},
- 'CA|1':ppicProp(55,43,2),'CA|2':ppicProp(60,39,1),'CA|3':ppicProp(58,40,2),'CA|4':ppicProp(42,53,5),'CA|5':ppicProp(35,59,5),
- 'CA|37':ppicProp(61,35,3),'CA|38':ppicProp(55,42,3),'CA|39':ppicProp(43,55,1),'CA|40':ppicProp(52,46,2),'CA|41':ppicProp(51,44,5),
- 'CA|42':ppicProp(54,43,4),'CA|43':ppicProp(43,51,6),'CA|44':ppicProp(34,61,6),'CA|45':ppicProp(49,46,5)
+ 'VA|U.S. Senate':{none:true}
 };
 const TURNOUT={
- CA:{asof:'Oct 21, 2026',text:'2,350,922 vote-by-mail ballots returned to county election offices, out of 23,438,326 mailed.',src:'California Secretary of State (VoteCal statistics)',url:'https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics-10-21-2026.pdf'},
- CO:{asof:'11:59 PM Oct 21, 2026',text:'661,879 ballots returned statewide.',src:'Colorado Secretary of State daily update',url:'https://www.coloradosos.gov/pubs/newsRoom/pressReleases/2026/PR20261022BallotReturns.html'},
- VA:{asof:'Oct 21, 2026',text:'870,229 early ballots cast (in person and by mail). For scale, the final early total in 2022 was 976,558.',src:'Virginia Public Access Project (non-partisan), compiled from Virginia Department of Elections data',url:'https://www.vpap.org/elections/early-voting/'},
- NV:{asof:'Oct 23, 2026',text:'Statewide early-voting and mail-ballot counts are published by the Nevada Secretary of State; we could not retrieve them for this update, so none are shown here.',src:'Nevada Secretary of State',url:'https://www.nvsos.gov/'},
- OK:{asof:'Oct 23, 2026',text:'In-person early voting runs Wednesday, Oct 28 through Saturday, Oct 31, so there is no statewide count yet.',src:'Oklahoma State Election Board',url:'https://oklahoma.gov/elections.html'}
+ CA:{asof:'Oct 24, 2026',text:'3,160,419 ballots cast: 3,132,076 vote-by-mail ballots returned (out of 23,443,978 mailed) and 28,343 cast in person.',src:'California Secretary of State (VoteCal statistics)',url:'https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics-10-24-26.pdf'},
+ CO:{asof:'11:59 PM Oct 22, 2026',text:'730,614 ballots returned statewide.',src:'Colorado Secretary of State daily update',url:'https://www.coloradosos.gov/pubs/newsRoom/pressReleases/2026/PR20261023BallotReturns.html'},
+ VA:{asof:'Oct 25, 2026',text:'1,107,183 early ballots cast (in person and by mail). For scale, the final early total in 2022 was 976,558.',src:'Virginia Public Access Project (non-partisan), compiled from Virginia Department of Elections data',url:'https://www.vpap.org/elections/early-voting/'},
+ NV:{asof:'Oct 26, 2026',text:'Statewide early-voting and mail-ballot counts are published by the Nevada Secretary of State; we could not retrieve them for this update, so none are shown here.',src:'Nevada Secretary of State',url:'https://www.nvsos.gov/'},
+ OK:{asof:'Oct 26, 2026',text:'In-person early voting runs Wednesday, Oct 28 through Saturday, Oct 31, so there is no statewide count yet.',src:'Oklahoma State Election Board',url:'https://oklahoma.gov/elections.html'}
 };
 function pollHTML(P){
   if(!P)return'';
