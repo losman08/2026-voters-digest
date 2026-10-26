@@ -8,7 +8,7 @@
    rights and empowerment, deliberately not flag red-white-blue. One hue leads (violet); gold is the
    accent of record. The two sides of any measure or race are told apart by labels, never good/bad color. */
 :root{
-  --bg:#f4f3f7; --surface:#ffffff; --surface-2:#f6f5fa; --inset:#f3eefa; --gold-soft:#f5eedb;
+  --bg:#f4f3f7; --surface:#ffffff; --surface-2:#f6f5fa; --inset:#f3eefa; --gold-soft:#f5eedb; --entry:#fff9e0; --entry-line:#ecdfa8;
   --ink:#231a33; --muted:#5a516b; --faint:#8a8398; --line:#e6e3ee; --line-2:#efedf4;
   --violet:#5a3f8f; --violet-ink:#4a3078; --violet-soft:#ece4f6; --mast-bg:#4a3078;
   --gold:#a9823a; --gold-ink:#8a6a2c;
@@ -21,7 +21,7 @@
   --maxw:780px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#141020; --surface:#1d1830; --surface-2:#241e38; --inset:#241a38; --gold-soft:#2a2213;
+  --bg:#141020; --surface:#1d1830; --surface-2:#241e38; --inset:#241a38; --gold-soft:#2a2213; --entry:#2a2516; --entry-line:#4d4222;
   --ink:#efeaf6; --muted:#a79fba; --faint:#7d7590; --line:#2d2742; --line-2:#262037;
   --violet:#a88fd8; --violet-ink:#cbb4f0; --violet-soft:#2a2141; --mast-bg:#241a3f;
   --gold:#d2ad5f; --gold-ink:#e0c07d;
@@ -30,7 +30,7 @@
   --urgent-bg:#311a14; --urgent-fg:#e39b86; --urgent-line:#4a2820; color-scheme:dark;
 }}
 :root[data-theme="dark"]{
-  --bg:#141020; --surface:#1d1830; --surface-2:#241e38; --inset:#241a38; --gold-soft:#2a2213;
+  --bg:#141020; --surface:#1d1830; --surface-2:#241e38; --inset:#241a38; --gold-soft:#2a2213; --entry:#2a2516; --entry-line:#4d4222;
   --ink:#efeaf6; --muted:#a79fba; --faint:#7d7590; --line:#2d2742; --line-2:#262037;
   --violet:#a88fd8; --violet-ink:#cbb4f0; --violet-soft:#2a2141; --mast-bg:#241a3f;
   --gold:#d2ad5f; --gold-ink:#e0c07d;
@@ -107,7 +107,7 @@ header.mast{position:sticky; top:env(safe-area-inset-top,0px); z-index:30;
 .help-sec p{margin:0; font-size:.88rem; color:var(--muted); line-height:1.5}
 .req-field{display:flex; flex-direction:column; gap:5px; margin-bottom:12px}
 .req-field label{font-family:var(--font-ui); font-size:.75rem; font-weight:700; color:var(--muted)}
-.req-field input{font-family:var(--font-ui); font-size:.95rem; padding:10px 12px; border:1px solid var(--line); border-radius:9px; background:var(--surface-2); color:var(--ink); width:100%}
+.req-field input{font-family:var(--font-ui); font-size:.95rem; padding:10px 12px; border:1px solid var(--entry-line); border-radius:9px; background:var(--entry); color:var(--ink); width:100%}
 .req-field input:focus{outline:2px solid var(--violet); outline-offset:1px}
 .req-disc{background:var(--violet-soft); border-radius:10px; padding:11px 13px; font-family:var(--font-ui); font-size:.8rem; color:var(--ink); line-height:1.5; margin:4px 0 14px; display:flex; gap:9px}
 .req-disc b{color:var(--violet-ink)}
@@ -165,7 +165,7 @@ nav.tabs{position:sticky; top:calc(env(safe-area-inset-top,0px) + var(--masth,72
   background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:6px 13px; line-height:1.2; transition:.12s}
 .chip:hover{border-color:var(--violet)}
 .chip[aria-pressed="true"]{background:var(--violet); color:#fff; border-color:var(--violet); font-weight:600}
-.srch{display:flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:8px 12px}
+.srch{display:flex; align-items:center; gap:8px; background:var(--entry); border:1px solid var(--entry-line); border-radius:8px; padding:8px 12px}
 .srch input{flex:1; min-width:0; border:none; background:none; color:var(--ink); font-family:var(--font-ui); font-size:.9rem}
 .srch input::placeholder{color:var(--faint)}
 .srch svg{flex:none; color:var(--faint)}
@@ -213,7 +213,7 @@ nav.tabs{position:sticky; top:calc(env(safe-area-inset-top,0px) + var(--masth,72
 .ask{margin-top:12px; background:var(--surface-2); border:1px solid var(--line-2); border-radius:10px; padding:11px 12px; font-family:var(--font-ui); font-size:.84rem}
 .ask label{display:flex; gap:8px; align-items:center; font-weight:700; color:var(--violet-ink); font-size:.8rem}
 .ask .arow{display:flex; gap:8px; margin-top:8px}
-.ask input{flex:1; min-width:0; font:inherit; font-size:16px; padding:8px 10px; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--ink)}
+.ask input{flex:1; min-width:0; font:inherit; font-size:16px; padding:8px 10px; border:1px solid var(--entry-line); border-radius:8px; background:var(--entry); color:var(--ink)}
 .ask button{flex:none; font:inherit; font-weight:700; font-size:.8rem; padding:8px 14px; border-radius:8px; border:0; background:var(--violet); color:var(--bg); cursor:pointer}
 .ask button:disabled{opacity:.6; cursor:wait}
 .ask input:focus-visible,.ask button:focus-visible{outline:2px solid var(--gold); outline-offset:2px}
