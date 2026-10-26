@@ -6,8 +6,10 @@ carries the standard this project is built to. Follow it.
 ## What this is
 A **non-partisan, plain-language voter guide** for family & friends. Each
 ballot measure and candidate is explained clearly so people can vote
-informed. Multi-state; California, Nevada, Oklahoma, Colorado, and Virginia
-are live (all measures and statewide races complete). **It never tells
+informed. Multi-state; California, Nevada, Oklahoma, Colorado, Virginia,
+Arizona, Oregon, and Texas are live (all measures and statewide races
+complete; Texas's seven statewide court races are linked, not profiled).
+Washington was dropped from the queue by the maintainer. **It never tells
 anyone how to vote — educational and informational only.** Strictly
 non-partisan throughout.
 
