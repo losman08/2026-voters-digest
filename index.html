@@ -2396,7 +2396,7 @@ const SC=k=>(STATES[stateKey].copy||{})[k]??STATES.CA.copy[k];
    English is the source. Each translation file (i18n/es.js, i18n/pt.js) calls registerLang()
    with an English-text -> translated-text map. Lookups are by exact English text, so if the
    English is later edited, the page shows the new English instead of a stale translation. */
-const LANG_BY_STATE={CA:['es'],TX:['es'],OK:['es','pt']};
+const LANG_BY_STATE={CA:['es'],TX:['es'],AZ:['es'],OK:['es','pt']};
 const LANG_CODES={en:'EN',es:'ES',pt:'PT'}, LANG_NAMES={en:'English',es:'Español',pt:'Português'};
 const I18N={};
 function registerLang(l,d){I18N[l]=Object.assign(I18N[l]||{},d)}
