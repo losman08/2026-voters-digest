@@ -38,7 +38,7 @@ non-partisan throughout.
 
 ## Languages (Spanish / Portuguese)
 - `LANG_BY_STATE` in index.html lists which states offer which languages
-  (currently `OK: es + pt`; CA, TX, AZ, NV get Spanish as each is finished).
+  (currently `CA: es`, `OK: es + pt`; TX, AZ, NV get Spanish as each is finished).
   The EN/ES/PT picker appears only on those states; elsewhere the page is
   English.
 - Translations live in `i18n/es.js` and `i18n/pt.js` (loaded only when a
