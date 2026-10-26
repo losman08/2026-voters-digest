@@ -36,6 +36,22 @@ non-partisan throughout.
   `<meta charset="utf-8">` at the top of `<head>` are **required** (mobile
   depends on them; the CSS uses `env(safe-area-inset-*)`) — never remove them.
 
+## Languages (Spanish / Portuguese)
+- `LANG_BY_STATE` in index.html lists which states offer which languages
+  (currently `OK: es + pt`; CA, TX, AZ, NV get Spanish as each is finished).
+  The EN/ES/PT picker appears only on those states; elsewhere the page is
+  English.
+- Translations live in `i18n/es.js` and `i18n/pt.js` (loaded only when a
+  visitor picks that language). Each is a map from the **exact English text**
+  to its translation, looked up through `T()`. If you edit English text in
+  a translated state, update the matching entry — otherwise that spot quietly
+  shows English (never a stale translation).
+- Portuguese is **European Portuguese (Portugal, pt-PT)**: e.g. *sondagem,
+  boletim de voto, contacto, registo*, 24-hour times. Spanish uses formal
+  *usted*. Names of people, organizations and official titles stay in English.
+- The AI "Ask" box answers in the visitor's language (`lang` sent to
+  `/api/ask`).
+
 ## Data model (in index.html)
 - `PROPS` — full measure cards · `PENDING` — stub measures (title + link
   only) · `RACES` — candidate races · `STATES` — per-state `{name, abbr,

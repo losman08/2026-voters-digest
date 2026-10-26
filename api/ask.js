@@ -51,6 +51,7 @@ export default async function handler(req, res) {
   const b = (req.body && typeof req.body === 'object') ? req.body : {};
   const question = (b.question == null ? '' : String(b.question)).trim().slice(0, MAX_Q);
   const card = (b.card == null ? '' : String(b.card)).trim().slice(0, MAX_CARD);
+  const langName = { es: 'Spanish (as used in the United States, formal "usted")', pt: 'European Portuguese (as spoken in Portugal, not Brazilian)' }[b.lang] || '';
   if (question.length < 3 || card.length < 50) {
     res.status(400).json({ error: 'Please describe your situation in a few words.' });
     return;
@@ -69,7 +70,7 @@ export default async function handler(req, res) {
         system: SYSTEM,
         messages: [{
           role: 'user',
-          content: `<card>\n${card}\n</card>\n\n<visitor_situation>\n${question}\n</visitor_situation>\n\nExplain how this measure would affect this person, following the rules.`
+          content: `<card>\n${card}\n</card>\n\n<visitor_situation>\n${question}\n</visitor_situation>\n\nExplain how this measure would affect this person, following the rules.${langName ? ` Write your answer in ${langName}. Keep names of people, organizations and official ballot titles as written in the card.` : ''}`
         }]
       })
     });
