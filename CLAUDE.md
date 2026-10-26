@@ -23,6 +23,13 @@ non-partisan throughout.
 - There is a serverless request form under `/api/` plus a request pipeline.
   **Do not modify `/api/*`, `vercel.json`, or `package.json` unless
   explicitly asked** — content work only touches `index.html`.
+- **`/api/ask.js`** powers each measure card's "Ask how this affects your
+  situation" box. It calls the Claude API with plain `fetch` (no npm
+  dependency) and needs the `ANTHROPIC_API_KEY` environment variable in
+  Vercel; without it the box shows "not switched on yet." The system prompt
+  grounds answers only in the card text the page sends and forbids vote
+  recommendations; it has a best-effort per-IP rate limit. Keep those
+  guardrails if you edit it.
 - Keep the UI tight: the masthead + tabs are the only sticky elements; no
   horizontal scroll at phone width. The `<meta name="viewport"
   content="width=device-width, initial-scale=1, viewport-fit=cover">` and
@@ -34,7 +41,12 @@ non-partisan throughout.
   only) · `RACES` — candidate races · `STATES` — per-state `{name, abbr,
   available, status, flag SVG, symbol}` · `VOTE_LINKS` — official voter
   tools · `SITUATIONS` — the impact-lens keys · `ISSUES` — the 7 default
-  "Where they stand" topics (Governor).
+  "Where they stand" topics (Governor). · `POLLS` — independent polls keyed
+  `'ST|num'` (measures) or `'ST|office'` (races); every card's header shows a
+  "Latest poll" badge from the first item, or "No public poll yet" when there
+  is none. Independent polls only (no campaign/party sponsors), 300+
+  respondents. If a release gives only a margin, use `res:[]` plus a
+  `summary`/`note` quoting it — never invent shares.
 
 ### Measure card schema (`PROPS`)
 `{num, cat, title, placed, summary, pass, fail, fiscal, support:[],
