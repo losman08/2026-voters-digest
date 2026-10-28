@@ -3,7 +3,7 @@
 // The answer is grounded only in the card text the page sends, and never recommends a vote.
 // Uses Groq's OpenAI-compatible chat completions API.
 
-const MODEL = 'llama-3.3-70b-versatile';
+const MODEL = 'openai/gpt-oss-120b';
 const MAX_Q = 300;          // characters allowed in the visitor's question
 const MAX_CARD = 7000;      // characters of card context accepted
 const LIMIT = 8;            // questions per visitor...
@@ -66,8 +66,9 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 400,
+        max_tokens: 1024,
         temperature: 0.3,
+        reasoning_effort: 'low',
         messages: [
           { role: 'system', content: SYSTEM },
           {
