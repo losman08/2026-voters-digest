@@ -1,8 +1,9 @@
 // Personalized "how does this affect me?" answers for a single ballot-measure card.
-// Needs the ANTHROPIC_API_KEY environment variable (set in Vercel project settings).
+// Needs the GROQ_API_KEY environment variable (set in Vercel project settings).
 // The answer is grounded only in the card text the page sends, and never recommends a vote.
+// Uses Groq's OpenAI-compatible chat completions API.
 
-const MODEL = 'claude-haiku-5-5';
+const MODEL = 'llama-3.3-70b-versatile';
 const MAX_Q = 300;          // characters allowed in the visitor's question
 const MAX_CARD = 7000;      // characters of card context accepted
 const LIMIT = 8;            // questions per visitor...
@@ -38,7 +39,7 @@ export default async function handler(req, res) {
     res.status(405).json({ error: 'Method not allowed' });
     return;
   }
-  const key = process.env.ANTHROPIC_API_KEY;
+  const key = process.env.GROQ_API_KEY;
   if (!key) {
     res.status(503).json({ error: 'Personalized answers are not switched on yet.' });
     return;
@@ -57,21 +58,23 @@ export default async function handler(req, res) {
     return;
   }
   try {
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
+    const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
-        'x-api-key': key,
-        'anthropic-version': '2023-06-01'
+        'authorization': `Bearer ${key}`
       },
       body: JSON.stringify({
         model: MODEL,
         max_tokens: 400,
-        system: SYSTEM,
-        messages: [{
-          role: 'user',
-          content: `<card>\n${card}\n</card>\n\n<visitor_situation>\n${question}\n</visitor_situation>\n\nExplain how this measure would affect this person, following the rules.${langName ? ` Write your answer in ${langName}. Keep names of people, organizations and official ballot titles as written in the card.` : ''}`
-        }]
+        temperature: 0.3,
+        messages: [
+          { role: 'system', content: SYSTEM },
+          {
+            role: 'user',
+            content: `<card>\n${card}\n</card>\n\n<visitor_situation>\n${question}\n</visitor_situation>\n\nExplain how this measure would affect this person, following the rules.${langName ? ` Write your answer in ${langName}. Keep names of people, organizations and official ballot titles as written in the card.` : ''}`
+          }
+        ]
       })
     });
     if (!r.ok) {
@@ -79,7 +82,7 @@ export default async function handler(req, res) {
       return;
     }
     const data = await r.json();
-    const answer = (data.content || []).filter(c => c.type === 'text').map(c => c.text).join('\n').trim();
+    const answer = ((((data.choices || [])[0] || {}).message || {}).content || '').trim();
     if (!answer) {
       res.status(502).json({ error: 'No answer came back. Please try again.' });
       return;
