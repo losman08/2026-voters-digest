@@ -78,17 +78,22 @@ export default async function handler(req, res) {
       })
     });
     if (!r.ok) {
+      let detail = '';
+      try { detail = await r.text(); } catch (_) {}
+      console.error('[ask] Groq API returned non-OK', r.status, detail.slice(0, 500));
       res.status(502).json({ error: 'The answer service is busy right now. Please try again in a minute.' });
       return;
     }
     const data = await r.json();
     const answer = ((((data.choices || [])[0] || {}).message || {}).content || '').trim();
     if (!answer) {
+      console.error('[ask] Groq returned no answer text', JSON.stringify(data).slice(0, 500));
       res.status(502).json({ error: 'No answer came back. Please try again.' });
       return;
     }
     res.status(200).json({ answer });
   } catch (e) {
+    console.error('[ask] Groq request failed', e && e.message ? e.message : String(e));
     res.status(502).json({ error: 'The answer service could not be reached. Please try again.' });
   }
 }
