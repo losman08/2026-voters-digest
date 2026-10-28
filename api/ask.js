@@ -3,7 +3,7 @@
 // The answer is grounded only in the card text the page sends, and never recommends a vote.
 // Uses Groq's OpenAI-compatible chat completions API.
 
-const MODEL = 'llama-3.3-70b-versatile';
+const MODEL = 'openai/gpt-oss-120b';
 const MAX_Q = 300;          // characters allowed in the visitor's question
 const MAX_CARD = 7000;      // characters of card context accepted
 const LIMIT = 8;            // questions per visitor...
@@ -66,8 +66,9 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 400,
+        max_tokens: 1024,
         temperature: 0.3,
+        reasoning_effort: 'low',
         messages: [
           { role: 'system', content: SYSTEM },
           {
@@ -78,17 +79,22 @@ export default async function handler(req, res) {
       })
     });
     if (!r.ok) {
+      let detail = '';
+      try { detail = await r.text(); } catch (_) {}
+      console.error('[ask] Groq API returned non-OK', r.status, detail.slice(0, 500));
       res.status(502).json({ error: 'The answer service is busy right now. Please try again in a minute.' });
       return;
     }
     const data = await r.json();
     const answer = ((((data.choices || [])[0] || {}).message || {}).content || '').trim();
     if (!answer) {
+      console.error('[ask] Groq returned no answer text', JSON.stringify(data).slice(0, 500));
       res.status(502).json({ error: 'No answer came back. Please try again.' });
       return;
     }
     res.status(200).json({ answer });
   } catch (e) {
+    console.error('[ask] Groq request failed', e && e.message ? e.message : String(e));
     res.status(502).json({ error: 'The answer service could not be reached. Please try again.' });
   }
 }
