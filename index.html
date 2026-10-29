@@ -2439,37 +2439,41 @@ document.addEventListener('click',e=>{const b=e.target.closest('#langSw [data-la
    against the pollster's own release. Keys: 'ST|office' for races, 'ST|num' for
    measures. Races in scope with no qualifying poll get {none:true}.
    TURNOUT = official counts of ballots returned/cast (never how people voted). */
-const POLL_ASOF='Oct 26, 2026';
+const POLL_ASOF='Oct 29, 2026';
 const NPI_NV={src:'Noble Predictive Insights (NVPOP)',dates:'Sep 22–26, 2026',n:'708 likely voters (online opt-in panel)',moe:3.68,url:'https://www.noblepredictiveinsights.com/post/lombardo-tries-to-escape-trump-s-orbit-up-2-over-ford'};
 const PPIC_CA={src:'PPIC Statewide Survey',dates:'Sep 4–10, 2026',n:'1,103 likely voters',moe:3.8,note:'Asked after reading the official ballot title and label.',url:'https://www.ppic.org/publication/ppic-statewide-survey-californians-and-their-government-september-2026/'};
 const HOBBY_TX={src:'UH Hobby School of Public Affairs',dates:'Oct 10–14, 2026',n:'2,000 likely voters',moe:2.19,url:'https://www.uh.edu/hobby/texas2026/statewide26.pdf'};
+const PPIC_CA_OCT={src:'PPIC Statewide Survey',dates:'Oct 16–22, 2026',n:'1,086 likely voters',moe:3.8,note:'Asked after reading the official ballot title and label.',url:'https://www.ppic.org/publication/ppic-statewide-survey-californians-and-their-government-october-2026/'};
+const HG_AZ2={src:'HighGround Public Affairs',dates:'Oct 21–25, 2026',n:'400 likely voters',moe:4.9,note:'Self-sponsored by HighGround, a Phoenix public-affairs firm. The release does not report undecided voters.',url:'https://azhighground.com/trailing-republicans-gain-ground-in-latest-survey/'};
+const EMERSON_TX={src:'Emerson College Polling / Nexstar Media',dates:'Oct 17–19, 2026',n:'1,000 likely voters',moe:3.1,url:'https://emersoncollegepolling.com/texas-2026-poll-toss-up/'};
 const HG_AZ={src:'HighGround Public Affairs',dates:'Oct 6–8, 2026',n:'400 likely voters',moe:4.9,note:'Self-sponsored by HighGround, a Phoenix public-affairs firm. The release does not report undecided voters.',url:'https://azhighground.com/hurricane-season-for-arizona-republicans/'};
 const POLLS={
- 'CA|1':{items:[{...PPIC_CA,res:[['Yes',55],['No',43],['Don’t know',2]]}]},
- 'CA|2':{items:[{...PPIC_CA,res:[['Yes',60],['No',39],['Don’t know',1]]}]},
- 'CA|3':{items:[{...PPIC_CA,res:[['Yes',58],['No',40],['Don’t know',2]]}]},
- 'CA|4':{items:[{...PPIC_CA,res:[['Yes',42],['No',53],['Don’t know',5]]}]},
- 'CA|5':{items:[{...PPIC_CA,res:[['Yes',35],['No',59],['Don’t know',5]]}]},
- 'CA|37':{items:[{...PPIC_CA,res:[['Yes',61],['No',35],['Don’t know',3]]}]},
- 'CA|38':{items:[{...PPIC_CA,res:[['Yes',55],['No',42],['Don’t know',3]]}]},
- 'CA|39':{items:[{...PPIC_CA,res:[['Yes',43],['No',55],['Don’t know',1]]}]},
- 'CA|40':{items:[{...PPIC_CA,res:[['Yes',52],['No',46],['Don’t know',2]]}]},
- 'CA|41':{items:[{...PPIC_CA,res:[['Yes',51],['No',44],['Don’t know',5]]}]},
- 'CA|42':{items:[{...PPIC_CA,res:[['Yes',54],['No',43],['Don’t know',4]]}]},
- 'CA|43':{items:[{...PPIC_CA,res:[['Yes',43],['No',51],['Don’t know',6]]}]},
- 'CA|44':{items:[{...PPIC_CA,res:[['Yes',34],['No',61],['Don’t know',6]]}]},
- 'CA|45':{items:[{...PPIC_CA,res:[['Yes',49],['No',46],['Don’t know',5]]}]},
+ 'CA|1':{items:[{...PPIC_CA_OCT,res:[['Yes',60],['No',38],['Don’t know',2]]},{...PPIC_CA,res:[['Yes',55],['No',43],['Don’t know',2]]}]},
+ 'CA|2':{items:[{...PPIC_CA_OCT,res:[['Yes',61],['No',38],['Don’t know',1]]},{...PPIC_CA,res:[['Yes',60],['No',39],['Don’t know',1]]}]},
+ 'CA|3':{items:[{...PPIC_CA_OCT,res:[['Yes',58],['No',41],['Don’t know',1]]},{...PPIC_CA,res:[['Yes',58],['No',40],['Don’t know',2]]}]},
+ 'CA|4':{items:[{...PPIC_CA_OCT,res:[['Yes',45],['No',52],['Don’t know',3]]},{...PPIC_CA,res:[['Yes',42],['No',53],['Don’t know',5]]}]},
+ 'CA|5':{items:[{...PPIC_CA_OCT,res:[['Yes',45],['No',52],['Don’t know',3]]},{...PPIC_CA,res:[['Yes',35],['No',59],['Don’t know',5]]}]},
+ 'CA|37':{items:[{...PPIC_CA_OCT,res:[['Yes',65],['No',32],['Don’t know',4]]},{...PPIC_CA,res:[['Yes',61],['No',35],['Don’t know',3]]}]},
+ 'CA|38':{items:[{...PPIC_CA_OCT,res:[['Yes',57],['No',41],['Don’t know',2]]},{...PPIC_CA,res:[['Yes',55],['No',42],['Don’t know',3]]}]},
+ 'CA|39':{items:[{...PPIC_CA_OCT,res:[['Yes',41],['No',58],['Don’t know',1]]},{...PPIC_CA,res:[['Yes',43],['No',55],['Don’t know',1]]}]},
+ 'CA|40':{items:[{...PPIC_CA_OCT,res:[['Yes',46],['No',52],['Don’t know',2]]},{...PPIC_CA,res:[['Yes',52],['No',46],['Don’t know',2]]}]},
+ 'CA|41':{items:[{...PPIC_CA_OCT,res:[['Yes',48],['No',49],['Don’t know',3]]},{...PPIC_CA,res:[['Yes',51],['No',44],['Don’t know',5]]}]},
+ 'CA|42':{items:[{...PPIC_CA_OCT,res:[['Yes',51],['No',47],['Don’t know',2]]},{...PPIC_CA,res:[['Yes',54],['No',43],['Don’t know',4]]}]},
+ 'CA|43':{items:[{...PPIC_CA_OCT,res:[['Yes',42],['No',55],['Don’t know',3]]},{...PPIC_CA,res:[['Yes',43],['No',51],['Don’t know',6]]}]},
+ 'CA|44':{items:[{...PPIC_CA_OCT,res:[['Yes',25],['No',71],['Don’t know',4]]},{...PPIC_CA,res:[['Yes',34],['No',61],['Don’t know',6]]}]},
+ 'CA|45':{items:[{...PPIC_CA_OCT,res:[['Yes',46],['No',50],['Don’t know',4]]},{...PPIC_CA,res:[['Yes',49],['No',46],['Don’t know',5]]}]},
  'TX|Lieutenant Governor':{items:[{...HOBBY_TX,res:[['Dan Patrick',47],['Vikki Goodwin',42],['Anthony Cristo',3],['Kevin McCormick',1],['Undecided',7]]}]},
  'TX|Attorney General':{items:[{...HOBBY_TX,res:[['Mayes Middleton',47],['Nathan Johnson',42],['Tom Oxford',3],['Undecided',8]]}]},
  'TX|Comptroller':{items:[{...HOBBY_TX,res:[['Don Huffines',47],['Sarah Eckhardt',40],['V. Alonzo Echavarria-Garza',2],['Shehla Faizi',0.4],['Undecided',11]]}]},
  'TX|Land Commissioner':{items:[{...HOBBY_TX,res:[['Dawn Buckingham',47],['Benjamin Flores',40],['Neill Snider',2],['Undecided',11]]}]},
  'TX|Agriculture Commissioner':{items:[{...HOBBY_TX,res:[['Nate Sheets',46],['Clayton Tucker',40],['Austin R. Kelly',2],['Undecided',12]]}]},
  'TX|Railroad Commissioner':{items:[{...HOBBY_TX,res:[['Bo French',45],['Jon Rosenthal',43],['Arthur DiBianca',2],['Undecided',10]]}]},
- 'AZ|Treasurer':{items:[{...HG_AZ,res:[['Nick Mansour',44.5],['Elijah Norton',35.3]]}]},
- 'AZ|Superintendent of Public Instruction':{items:[{...HG_AZ,res:[['Teresa Leyba Ruiz',44.7],['Kimberly Yee',38.3]]}]},
- 'AZ|Secretary of State':{items:[{...HG_AZ,res:[],summary:'Gap of about 12 points',note:'The release gives only the margin: Adrian Fontes ahead of Alexander Kolodin by nearly 12 points. It does not publish each candidate’s share. Self-sponsored by HighGround, a Phoenix public-affairs firm.'}]},
- 'AZ|Attorney General':{items:[{...HG_AZ,res:[],summary:'Gap of about 15 points',note:'The release gives only the margin: Kris Mayes ahead of Warren Petersen by 15 points. It does not publish each candidate’s share. Self-sponsored by HighGround, a Phoenix public-affairs firm.'}]},
+ 'AZ|Treasurer':{items:[{...HG_AZ2,res:[['Nick Mansour',46.8],['Elijah Norton',40.5]]},{...HG_AZ,res:[['Nick Mansour',44.5],['Elijah Norton',35.3]]}]},
+ 'AZ|Superintendent of Public Instruction':{items:[{...HG_AZ2,res:[['Teresa Leyba Ruiz',47],['Kimberly Yee',42.8]]},{...HG_AZ,res:[['Teresa Leyba Ruiz',44.7],['Kimberly Yee',38.3]]}]},
+ 'AZ|Secretary of State':{items:[{...HG_AZ2,res:[],summary:'Gap of about 11 points',note:'The release gives only the margin: Adrian Fontes ahead of Alexander Kolodin by 11 points. It does not publish each candidate’s share. Self-sponsored by HighGround, a Phoenix public-affairs firm.'},{...HG_AZ,res:[],summary:'Gap of about 12 points',note:'The release gives only the margin: Adrian Fontes ahead of Alexander Kolodin by nearly 12 points. It does not publish each candidate’s share. Self-sponsored by HighGround, a Phoenix public-affairs firm.'}]},
+ 'AZ|Attorney General':{items:[{...HG_AZ2,res:[],summary:'Gap of about 11 points',note:'The release gives only the margin: Kris Mayes ahead of Warren Petersen by 11 points. It does not publish each candidate’s share. Self-sponsored by HighGround, a Phoenix public-affairs firm.'},{...HG_AZ,res:[],summary:'Gap of about 15 points',note:'The release gives only the margin: Kris Mayes ahead of Warren Petersen by 15 points. It does not publish each candidate’s share. Self-sponsored by HighGround, a Phoenix public-affairs firm.'}]},
  'CA|Governor of California':{items:[
+  {...PPIC_CA_OCT,res:[['Xavier Becerra',61],['Steve Hilton',37]],note:'Another 1% said neither and 1% didn’t know.'},
   {src:'Emerson College Polling',dates:'Oct 17–19, 2026',n:'1,000 likely voters',moe:3.1,res:[['Xavier Becerra',60],['Steve Hilton',33],['Undecided',7]],
    note:'When undecided voters were asked which way they lean: Becerra 64%, Hilton 36%.',url:'https://emersoncollegepolling.com/california-2026-poll-xavier-becerra-holds-27-point-lead-over-steve-hilton/'}]},
  'NV|Governor of Nevada':{items:[
@@ -2487,27 +2491,28 @@ const POLLS={
  'CO|U.S. Senate':{none:true},
  'VA|U.S. Senate':{none:true},
  'TX|U.S. Senate':{items:[
+  {...EMERSON_TX,res:[['James Talarico',48],['Ken Paxton',46],['Ted Brown',1],['Undecided',5]],note:'When undecided voters were asked which way they lean: Talarico 49%, Paxton 48%, Brown 3%.'},
   {src:'UH Hobby School of Public Affairs',dates:'Oct 10–14, 2026',n:'2,000 likely voters',moe:2.19,res:[['James Talarico',48],['Ken Paxton',46],['Ted Brown',3],['Undecided',3]],url:'https://www.uh.edu/hobby/texas2026/statewide26.pdf'},
-  {src:'Marist Poll',dates:'Oct 8–11, 2026',n:'likely voters (from 1,196 registered voters)',moe:4.9,res:[['James Talarico',47],['Ken Paxton',45],['Another party',2],['Undecided',4]],note:'2% gave no response.',url:'https://maristpoll.marist.edu/polls/2026-midterm-elections-in-texas-october-2026/'},
-  {src:'University of Texas / Texas Politics Project',dates:'Sep 25–Oct 5, 2026',n:'861 likely voters',moe:3.34,res:[['James Talarico',50],['Ken Paxton',47],['Ted Brown',1],['Someone else',2]],note:'Undecided voters were asked whom they would choose, and those answers are included.',url:'https://texaspolitics.utexas.edu/files/202610_POLL_TOPLINE-76f91287.pdf'}]},
+  {src:'Marist Poll',dates:'Oct 8–11, 2026',n:'likely voters (from 1,196 registered voters)',moe:4.9,res:[['James Talarico',47],['Ken Paxton',45],['Another party',2],['Undecided',4]],note:'2% gave no response.',url:'https://maristpoll.marist.edu/polls/2026-midterm-elections-in-texas-october-2026/'}]},
  'TX|Governor of Texas':{items:[
+  {...EMERSON_TX,res:[['Greg Abbott',49],['Gina Hinojosa',45],['Pat Dixon',1],['Undecided',4]],note:'When undecided voters were asked which way they lean: Abbott 51%, Hinojosa 47%, Dixon 2%.'},
   {src:'UH Hobby School of Public Affairs',dates:'Oct 10–14, 2026',n:'2,000 likely voters',moe:2.19,res:[['Greg Abbott',49],['Gina Hinojosa',46],['Pat Dixon',2],['Undecided',3]],url:'https://www.uh.edu/hobby/texas2026/statewide26.pdf'},
-  {src:'Marist Poll',dates:'Oct 8–11, 2026',n:'likely voters (from 1,196 registered voters)',moe:4.9,res:[['Greg Abbott',49],['Gina Hinojosa',45],['Another party',1],['Undecided',3]],note:'1% gave no response.',url:'https://maristpoll.marist.edu/polls/2026-midterm-elections-in-texas-october-2026/'},
-  {src:'University of Texas / Texas Politics Project',dates:'Sep 25–Oct 5, 2026',n:'861 likely voters',moe:3.34,res:[['Greg Abbott',48],['Gina Hinojosa',49],['Pat Dixon',1],['Someone else',2]],note:'Undecided voters were asked whom they would choose, and those answers are included.',url:'https://texaspolitics.utexas.edu/files/202610_POLL_TOPLINE-76f91287.pdf'}]},
+  {src:'Marist Poll',dates:'Oct 8–11, 2026',n:'likely voters (from 1,196 registered voters)',moe:4.9,res:[['Greg Abbott',49],['Gina Hinojosa',45],['Another party',1],['Undecided',3]],note:'1% gave no response.',url:'https://maristpoll.marist.edu/polls/2026-midterm-elections-in-texas-october-2026/'}]},
  'OR|Governor of Oregon':{items:[
   {src:'DHM Research for OPB',dates:'Sep 17–27, 2026',n:'915 likely voters',moe:3.24,res:[['Christine Drazan',46],['Tina Kotek',44],['Brett Smith',3],['Undecided',8]],
    note:'When undecided voters were asked which way they lean: Drazan 47%, Kotek 46%, Smith 3%, undecided 4%. A Sept. 24–Oct. 1 DHM poll for The Oregonian (reported as Kotek 46%, Drazan 44%, Smith 3%) is not shown because its full results were not published. A Kotek campaign poll is excluded.',url:'https://www.opb.org/pressroom/oregon-governors-race-remains-tight-with-share-of-undecideds-shrinking-according-to-new-opb-commissioned-poll/'}]},
  'OR|U.S. Senate':{none:true},
  'AZ|Governor of Arizona':{items:[
+  {...HG_AZ2,res:[['Katie Hobbs',51.5],['Andy Biggs',39.3]],note:'Self-sponsored by HighGround, a Phoenix public-affairs firm. The release does not report shares for the Hourihan and Lombardo tickets or for undecided voters.'},
   {src:'HighGround Public Affairs',dates:'Oct 6–8, 2026',n:'400 likely voters',moe:4.9,res:[['Katie Hobbs',50.5],['Andy Biggs',33.7]],
    note:'Self-sponsored by HighGround, a Phoenix public-affairs firm. The release does not report shares for the Hourihan and Lombardo tickets or for undecided voters.',url:'https://azhighground.com/hurricane-season-for-arizona-republicans/'}]}
 };
 const TURNOUT={
- CA:{asof:'Oct 24, 2026',text:'3,160,419 ballots cast: 3,132,076 vote-by-mail ballots returned (out of 23,443,978 mailed) and 28,343 cast in person.',src:'California Secretary of State (VoteCal statistics)',url:'https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics-10-24-26.pdf'},
- CO:{asof:'11:59 PM Oct 22, 2026',text:'730,614 ballots returned statewide.',src:'Colorado Secretary of State daily update',url:'https://www.coloradosos.gov/pubs/newsRoom/pressReleases/2026/PR20261023BallotReturns.html'},
+ CA:{asof:'Oct 27, 2026',text:'4,101,720 ballots cast: 4,024,007 vote-by-mail ballots returned (out of 23,447,524 mailed) and 77,713 cast in person.',src:'California Secretary of State (VoteCal statistics)',url:'https://elections.cdn.sos.ca.gov/statewide-elections/2026-general/bsr-statistics-10-27-26.pdf'},
+ CO:{asof:'11:59 PM Oct 27, 2026',text:'1,109,631 ballots returned statewide.',src:'Colorado Secretary of State daily update',url:'https://www.coloradosos.gov/pubs/newsRoom/pressReleases/2026/PR20261028BallotReturns.html'},
  VA:{asof:'Oct 25, 2026',text:'1,107,183 early ballots cast (in person and by mail). For scale, the final early total in 2022 was 976,558.',src:'Virginia Public Access Project (non-partisan), compiled from Virginia Department of Elections data',url:'https://www.vpap.org/elections/early-voting/'},
- NV:{asof:'Oct 26, 2026',text:'Statewide early-voting and mail-ballot counts are published by the Nevada Secretary of State; we could not retrieve them for this update, so none are shown here.',src:'Nevada Secretary of State',url:'https://www.nvsos.gov/'},
- OK:{asof:'Oct 26, 2026',text:'In-person early voting runs Wednesday, Oct 28 through Saturday, Oct 31, so there is no statewide count yet.',src:'Oklahoma State Election Board',url:'https://oklahoma.gov/elections.html'}
+ NV:{asof:'Oct 29, 2026',text:'Statewide early-voting and mail-ballot counts are published by the Nevada Secretary of State; we could not retrieve them for this update, so none are shown here.',src:'Nevada Secretary of State',url:'https://www.nvsos.gov/'},
+ OK:{asof:'Oct 29, 2026',text:'In-person early voting runs Wednesday, Oct 28 through Saturday, Oct 31. No official statewide count had been published as of this update.',src:'Oklahoma State Election Board',url:'https://oklahoma.gov/elections.html'}
 };
 function pollHTML(P){
   if(!P)return'';
